@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 17:51:58 by microdri          #+#    #+#             */
-/*   Updated: 2023/02/14 14:40:45 by fcaetano         ###   ########.fr       */
+/*   Created: 2022/06/06 15:36:59 by fcaetano          #+#    #+#             */
+/*   Updated: 2022/09/05 17:56:40 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-int	main(void)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	printf("Entrou\n");
+	t_list	*last;
+
+	if (!(*lst))
+		*lst = new;
+	else
+	{
+		last = ft_lstlast(*lst);
+		if (last)
+			(last)->next = new;
+	}
 }

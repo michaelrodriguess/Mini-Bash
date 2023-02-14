@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_array_len.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 17:51:58 by microdri          #+#    #+#             */
-/*   Updated: 2023/02/14 14:40:45 by fcaetano         ###   ########.fr       */
+/*   Created: 2023/01/16 11:20:13 by fcaetano          #+#    #+#             */
+/*   Updated: 2023/01/16 11:20:15 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-int	main(void)
+size_t	ft_array_len(char **str)
 {
-	printf("Entrou\n");
+	size_t	n;
+
+	if (!str)
+		return (0);
+	n = 0;
+	while (str[n])
+		n++;
+	return (n);
 }

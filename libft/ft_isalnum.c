@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 17:51:58 by microdri          #+#    #+#             */
-/*   Updated: 2023/02/14 14:40:45 by fcaetano         ###   ########.fr       */
+/*   Created: 2022/05/09 15:49:44 by fcaetano          #+#    #+#             */
+/*   Updated: 2022/05/09 15:49:55 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-int	main(void)
+int	ft_isalnum(int c)
 {
-	printf("Entrou\n");
+	return (ft_isdigit(c) || ft_isalpha(c));
 }

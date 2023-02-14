@@ -1,18 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 17:51:58 by microdri          #+#    #+#             */
-/*   Updated: 2023/02/14 14:40:45 by fcaetano         ###   ########.fr       */
+/*   Created: 2022/06/06 16:05:33 by fcaetano          #+#    #+#             */
+/*   Updated: 2022/06/06 16:45:17 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-int	main(void)
+void	ft_lstclear(t_list **lst)
 {
-	printf("Entrou\n");
+	t_list	*temp;
+
+	while (*lst)
+	{
+		temp = (*lst)->next;
+		free(*lst);
+		*lst = temp;
+	}
+	*lst = NULL;
 }

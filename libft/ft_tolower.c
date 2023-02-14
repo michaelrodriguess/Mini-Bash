@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 17:51:58 by microdri          #+#    #+#             */
-/*   Updated: 2023/02/14 14:40:45 by fcaetano         ###   ########.fr       */
+/*   Created: 2022/05/09 15:53:24 by fcaetano          #+#    #+#             */
+/*   Updated: 2022/05/09 15:53:31 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
-
-int	main(void)
+int	ft_tolower(int c)
 {
-	printf("Entrou\n");
+	if (c >= 'A' && c <= 'Z')
+		c += 32;
+	return (c);
 }
+
+/* #include <stdio.h>
+int main(void)
+{
+    unsigned char c;
+
+    c = 'Z';
+    printf("antes: %c\n", c);
+    printf("depois: %c\n", ft_tolower(c));
+} */

@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 17:51:58 by microdri          #+#    #+#             */
-/*   Updated: 2023/02/14 14:40:45 by fcaetano         ###   ########.fr       */
+/*   Created: 2022/05/09 16:00:20 by fcaetano          #+#    #+#             */
+/*   Updated: 2022/06/09 12:37:47 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
-
-int	main(void)
+int	ft_toupper(int c)
 {
-	printf("Entrou\n");
+	if (c >= 'a' && c <= 'z')
+		c -= 32;
+	return (c);
 }
+
+/* #include <stdio.h>
+int main(void)
+{
+    unsigned char c;
+
+    c = 'z';
+    printf("antes: %c\n", c);
+    printf("depois: %c\n", ft_toupper(c));
+} */
