@@ -6,7 +6,7 @@
 /*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 15:39:31 by fcaetano          #+#    #+#             */
-/*   Updated: 2022/06/08 10:08:30 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/02/14 14:30:03 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	ft_catnbr(char *str)
 
 	c = 0;
 	while (str[c] >= '0' && str[c] <= '9' && str[c] != 0)
-			c++;
+		c++;
 	mult = 1;
 	result = 0;
 	while (c > 0)
