@@ -5,7 +5,7 @@ OBJS			= $(SRCS:.c=.o)
 LIBS			= sources/libft/libft.a
 CC				= cc
 RM				= rm -f
-CFLAGS			= -Wall -Wextra -Werror
+CFLAGS			= -Wall -Wextra -Werror -lreadline
 
 
 $(NAME):	$(SRCS) $(LIBS)
