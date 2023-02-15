@@ -14,5 +14,10 @@
 
 int	main(void)
 {
-	ft_printf("Entrou\n");
+	char	*line;
+
+	line = readline("microtano$: ");
+	ft_printf("Command line: %s$\n", line);
+	free(line);
+	return (0);
 }
