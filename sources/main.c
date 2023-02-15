@@ -14,5 +14,5 @@
 
 int	main(void)
 {
-	printf("Entrou\n");
+	ft_printf("Entrou\n");
 }
