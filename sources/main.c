@@ -19,5 +19,5 @@ int	main(void)
 	line = readline("microtano$: ");
 	ft_printf("Command line: %s$\n", line);
 	free(line);
-	return(0);
+	return (0);
 }
