@@ -13,6 +13,11 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+typedef struct s_token
+{
+
+} t_token
+
 # include <stdio.h>
 # include <unistd.h>
 # include <readline/readline.h>

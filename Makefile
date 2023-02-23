@@ -1,15 +1,15 @@
-SRCS			=	./sources/main.c \
+SRCS			=	./sources/lexer.c \
 
 NAME			= minishell
 OBJS			= $(SRCS:.c=.o)
 LIBS			= sources/libft/libft.a
 CC				= cc
 RM				= rm -f
-CFLAGS			= -Wall -Wextra -Werror -lreadline
+CFLAGS			= -Wall -Wextra -Werror 
 
 
 $(NAME):	$(SRCS) $(LIBS)
-		$(CC) $(CFLAGS) $(SRCS) $(LIBS) -o $(NAME)
+		$(CC) $(CFLAGS) $(SRCS) $(LIBS) -lreadline -o $(NAME)
 
 $(LIBS): sources/libft
 	make -C sources/libft/ all
