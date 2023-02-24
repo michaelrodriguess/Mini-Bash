@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:50:06 by microdri          #+#    #+#             */
-/*   Updated: 2023/02/23 18:46:58 by marvin           ###   ########.fr       */
+/*   Updated: 2023/02/24 17:30:10 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ typedef struct s_token
 	char			*str;
 	struct s_token	*next;
 } t_token;
+
+t_token	*ft_toklast(t_token *lst);
+void	ft_tokadd_back(t_token **lst, t_token *new);
+void	ft_tokclear(t_token **lst);
+void	ft_tokprint(t_token *lst);
 
 # include <stdio.h>
 # include <unistd.h>
