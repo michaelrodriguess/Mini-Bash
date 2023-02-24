@@ -1,28 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_strchri.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 17:50:06 by microdri          #+#    #+#             */
-/*   Updated: 2023/02/23 18:46:58 by marvin           ###   ########.fr       */
+/*   Created: 2022/05/09 15:55:20 by fcaetano          #+#    #+#             */
+/*   Updated: 2023/02/23 19:06:12 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "libft.h"
 
-typedef struct s_token
+int	ft_strchri(const char *s, int c)
 {
-	int				type;
-	char			*str;
-	struct s_token	*next;
-} t_token;
+	int	i;
 
-# include <stdio.h>
-# include <unistd.h>
-# include <readline/readline.h>
-# include "../sources/libft/libft.h"
+	i = 0;
+	while (s[i])
+	{
+		if ((char)c == s[i])
+			return (i);
+		i++;
+	}
+	if ((char)c == s[i])
+		return (i);
+	return (0);
+}
 
-#endif
+/* #include <stdio.h>
+int main(void)
+{
+    char s[] = " |><><\"\'$-";
+    int c;
+    int	ret;
+
+    c = 'a';
+    printf("%s\n", s);
+    ret = ft_strchri(s, c);
+    printf("%d\n", ret);
+    return (0);
+} */
