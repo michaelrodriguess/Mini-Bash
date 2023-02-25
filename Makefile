@@ -1,11 +1,12 @@
 SRCS			=	./sources/lexer.c \
+					./sources/lst_token.c \
 
 NAME			= minishell
 OBJS			= $(SRCS:.c=.o)
 LIBS			= sources/libft/libft.a
 CC				= cc
 RM				= rm -f
-CFLAGS			= -Wall -Wextra -Werror 
+CFLAGS			= -g -Wall -Wextra -Werror
 
 
 $(NAME):	$(SRCS) $(LIBS)
