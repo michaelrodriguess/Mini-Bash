@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 15:55:20 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/02/23 19:06:12 by marvin           ###   ########.fr       */
+/*   Updated: 2023/02/25 08:45:58 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,22 +20,22 @@ int	ft_strchri(const char *s, int c)
 	while (s[i])
 	{
 		if ((char)c == s[i])
-			return (i);
+			return (i + 1);
 		i++;
 	}
 	if ((char)c == s[i])
-		return (i);
+		return (i + 1);
 	return (0);
 }
 
 /* #include <stdio.h>
 int main(void)
 {
-    char s[] = " |><><\"\'$-";
+    char s[] = "|><><\"\'$- ";
     int c;
     int	ret;
 
-    c = 'a';
+    c = '|';
     printf("%s\n", s);
     ret = ft_strchri(s, c);
     printf("%d\n", ret);
