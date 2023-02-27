@@ -127,16 +127,18 @@ t_token	*lexer(char* c_line)
 			if (type == ft_strchri("|><><\"\'$-", *c_line))
 				ft_tokadd_back(&head, special_chr(type, &c_line));
 		}
+		else if (type == 8)
+			ft_tokadd_back(&head, cat_envvar(&c_line));
 	}
 	return (head);
 }
 
 int main (void)
 {
-	char	*command;
+	char	*command = " test $PWD.test   ";
 	t_token	*token;
 
-	command = ft_strdup("ls -la >>     grep    \"test e agora \'$ENVVAR\'\"   ");
+	command = ft_strdup(command);
 	ft_printf("%s\n", command);
 	token = lexer(command);
 	if (token)
