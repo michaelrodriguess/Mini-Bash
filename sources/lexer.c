@@ -123,15 +123,18 @@ t_token	*lexer(char* c_line)
 
 int main(void)
 {
-	char	*command = "echo \' test $PWD.test   ";
+	char	*command = "echo test \"|$PWD.test' \"'' ";
 	t_token	*token;
 
 	command = ft_strdup(command);
-	ft_printf("%s\n", command);
 	token = lexer(command);
 	if (token)
 	{
 		ft_tokprint(token);
+		if (validation(token))
+			ft_printf("\nError.\n");
+		else
+			ft_printf("\n%s\n", command);
 		ft_tokclear(&token);
 	}
 	free(command);
