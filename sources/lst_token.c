@@ -2,6 +2,20 @@
 
 #include "../includes/minishell.h"
 
+t_token	*ft_toknew(int type, char *str)
+{
+	t_token	*node;
+
+	node = malloc(sizeof(t_token));
+	if (!node)
+		return (NULL);
+	node->type = type;
+	node->str = str;
+	node->next = NULL;
+	node->prev = NULL;
+	return (node);
+}
+
 t_token	*ft_toklast(t_token *lst)
 {
 	while (lst)
@@ -23,7 +37,10 @@ void	ft_tokadd_back(t_token **lst, t_token *new)
 	{
 		last = ft_toklast(*lst);
 		if (last)
-			(last)->next = new;
+		{
+			last->next = new;
+			new->prev = last;
+		}
 	}
 }
 

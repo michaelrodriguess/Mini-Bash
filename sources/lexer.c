@@ -8,12 +8,9 @@ t_token	*cat_word(char **c_line, char *chr_set)
 	int		sz;
 
 	sz = 0;
-	current = malloc(sizeof(t_token));
 	while (!ft_strchri(chr_set, (*c_line)[sz]))
 		sz++;
-	current->type = 0;
-	current->str = ft_substr(*c_line, 0, sz);
-	current->next = NULL;
+	current = ft_toknew(0, ft_substr(*c_line, 0, sz));
 	(*c_line)+= sz;
 	return(current);
 }
@@ -23,7 +20,6 @@ t_token	*special_chr(int type, char **c_line)
 	t_token	*current;
 	char	*str;
 
-	current = malloc(sizeof(t_token));
 	str = ft_substr(*c_line, 0, 1);
 	if (type == 2 || type == 3)
 	{
@@ -35,9 +31,7 @@ t_token	*special_chr(int type, char **c_line)
 			(*c_line)++;
 		}
 	}
-	current->type = type;
-	current->str = str;
-	current->next = NULL;
+	current = ft_toknew(type, str);
 	(*c_line)++;
 	return(current);
 }
@@ -48,12 +42,9 @@ t_token	*cat_envvar(char **qt_str)
 	int		sz;
 
 	sz = 0;
-	current = malloc(sizeof(t_token));
 	while (ft_isalnum((*qt_str)[sz]))
 		sz++;
-	current->type = 0;
-	current->str = ft_substr(*qt_str, 0, sz);
-	current->next = NULL;
+	current = ft_toknew(0, ft_substr(*qt_str, 0, sz));
 	(*qt_str)+= sz;
 	return(current);
 }
@@ -87,13 +78,11 @@ t_token	*cat_quoteword(char **c_line, int type)
 	int		sz;
 
 	sz = 0;
-	current = malloc(sizeof(t_token));
-	while ((type == 6 && (*c_line)[sz] != '"') || (type == 7 && (*c_line)[sz] != '\''))
+	while (((type == 6 && (*c_line)[sz] != '"') || 
+				(type == 7 && (*c_line)[sz] != '\'')) && (*c_line)[sz])
 		sz++;
 	str = ft_substr(*c_line, 0, sz);
-	current->type = 0;
-	current->str = str;
-	current->next = NULL;
+	current = ft_toknew(0, str);
 	if (ft_strchr(str, '$') && type == 6)
 	{
 		tmp = current;
@@ -103,7 +92,6 @@ t_token	*cat_quoteword(char **c_line, int type)
 	(*c_line)+= sz;
 	return(current);
 }
-
 
 t_token	*lexer(char* c_line)
 {
@@ -133,9 +121,9 @@ t_token	*lexer(char* c_line)
 	return (head);
 }
 
-int main (void)
+int main(void)
 {
-	char	*command = " test $PWD.test   ";
+	char	*command = "echo \' test $PWD.test   ";
 	t_token	*token;
 
 	command = ft_strdup(command);
