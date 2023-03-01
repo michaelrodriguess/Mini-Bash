@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:51:58 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/01 17:07:56 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/01 18:07:33 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int	main(void)
 			clear_history();
 			break ;
 		}
-		add_history(input);
+		if (input[0] != 0)
+			add_history(input);
 		free(input);
 	}
 	return (0);
