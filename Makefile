@@ -1,11 +1,12 @@
 SRCS			=	./sources/main.c \
+					./sources/handling/handle_signals.c \
 
 NAME			= minishell
 OBJS			= $(SRCS:.c=.o)
 LIBS			= sources/libft/libft.a
 CC				= cc
 RM				= rm -f
-CFLAGS			= -Wall -Wextra -Werror -lreadline
+CFLAGS			= -Wall -Wextra -Werror -lreadline -L ~/.brew/opt/readline/lib -I ~/.brew/opt/readline/include
 
 
 $(NAME):	$(SRCS) $(LIBS)
