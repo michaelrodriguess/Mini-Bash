@@ -1,6 +1,6 @@
 //HEADER
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 t_token	*ft_toknew(int type, char *str)
 {

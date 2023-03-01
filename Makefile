@@ -1,6 +1,6 @@
-SRCS			=	./sources/lexer.c \
-					./sources/lst_token.c \
-					./sources/validation.c
+SRCS			=	./sources/tokenization/lexer.c \
+					./sources/tokenization/lst_token.c \
+					./sources/tokenization/validation.c
 
 NAME			= minishell
 OBJS			= $(SRCS:.c=.o)

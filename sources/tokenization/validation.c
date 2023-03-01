@@ -1,6 +1,6 @@
 //HEADER
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 int val_pipe(t_token *token)
 {

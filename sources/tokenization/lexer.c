@@ -1,6 +1,6 @@
 //HEADER
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 t_token	*cat_word(char **c_line, char *chr_set)
 {
