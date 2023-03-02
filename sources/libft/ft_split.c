@@ -6,7 +6,7 @@
 /*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 17:47:30 by fcaetano          #+#    #+#             */
-/*   Updated: 2022/05/31 13:12:06 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/02 17:38:04 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,17 +83,3 @@ char	**ft_split(char const *s, char c)
 		ft_free(ret, nwords + 1);
 	return (ret);
 }
-
-/* #include <stdio.h>
-int main(void)
-{
-	char *test = "./a.out var1 var2 var3";
-	char sep = ' ';
-	char **ret;
-
-	ret = ft_split(test, sep);
-	while(*ret)
-	{
-		printf("%s\n", *ret++);
-	}
-} */

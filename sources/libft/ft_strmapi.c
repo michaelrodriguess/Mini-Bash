@@ -6,7 +6,7 @@
 /*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 18:15:58 by fcaetano          #+#    #+#             */
-/*   Updated: 2022/06/03 15:15:37 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/02 17:39:34 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,3 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	}
 	return (str);
 }
-
-/*
-int main(void)
-{
-	str[] = "Teste";
-
-	printf("%s", ft_strmapi(str, f())
-}
-*/

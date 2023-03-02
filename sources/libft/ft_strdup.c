@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 16:03:23 by fcaetano          #+#    #+#             */
-/*   Updated: 2022/05/30 16:33:46 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/02 17:38:40 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,3 @@ char	*ft_strdup(const char *src)
 	ret[c] = 0;
 	return (ret);
 }
-
-/* #include <stdio.h>
-int main(void)
-{
-	char src[] = "Depois uma string longa, tão longa quanto moulinette deixa.";
-	char c[] = "Antes";
-	char *targ;
-
-	targ = c;
-	printf("%s\n", targ);
-	targ = ft_strdup(src);
-	printf("%s\n", targ);
-	return (0);
-} */

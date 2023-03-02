@@ -6,7 +6,7 @@
 /*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 14:59:58 by fcaetano          #+#    #+#             */
-/*   Updated: 2022/06/02 15:30:36 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/02 17:36:25 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,3 @@ char	*ft_itoa(int n)
 		ret[size] = '-';
 	return (ret);
 }
-
-/* #include <stdio.h>
-int main(void)
-{
-	int n = 0;
-
-	printf("%s\n", ft_itoa(n));
-} */
