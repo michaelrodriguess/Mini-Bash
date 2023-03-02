@@ -6,7 +6,7 @@
 /*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:37:29 by fcaetano          #+#    #+#             */
-/*   Updated: 2022/05/30 16:50:02 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/02 17:40:13 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,3 @@ char	*ft_strtrim(char const *s1, char const *set)
 	len = end - start + 1;
 	return (ft_substr(s1, start, len));
 }
-
-/* #include <stdio.h>
-int main(void)
-{
-	char *s1 = "       ";
-	char *set = " ";
-	
-	printf("%s", ft_strtrim(s1, set));
-} */

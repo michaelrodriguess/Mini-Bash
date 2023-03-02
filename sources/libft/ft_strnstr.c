@@ -6,7 +6,7 @@
 /*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 15:58:18 by fcaetano          #+#    #+#             */
-/*   Updated: 2022/05/09 15:58:51 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/02 17:39:56 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,3 @@ char	*ft_strnstr(const char *str, const char *to_find, size_t len)
 	}
 	return (0);
 }
-
-/* #include <stdio.h>
-#include <string.h>
-int main(void)
-{
-    char string1[] = "see FF your FF return FF now FF";
-    char string2[] = "FF";
-	int len = 31;
-    printf("%s\n", ft_strnstr(string1, string2, len));
-    // printf("%s\n", strnstr(string1, string2, len));
-    return(0);
-} */

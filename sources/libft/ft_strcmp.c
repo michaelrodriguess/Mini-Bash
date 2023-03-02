@@ -6,7 +6,7 @@
 /*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 15:53:00 by fcaetano          #+#    #+#             */
-/*   Updated: 2022/09/14 12:40:46 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/02 17:38:32 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,3 @@ int	ft_strcmp(const char *s1, const char *s2)
 	else
 		return (-1);
 }
-
-/*#include <stdio.h>
-#include <string.h>
-int main(void)
-{
-	char s1[7] = "laAd";
-	char s2[7] = "laAd";
-	printf("ft_strncmp: %d\n", ft_strcmp(s1, s2));
-	printf("   strncmp: %d\n", strcmp(s1, s2));
-}*/
