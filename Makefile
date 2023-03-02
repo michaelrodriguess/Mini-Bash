@@ -1,5 +1,6 @@
 SRCS			=	./sources/main.c \
 					./sources/handling/handle_signals.c \
+					./sources/built-ins/pwd.c \
 
 NAME			= minishell
 OBJS			= $(SRCS:.c=.o)

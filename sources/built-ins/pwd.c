@@ -6,11 +6,11 @@
 /*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 10:57:53 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/03/02 10:59:30 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/02 11:27:25 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 void	ft_pwd(void)
 {

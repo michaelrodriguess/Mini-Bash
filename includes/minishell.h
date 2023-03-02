@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:50:06 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/01 18:20:06 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/02 11:23:29 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,7 @@
 
 void	handle_signals(int signum);
 void	set_sig(void);
+void	ft_pwd(void);
+void	ft_echo(void);
 
 #endif
