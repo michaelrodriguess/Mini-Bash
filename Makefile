@@ -10,7 +10,7 @@ CFLAGS			= -Wall -Wextra -Werror -lreadline -L ~/.brew/opt/readline/lib -I ~/.br
 
 
 $(NAME):	$(SRCS) $(LIBS)
-		$(CC) $(CFLAGS) $(SRCS) $(LIBS) -lreadline -o $(NAME)
+		$(CC) $(CFLAGS) $(SRCS) $(LIBS) -o $(NAME)
 
 $(LIBS): sources/libft
 	make -C sources/libft/ all

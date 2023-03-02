@@ -6,7 +6,7 @@
 /*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 10:33:57 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/03/02 10:34:31 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/02 17:29:56 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	validation(t_token *token)
 	{
 		if (token->type == 1 && val_pipe(token))
 			return (1);
-		else if (token->type < 5 && token->type > 1 && val_redr(token))
+		else if (token->type < 6 && token->type > 1 && val_redr(token))
 			return (1);
 		else if ((token->type == 6 || token->type == 7) && !quote)
 			quote = token->type;
