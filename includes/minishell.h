@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:50:06 by microdri          #+#    #+#             */
-/*   Updated: 2023/02/28 14:32:44 by marvin           ###   ########.fr       */
+/*   Updated: 2023/03/02 09:55:25 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,15 @@ t_token	*cat_word(char **c_line, char *chr_set);
 int		validation(t_token *token);
 
 # include <stdio.h>
+# include <stdlib.h>
 # include <unistd.h>
 # include <readline/readline.h>
+# include <readline/history.h>
+# include <signal.h>
+# include <sys/ioctl.h>
 # include "../sources/libft/libft.h"
+
+void	handle_signals(int signum);
+void	set_sig(void);
 
 #endif
