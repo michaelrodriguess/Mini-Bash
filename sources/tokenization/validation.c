@@ -1,8 +1,18 @@
-//HEADER
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   validation.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/02 10:33:57 by fcaetano          #+#    #+#             */
+/*   Updated: 2023/03/02 10:34:31 by fcaetano         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int val_pipe(t_token *token)
+int	val_pipe(t_token *token)
 {
 	if (token->prev == NULL || token->next == NULL)
 		return (1);
@@ -11,7 +21,7 @@ int val_pipe(t_token *token)
 	return (0);
 }
 
-int val_redr(t_token *token)
+int	val_redr(t_token *token)
 {
 	if (token->prev == NULL || token->next == NULL)
 		return (1);

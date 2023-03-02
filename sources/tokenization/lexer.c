@@ -1,4 +1,14 @@
-//HEADER
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lexer.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/02 10:11:58 by fcaetano          #+#    #+#             */
+/*   Updated: 2023/03/02 10:30:11 by fcaetano         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
@@ -11,8 +21,8 @@ t_token	*cat_word(char **c_line, char *chr_set)
 	while (!ft_strchri(chr_set, (*c_line)[sz]))
 		sz++;
 	current = ft_toknew(0, ft_substr(*c_line, 0, sz));
-	(*c_line)+= sz;
-	return(current);
+	(*c_line) += sz;
+	return (current);
 }
 
 t_token	*special_chr(int type, char **c_line)
@@ -33,41 +43,7 @@ t_token	*special_chr(int type, char **c_line)
 	}
 	current = ft_toknew(type, str);
 	(*c_line)++;
-	return(current);
-}
-
-t_token	*cat_envvar(char **qt_str)
-{
-	t_token	*current;
-	int		sz;
-
-	sz = 0;
-	while (ft_isalnum((*qt_str)[sz]))
-		sz++;
-	current = ft_toknew(0, ft_substr(*qt_str, 0, sz));
-	(*qt_str)+= sz;
-	return(current);
-}
-
-t_token	*cat_dollar(char *qt_str)
-{
-	t_token	*head;
-	int		sz;
-
-	sz = 0;
-	head = NULL;
-	ft_printf("%s\n", qt_str);
-	while (qt_str[sz])
-	{
-		if (qt_str[sz] == '$')
-		{
-			ft_tokadd_back(&head, special_chr(8, &qt_str));
-			ft_tokadd_back(&head, cat_envvar(&qt_str));
-		}
-		else
-			ft_tokadd_back(&head, cat_word(&qt_str, "$"));
-	}
-	return (head);
+	return (current);
 }
 
 t_token	*cat_quoteword(char **c_line, int type)
@@ -78,8 +54,8 @@ t_token	*cat_quoteword(char **c_line, int type)
 	int		sz;
 
 	sz = 0;
-	while (((type == 6 && (*c_line)[sz] != '"') || 
-				(type == 7 && (*c_line)[sz] != '\'')) && (*c_line)[sz])
+	while (((type == 6 && (*c_line)[sz] != '"')
+		|| (type == 7 && (*c_line)[sz] != '\'')) && (*c_line)[sz])
 		sz++;
 	str = ft_substr(*c_line, 0, sz);
 	current = ft_toknew(0, str);
@@ -89,13 +65,13 @@ t_token	*cat_quoteword(char **c_line, int type)
 		current = cat_dollar(str);
 		ft_tokclear(&tmp);
 	}
-	(*c_line)+= sz;
-	return(current);
+	(*c_line) += sz;
+	return (current);
 }
 
-t_token	*lexer(char* c_line)
+t_token	*lexer(char *c_line)
 {
-	t_token *head;
+	t_token	*head;
 	int		type;
 
 	head = NULL;
@@ -121,7 +97,7 @@ t_token	*lexer(char* c_line)
 	return (head);
 }
 
-int main(void)
+/*int main(void)
 {
 	char	*command = "echo test \"|$PWD.test' \"'' ";
 	t_token	*token;
@@ -138,4 +114,4 @@ int main(void)
 		ft_tokclear(&token);
 	}
 	free(command);
-}
+}*/
