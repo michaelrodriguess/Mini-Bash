@@ -3,49 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 12:41:50 by fcaetano          #+#    #+#             */
-/*   Updated: 2022/06/15 15:23:38 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/02/23 20:41:53 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-char	*ft_strdup(const char *src)
-{
-	char	*ret;
-	int		c;
-
-	c = ft_strlen(src) + 1;
-	ret = malloc(c * sizeof(*ret));
-	if (!ret)
-		return (ret);
-	c = 0;
-	while (src[c])
-	{
-		ret[c] = src[c];
-		c++;
-	}
-	ret[c] = 0;
-	return (ret);
-}
-
-size_t	ft_strlcpy(char *dest, const char *src, size_t destsize)
-{
-	size_t	i;
-
-	i = 0;
-	if (destsize == 0)
-		return (ft_strlen((char *)src));
-	while (src[i] && i < destsize - 1 && i != destsize)
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = 0;
-	return (ft_strlen((char *)src));
-}
 
 char	*ft_strjoin_gnl(char *s1, char *s2)
 {

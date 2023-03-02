@@ -6,7 +6,7 @@
 /*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 12:41:50 by fcaetano          #+#    #+#             */
-/*   Updated: 2022/06/15 15:23:38 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/02 17:41:04 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,26 +96,3 @@ char	*get_next_line(int fd)
 		sbuf = ft_strjoin_gnl(sbuf, line);
 	}
 }
-
-/* 
-#include <fcntl.h>
-#include <stdio.h>
-
-int main(void)
-{
-	int 	fd;
-	char	*line;
-
-	fd = open("test.txt", 0);
-	
-	line = get_next_line(fd);
-	while (line)
-	{	
-		printf("%s\n", line);
-		printf("......\n");
-		free(line);
-		line = get_next_line(fd);
-	}
-	free(line);
-	return (0);
-}*/

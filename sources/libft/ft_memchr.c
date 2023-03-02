@@ -6,7 +6,7 @@
 /*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 16:02:18 by fcaetano          #+#    #+#             */
-/*   Updated: 2022/05/09 16:02:28 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/02 17:36:45 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,3 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	}
 	return (0);
 }
-
-/* #include <stdio.h>
-int main(void)
-{
-    char s[] = "qwe\0eretyu";
-    int c;
-    char *ret;
-
-    c = 'e';
-    printf("%s\n", s);
-    ret = memchr(s, c, 3);
-    printf("%s\n", ret);
-    return (0);
-} */

@@ -6,7 +6,7 @@
 /*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 13:05:45 by fcaetano          #+#    #+#             */
-/*   Updated: 2022/06/09 13:06:18 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/02 17:39:07 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,22 +33,3 @@ size_t	ft_strlcat(char *dest, const char *src,	size_t destsize)
 	dest[dest_count + i] = 0;
 	return (dest_count + s_len);
 }
-
-/* #include <stdio.h>
-#include <string.h>
-int main(void)
-{
-	char *src = "the cake is a lie !\0I'm hidden lol\r\n";
-	char dest1[50] = "there is no stars in the sky";
-	char dest2[50] = "there is no stars in the sky";
-	// ft_memset(src, 'r', 15);
-    printf(" --- Função ft_original ---\n");
-	printf("Valor retornado: %lu\n", ft_strlcat(dest1, src,
-	 ft_strlen("the cake is a lie !\0I'm hidden lol\r\n") + 4));
-    printf(" ---  Função original   ---\n");
-	printf("Valor retornado: %lu\n", strlcat(dest2,
-	 src, ft_strlen("the cake is a lie !\0I'm hidden lol\r\n") + 4));
-	printf("ft_original: %s\n\n", dest1);
-	printf("original: %s\n\n", dest2);
-    return(0);
-} */

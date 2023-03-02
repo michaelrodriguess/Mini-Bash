@@ -6,7 +6,7 @@
 /*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 16:04:06 by fcaetano          #+#    #+#             */
-/*   Updated: 2022/05/23 18:41:51 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/02 17:40:04 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,3 @@ char	*ft_strrchr(const char *s, int c)
 	}
 	return (NULL);
 }
-
-/* #include <stdio.h>
-int main(void)
-{
-    char s[] = "qweretyu";
-    int c;
-    char *ret;
-
-    c = 'd';
-    printf("%s\n", s);
-    ret = ft_strrchr(s, c);
-    printf("%s\n", ret);
-    return (0);
-} */

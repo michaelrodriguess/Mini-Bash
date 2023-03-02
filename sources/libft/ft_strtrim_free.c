@@ -6,7 +6,7 @@
 /*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:37:29 by fcaetano          #+#    #+#             */
-/*   Updated: 2022/05/30 16:50:02 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/02 17:40:29 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,3 @@ char	*ft_strtrim_free(char const *s1, char const *set, char **addr)
 	free (addr[0]);
 	return (ret);
 }
-
-/* #include <stdio.h>
-int main(void)
-{
-	char *s1 = "       ";
-	char *set = " ";
-	
-	printf("%s", ft_strtrim(s1, set));
-} */
