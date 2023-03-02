@@ -1,5 +1,10 @@
 SRCS			=	./sources/main.c \
 					./sources/handling/handle_signals.c \
+					./sources/handling/parser.c \
+					./sources/tokenization/lst_token2.c\
+					./sources/tokenization/lst_token.c\
+					./sources/tokenization/lexer.c \
+					./sources/tokenization/lexer2.c \
 
 NAME			= minishell
 OBJS			= $(SRCS:.c=.o)

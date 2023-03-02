@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:50:06 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/02 10:33:41 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/02 19:08:01 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ typedef struct s_token
 
 t_token	*ft_toknew(int type, char *str);
 t_token	*ft_toklast(t_token *lst);
+t_token	*lexer(char *c_line);
+int		ft_toksize(t_token *lst);
 void	ft_tokadd_back(t_token **lst, t_token *new);
 void	ft_tokclear(t_token **lst);
 void	ft_tokprint(t_token *lst);
@@ -40,6 +42,7 @@ int		validation(t_token *token);
 t_token	*cat_envvar(char **qt_str);
 t_token	*cat_dollar(char *qt_str);
 t_token	*special_chr(int type, char **c_line);
+char	 **parser(t_token *token_lst);
 
 void	handle_signals(int signum);
 void	set_sig(void);

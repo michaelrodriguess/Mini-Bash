@@ -1,35 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 17:51:58 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/02 19:12:14 by microdri         ###   ########.fr       */
+/*   Created: 2023/03/02 18:45:22 by microdri          #+#    #+#             */
+/*   Updated: 2023/03/02 19:53:42 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
-int	main(void)
+char **parser(t_token *token_lst)
 {
-	char	*input;
+//	char **ret;
 
-	set_sig();
-	while (42)
-	{
-		input = readline("microtano$: ");
-		parser(lexer(input));
-		if (ft_strcmp(input, "exit") == 0 || input == NULL)
-		{
-			write(1, "exit\n", 5);
-			clear_history();
-			break ;
-		}
-		if (input[0] != 0)
-			add_history(input);
-		free(input);
-	}
-	return (0);
+	printf("size of token lst: %i\n", ft_toksize(token_lst));
+	return (NULL);
 }
