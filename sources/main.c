@@ -29,10 +29,12 @@ void	test_builtins(char *input)
 		ft_cd(test_set3);
 }
 
-int	main(void)
+int	main(int argc, char** argv, char **envp)
 {
 	char	*input;
 
+	(void) argc;
+	(void) *argv;
 	set_sig();
 	while (42)
 	{
