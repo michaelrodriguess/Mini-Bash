@@ -44,6 +44,6 @@ t_token	*special_chr(int type, char **c_line);
 void	handle_signals(int signum);
 void	set_sig(void);
 void	ft_pwd(void);
-void	ft_echo(void);
+void	ft_echo(char **args);
 
 #endif

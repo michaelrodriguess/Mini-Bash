@@ -12,10 +12,18 @@
 
 #include "../includes/minishell.h"
 
-void	builtins(char *input)
+void	test_builtins(char *input)
 {
+	char *test_set[] = {"test", "echo", "this", NULL};
+	char *test_set2[] = {"-n", "test", "echo", "this", "with -n optin", NULL};
+
 	if (!ft_strcmp(input, "pwd"))
 		ft_pwd();
+	if (!ft_strcmp(input, "echo"))
+	{
+		ft_echo(test_set);
+		ft_echo(test_set2);
+	}
 }
 
 int	main(void)
@@ -34,7 +42,7 @@ int	main(void)
 		}
 		if (input[0] != 0)
 			add_history(input);
-		builtins(input);
+		test_builtins(input);
 		free(input);
 	}
 	return (0);
