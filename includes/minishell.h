@@ -45,5 +45,6 @@ void	handle_signals(int signum);
 void	set_sig(void);
 void	ft_pwd(void);
 void	ft_echo(char **args);
+void ft_cd(char **path);
 
 #endif

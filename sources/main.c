@@ -16,6 +16,7 @@ void	test_builtins(char *input)
 {
 	char *test_set[] = {"test", "echo", "this", NULL};
 	char *test_set2[] = {"-n", "test", "echo", "this", "with -n optin", NULL};
+	char *test_set3[] = {"..", NULL};
 
 	if (!ft_strcmp(input, "pwd"))
 		ft_pwd();
@@ -24,6 +25,8 @@ void	test_builtins(char *input)
 		ft_echo(test_set);
 		ft_echo(test_set2);
 	}
+	if (!ft_strcmp(input, "cd"))
+		ft_cd(test_set3);
 }
 
 int	main(void)
