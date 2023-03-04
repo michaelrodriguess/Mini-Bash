@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:50:06 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/02 19:08:01 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/02 18:28:56 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,8 @@ char	 **parser(t_token *token_lst);
 
 void	handle_signals(int signum);
 void	set_sig(void);
+void	ft_pwd(void);
+void	ft_echo(char **args);
+void ft_cd(char **path);
 
 #endif
