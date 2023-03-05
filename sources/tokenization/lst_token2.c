@@ -32,7 +32,7 @@ int	ft_toksize_w(t_token *lst)
 	count = 0;
 	while (lst)
 	{
-		if (lst->type == 0)
+		if (lst->type == 0 || lst->type == 8)
 			count++;
 		lst = lst->next;
 	}
