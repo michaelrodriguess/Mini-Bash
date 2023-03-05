@@ -58,6 +58,8 @@ void	ft_tokclear(t_token **lst)
 {
 	t_token	*temp;
 
+	if (lst == NULL)
+		return ;
 	while (*lst)
 	{
 		temp = (*lst)->next;
