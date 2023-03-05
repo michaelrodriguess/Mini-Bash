@@ -12,14 +12,28 @@
 
 #include "../../includes/minishell.h"
 
-int	ft_toksize(t_token *lst)
+/*int	ft_toksize(t_token *lst)
+{
+	int	count;
+
+	count = 0;
+	while (lst)                           // maybe we use
+	{
+		count++;
+		lst = lst->next;
+	}
+	return (count);
+}*/
+
+int	ft_toksize_w(t_token *lst)
 {
 	int	count;
 
 	count = 0;
 	while (lst)
 	{
-		count++;
+		if (lst->type == 0)
+			count++;
 		lst = lst->next;
 	}
 	return (count);

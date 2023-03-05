@@ -1,6 +1,7 @@
 SRCS			=	./sources/main.c \
 					./sources/handling/handle_signals.c \
 					./sources/handling/parser.c \
+					./sources/handling/parser_builtin.c \
 					./sources/tokenization/lst_token2.c\
 					./sources/tokenization/lst_token.c\
 					./sources/tokenization/lexer.c \

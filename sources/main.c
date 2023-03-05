@@ -12,24 +12,7 @@
 
 #include "../includes/minishell.h"
 
-void	test_builtins(char *input)
-{
-	char *test_set[] = {"test", "echo", "this", NULL};
-	char *test_set2[] = {"-n", "test", "echo", "this", "with -n optin", NULL};
-	char *test_set3[] = {"..", NULL};
-
-	if (!ft_strcmp(input, "pwd"))
-		ft_pwd();
-	if (!ft_strcmp(input, "echo"))
-	{
-		ft_echo(test_set);
-		ft_echo(test_set2);
-	}
-	if (!ft_strcmp(input, "cd"))
-		ft_cd(test_set3);
-}
-
-int	main(int argc, char** argv, char **envp)
+int	main(int argc, char** argv)
 {
 	char	*input;
 
@@ -39,7 +22,6 @@ int	main(int argc, char** argv, char **envp)
 	while (42)
 	{
 		input = readline("microtano$: ");
-		parser(lexer(input));
 		if (ft_strcmp(input, "exit") == 0 || input == NULL)
 		{
 			write(1, "exit\n", 5);
@@ -48,7 +30,7 @@ int	main(int argc, char** argv, char **envp)
 		}
 		if (input[0] != 0)
 			add_history(input);
-		test_builtins(input);
+		parser(lexer(input));
 		free(input);
 	}
 	return (0);

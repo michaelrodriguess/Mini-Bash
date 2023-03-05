@@ -14,8 +14,15 @@
 
 char **parser(t_token *token_lst)
 {
-//	char **ret;
+	char *command;
+	
+	if (token_lst == NULL)
+		return (NULL);
+	command = token_lst->str;
+	if (is_builtin(command) == 1)
+	{
+		parser_builtin(token_lst);
+	}
 
-	printf("size of token lst: %i\n", ft_toksize(token_lst));
 	return (NULL);
 }
