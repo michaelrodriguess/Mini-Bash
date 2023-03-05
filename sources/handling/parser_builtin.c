@@ -75,7 +75,7 @@ void parser_builtin(t_token *token_lst)
 	if (token_lst != NULL)
 	{
 		size = ft_toksize_w(token_lst);
-		args = malloc(size + 1 * sizeof(t_token));
+		args = malloc((size + 1) * sizeof(char *));
 		if (!args)
 			printf("Error in parser built-in malloc.\n");
 		while (token_lst != NULL)
@@ -83,9 +83,10 @@ void parser_builtin(t_token *token_lst)
 			if (token_lst->type == 0)
 				args[index] = add_arg(&token_lst);
 			else if (token_lst->type == 8)
-				args[index] = add_env_var(&token_lst);
+				args[index] = add_arg(&token_lst); //call add_env_var instead
 			index++;
 		}
+		args[index] = NULL;
 	}
 	execute_builtins(command, args);
 }
