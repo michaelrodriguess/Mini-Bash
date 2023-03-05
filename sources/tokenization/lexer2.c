@@ -17,10 +17,10 @@ t_token	*cat_envvar(char **qt_str)
 	t_token	*current;
 	int		sz;
 
-	sz = 0;
+	sz = 1;
 	while (ft_isalnum((*qt_str)[sz]))
 		sz++;
-	current = ft_toknew(0, ft_substr(*qt_str, 0, sz));
+	current = ft_toknew(8, ft_substr(*qt_str, 0, sz));
 	(*qt_str) += sz;
 	return (current);
 }

@@ -79,8 +79,10 @@ t_token	*lexer(char *c_line)
 	while (*c_line)
 	{
 		type = ft_strchri("|><><\"\'$-", *c_line);
-		if (type)
+		if (type && type != 8)
 			ft_tokadd_back(&head, special_chr(type, &c_line));
+		else if (type == 8)
+             ft_tokadd_back(&head, cat_envvar(&c_line));
 		else if ((*c_line) != ' ')
 			ft_tokadd_back(&head, cat_word(&c_line, " |><><"));
 		else
@@ -91,8 +93,6 @@ t_token	*lexer(char *c_line)
 			if (type == ft_strchri("|><><\"\'$-", *c_line))
 				ft_tokadd_back(&head, special_chr(type, &c_line));
 		}
-		else if (type == 8)
-			ft_tokadd_back(&head, cat_envvar(&c_line));
 	}
 	return (head);
 }
