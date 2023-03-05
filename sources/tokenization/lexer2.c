@@ -32,14 +32,10 @@ t_token	*cat_dollar(char *qt_str)
 
 	sz = 0;
 	head = NULL;
-	ft_printf("%s\n", qt_str);
 	while (qt_str[sz])
 	{
 		if (qt_str[sz] == '$')
-		{
-			ft_tokadd_back(&head, special_chr(8, &qt_str));
 			ft_tokadd_back(&head, cat_envvar(&qt_str));
-		}
 		else
 			ft_tokadd_back(&head, cat_word(&qt_str, "$"));
 	}
