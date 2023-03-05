@@ -14,11 +14,13 @@
 
 int	main(int argc, char** argv)
 {
-	char	*input;
+	char		*input;
+	t_token		*token_lst;
 
 	(void) argc;
 	(void) *argv;
 	set_sig();
+	token_lst = NULL;
 	while (42)
 	{
 		input = readline("microtano$: ");
@@ -26,12 +28,16 @@ int	main(int argc, char** argv)
 		{
 			write(1, "exit\n", 5);
 			clear_history();
+			free(input);
+			ft_tokclear(&token_lst);
 			break ;
 		}
 		if (input[0] != 0)
 			add_history(input);
+		token_lst = lexer(input);
 		parser(lexer(input));
 		free(input);
+		ft_tokclear(&token_lst);
 	}
 	return (0);
 }
