@@ -78,7 +78,7 @@ t_token	*lexer(char *c_line)
 	type = 0;
 	while (*c_line)
 	{
-		type = ft_strchri("|><><\"\'$-", *c_line);
+		type = ft_strchri("|><><\"\'$", *c_line);
 		if (type && type != 8)
 			ft_tokadd_back(&head, special_chr(type, &c_line));
 		else if (type == 8)
