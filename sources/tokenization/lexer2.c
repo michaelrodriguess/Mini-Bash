@@ -6,7 +6,7 @@
 /*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 10:20:56 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/03/02 10:28:27 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/06 18:57:21 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_token	*cat_envvar(char **qt_str)
 	int		sz;
 
 	sz = 1;
-	while (ft_isalnum((*qt_str)[sz]))
+	while (!ft_strchri(" |<>$", (*qt_str)[sz]))
 		sz++;
 	current = ft_toknew(8, ft_substr(*qt_str, 0, sz));
 	(*qt_str) += sz;

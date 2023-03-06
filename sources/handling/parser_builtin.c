@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:20:34 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/06 18:01:32 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/06 18:56:37 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ char	*expand_envvar(t_token *token_lst, char **env)
 	}
 	temp = token_lst->str;
 	if (!env[i])
-		token_lst->str = ft_strdup("");
+		token_lst->str = &(token_lst->str[1]);
 	else
 	{
 		len = ft_strlen(env[i]) - ft_strchri(env[i], '=') + 1;
@@ -75,7 +75,7 @@ char	*expand_envvar(t_token *token_lst, char **env)
 	return (token_lst->str);
 }
 
-char *add_env_var(t_token **token_lst, char **env)
+char	*add_env_var(t_token **token_lst, char **env)
 {
 	char *arg;
 
