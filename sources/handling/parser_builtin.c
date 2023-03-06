@@ -89,5 +89,6 @@ void parser_builtin(t_token *token_lst)
 		args[index] = NULL;
 	}
 	execute_builtins(command, args);
+	free(args);
 }
 
