@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ft_isnum.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
+/*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/09 15:49:44 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/03/06 14:41:25 by microdri         ###   ########.fr       */
+/*   Created: 2023/03/06 14:03:10 by microdri          #+#    #+#             */
+/*   Updated: 2023/03/06 14:03:50 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-int	ft_isalnum(int c)
+int	ft_isnum(int c)
 {
-	return (ft_isdigit(c) && ft_isalpha(c));
+	if (c >= 0 && c <= 9)
+		return (1);
+	return (0);
 }

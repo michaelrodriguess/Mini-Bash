@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:50:06 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/06 10:59:14 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/06 11:52:59 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_data_shell
 {
 	t_token	*tok_lst;
 	char	**env;
+	char	**args;
 }	t_data_shell;
 
 t_token	*ft_toknew(int type, char *str);
@@ -58,5 +59,5 @@ void	set_sig(void);
 void	ft_pwd(void);
 void	ft_echo(char **args);
 void	ft_cd(char **path);
-
+void	ft_exit(char **args);
 #endif

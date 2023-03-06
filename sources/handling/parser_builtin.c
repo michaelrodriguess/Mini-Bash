@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_signals.c                                   :+:      :+:    :+:   */
+/*   parser_builtin.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:20:34 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/02 18:32:41 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/06 11:52:32 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int	execute_builtins(char *command, char **args)
 		ft_pwd();
 	if (!ft_strcmp(command, "cd"))
 		ft_cd(args);
+	if(!ft_strcmp(command, "exit"))
+		ft_exit(args);
 	return(0);
 }
 

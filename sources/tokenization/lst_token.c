@@ -6,7 +6,7 @@
 /*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 10:17:38 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/03/02 10:17:41 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/06 14:24:35 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ void	ft_tokclear(t_token **lst)
 {
 	t_token	*temp;
 
-	if (lst == NULL)
-		return ;
+//	if (lst == NULL)
+//		return ;
 	while (*lst)
 	{
 		temp = (*lst)->next;
