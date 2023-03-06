@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:20:34 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/06 12:01:13 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/06 18:01:32 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,19 +48,52 @@ char *add_arg(t_token **token_lst)
 	return (arg);
 }
 
-/*
-char *add_env_var(t_token **token_lst)
+char	*expand_envvar(t_token *token_lst, char **env)
+{
+	char	*temp;
+	int		i;
+	int		len;
+
+	i = 0;
+	temp = ft_substr(env[0], 0, ft_strchri(env[0], '=') - 1);
+	while (ft_strcmp(temp, &(token_lst->str[1])) && env[i])
+	{
+		i++;
+		free(temp);
+		if (env[i])
+			temp = ft_substr(env[i], 0, ft_strchri(env[i], '=') - 1);
+	}
+	temp = token_lst->str;
+	if (!env[i])
+		token_lst->str = ft_strdup("");
+	else
+	{
+		len = ft_strlen(env[i]) - ft_strchri(env[i], '=') + 1;
+		token_lst->str = ft_substr(env[i], ft_strchri(env[i], '='), len);
+	}
+	free(temp);
+	return (token_lst->str);
+}
+
+char *add_env_var(t_token **token_lst, char **env)
 {
 	char *arg;
 
 	arg = NULL;
-	if ( )	{
-		
+	if ((*token_lst)->str != NULL)
+	{
+		arg = (*token_lst)->str;
+		if (ft_strlen(arg) == 1)
+		{
+			*token_lst = (*token_lst)->next;
+			return (arg);
+		}
+		arg = expand_envvar(*token_lst, env);
+		*token_lst = (*token_lst)->next;
 	}
-
-
+	return (arg);
 }
-*/
+
 
 void	parser_builtin(t_data_shell *data_shell)
 {
@@ -84,7 +117,7 @@ void	parser_builtin(t_data_shell *data_shell)
 			if (data_shell->tok_lst->type == 0)
 				args[index] = add_arg(&data_shell->tok_lst);
 			else if (data_shell->tok_lst->type == 8)
-				args[index] = add_arg(&data_shell->tok_lst); //call add_env_var instead
+				args[index] = add_env_var(&data_shell->tok_lst, data_shell->env);
 			index++;
 		}
 		args[index] = NULL;
