@@ -15,8 +15,8 @@ OBJS			= $(SRCS:.c=.o)
 LIBS			= sources/libft/libft.a
 CC				= cc
 RM				= rm -f
-##CFLAGS			= -Wall -Wextra -Werror -lreadline -L ~/.brew/opt/readline/lib -I ~/.brew/opt/readline/include ##MAC
-CFLAGS			= -Wall -Wextra -Werror ##LINUX
+CFLAGS			= -Wall -Wextra -Werror -lreadline -L ~/.brew/opt/readline/lib -I ~/.brew/opt/readline/include ##MAC
+##CFLAGS			= -Wall -Wextra -Werror ##LINUX
 
 
 $(NAME):	$(SRCS) $(LIBS)
