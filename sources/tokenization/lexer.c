@@ -6,7 +6,7 @@
 /*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 10:11:58 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/03/02 10:30:11 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/07 15:47:47 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ t_token	*lexer(char *c_line)
 		if (type && type != 8)
 			ft_tokadd_back(&head, special_chr(type, &c_line));
 		else if (type == 8)
-             ft_tokadd_back(&head, cat_envvar(&c_line));
+			ft_tokadd_back(&head, cat_envvar(&c_line));
 		else if ((*c_line) != ' ')
 			ft_tokadd_back(&head, cat_word(&c_line, " |><><"));
 		else

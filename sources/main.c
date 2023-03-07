@@ -6,13 +6,15 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:51:58 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/06 14:27:05 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/07 15:55:42 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	main(int argc, char** argv, char **env)
+// Do a functions that free copy_env! taken from line 44 to 49!
+
+int	main(int argc, char **argv, char **env)
 {
 	char			*input;
 	t_data_shell	data_shell;
@@ -21,7 +23,7 @@ int	main(int argc, char** argv, char **env)
 	(void) *argv;
 	set_sig();
 	data_shell.tok_lst = NULL;
-	data_shell.env = env;
+	data_shell.copy_env = ft_copy_env(env);
 	while (42)
 	{
 		input = readline("microtano$: ");
@@ -31,14 +33,21 @@ int	main(int argc, char** argv, char **env)
 		{
 			write(1, "exit\n", 5);
 			clear_history();
-			free(input);
-			ft_tokclear(&data_shell.tok_lst);
 			break ;
 		}
 		data_shell.tok_lst = lexer(input);
-		parser(lexer(input));
-		free(input);
+		parser(&data_shell);
 		ft_tokclear(&data_shell.tok_lst);
+		free(input);
 	}
+	free(input);
+	int i = 0;
+	while(data_shell.copy_env[i])
+	{
+		free(data_shell.copy_env[i]);
+		i++;
+	}
+	free(data_shell.copy_env);
+	ft_tokclear(&data_shell.tok_lst);
 	return (0);
 }

@@ -10,6 +10,7 @@ SRCS			=	./sources/main.c \
 					./sources/built-ins/echo.c \
 					./sources/built-ins/cd.c \
 					./sources/built-ins/exit.c \
+					./sources/built-ins/env.c \
 
 NAME			= minishell
 OBJS			= $(SRCS:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:20:34 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/06 11:52:32 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/07 15:51:15 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,22 @@ int	is_builtin(char *command)
 		return (0);
 }
 
-int	execute_builtins(char *command, char **args)
+int	execute_builtins(char *command, t_data_shell *data_shell)
 {	
 	if (!ft_strcmp(command, "echo"))
-		ft_echo(args);
+		ft_echo(data_shell->args);
 	if (!ft_strcmp(command, "pwd"))
 		ft_pwd();
 	if (!ft_strcmp(command, "cd"))
-		ft_cd(args);
-	if(!ft_strcmp(command, "exit"))
-		ft_exit(args);
-	return(0);
+		ft_cd(data_shell->args);
+	if (!ft_strcmp(command, "exit"))
+		ft_exit(data_shell->args);
+	if (!ft_strcmp(command, "env"))
+		ft_env(data_shell->copy_env);
+	return (0);
 }
 
-char *add_arg(t_token **token_lst)
+char	*add_arg(t_token **token_lst)
 {
 	char	*arg;
 
@@ -49,48 +51,33 @@ char *add_arg(t_token **token_lst)
 	return (arg);
 }
 
-/*
-char *add_env_var(t_token **token_lst)
+void	parser_builtin(t_data_shell *data_shell)
 {
-	char *arg;
-
-	arg = NULL;
-	if ( )	{
-		
-	}
-
-
-}
-*/
-
-void parser_builtin(t_token *token_lst)
-{
-	char	**args;
 	char	*command;
 	int		size;
 	int		index;
 
 	index = 0;
-	command = token_lst->str;
-	token_lst = token_lst->next;
-	args = NULL;
-	if (token_lst != NULL)
+	command = data_shell->tok_lst->str;
+	data_shell->tok_lst = data_shell->tok_lst->next;
+	data_shell->args = NULL;
+	if (data_shell->tok_lst != NULL)
 	{
-		size = ft_toksize_w(token_lst);
-		args = malloc((size + 1) * sizeof(char *));
-		if (!args)
+		size = ft_toksize_w(data_shell->tok_lst);
+		data_shell->args = malloc((size + 1) * sizeof(char *));
+		if (!data_shell->args)
 			printf("Error in parser built-in malloc.\n");
-		while (token_lst != NULL)
+		while (data_shell->tok_lst != NULL)
 		{
-			if (token_lst->type == 0)
-				args[index] = add_arg(&token_lst);
-			else if (token_lst->type == 8)
-				args[index] = add_arg(&token_lst); //call add_env_var instead
+			if (data_shell->tok_lst->type == 0)
+				data_shell->args[index] = add_arg(&data_shell->tok_lst);
+			else if (data_shell->tok_lst->type == 8)
+				data_shell->args[index] = add_arg(&data_shell->tok_lst); //call add_env_var instead
 			index++;
 		}
-		args[index] = NULL;
+		data_shell->args[index] = NULL;
 	}
-	execute_builtins(command, args);
-	free(args);
+	execute_builtins(command, data_shell);
+	free(data_shell->args);
 }
 
