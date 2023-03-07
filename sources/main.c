@@ -16,6 +16,7 @@ int	main(int argc, char **argv, char **env)
 {
 	char			*input;
 	t_data_shell	data_shell;
+	t_token			*head;
 
 	(void) argc;
 	(void) *argv;
@@ -30,15 +31,16 @@ int	main(int argc, char **argv, char **env)
 			write(1, "exit\n", 5);
 			clear_history();
 			free(input);
-			ft_tokclear(&data_shell.tok_lst);
+			ft_tokclear(&head);
 			break ;
 		}
 		if (input[0] != 0)
 			add_history(input);
-		data_shell.tok_lst = lexer(input);
+		head = lexer(input);
+		data_shell.tok_lst = head;
 		parser(&data_shell);
 		free(input);
-		ft_tokclear(&data_shell.tok_lst);
+		ft_tokclear(&head);
 	}
 	return (0);
 }
