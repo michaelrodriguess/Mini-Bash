@@ -1,46 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   clear_memory.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/07 10:33:05 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/07 17:28:40 by microdri         ###   ########.fr       */
+/*   Created: 2023/03/07 18:13:23 by microdri          #+#    #+#             */
+/*   Updated: 2023/03/07 19:16:15 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	**ft_copy_env(char **env)
+void	free_copy_env(t_data_shell *data_shell)
 {
-	int		i;
-	int		j;
-	char	**copy;
+	int	i;
 
 	i = 0;
-	j = 0;
-	copy = malloc((ft_size_matriz(env) + 1) * sizeof(char *));
-	if (!copy)
-		return (NULL);
-	while (env[i])
+	while (data_shell->copy_env[i])
 	{
-		copy[j] = ft_strdup(env[i]);
+		free(data_shell->copy_env[i]);
 		i++;
-		j++;
 	}
-	copy[j] = NULL;
-	return (copy);
+	free(data_shell->copy_env);
 }
 
-void	ft_env(char **copy_env)
+void	clear_memory(char *input, t_data_shell data_shell)
 {
-	int	index;
-
-	index = 0;
-	while (copy_env[index])
-	{
-		printf("%s\n", copy_env[index]);
-		index++;
-	}
+	free(input);
+	ft_tokclear(&data_shell.tok_lst);
 }
