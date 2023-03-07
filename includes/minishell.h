@@ -43,7 +43,7 @@ t_token	*lexer(char *c_line);
 int		ft_toksize(t_token *lst);
 int		ft_toksize_w(t_token *lst);
 int		is_builtin(char *command);
-int		execute_builtins(char *command, char **args, char **env);
+int		execute_builtins(char *command, t_data_shell *data_shell);
 void	parser_builtin(t_data_shell *data_shell);
 void	ft_tokadd_back(t_token **lst, t_token *new);
 void	ft_tokclear(t_token **lst);

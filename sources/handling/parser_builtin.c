@@ -23,15 +23,14 @@ int	is_builtin(char *command)
 		return (0);
 }
 
-int	execute_builtins(char *command, char **args, char **env)
+int	execute_builtins(char *command, t_data_shell *data_shell)
 {	
-	(void) *env;
 	if (!ft_strcmp(command, "echo"))
-		ft_echo(args);
+		ft_echo(data_shell->args);
 	if (!ft_strcmp(command, "pwd"))
 		ft_pwd();
 	if (!ft_strcmp(command, "cd"))
-		ft_cd(args);
+		ft_cd(data_shell->args);
 	return (0);
 }
 
@@ -174,7 +173,6 @@ char	*add_env_var(t_token **tok_lst, char **env)
 
 void	parser_builtin(t_data_shell *data_shell)
 {
-	char	**args;
 	char	*command;
 	int		size;
 	int		index;
@@ -182,25 +180,25 @@ void	parser_builtin(t_data_shell *data_shell)
 	index = 0;
 	command = data_shell->tok_lst->str;
 	data_shell->tok_lst = data_shell->tok_lst->next;
-	args = NULL;
+	data_shell->args = NULL;
 	if (data_shell->tok_lst != NULL)
 	{
 		size = ft_toksize_w(data_shell->tok_lst);
-		args = malloc((size + 1) * sizeof(char *));
-		if (!args)
+		data_shell->args = malloc((size + 1) * sizeof(char *));
+		if (!data_shell->args)
 			printf("Error in parser built-in malloc.\n");
 		while (data_shell->tok_lst != NULL)
 		{
 			if (data_shell->tok_lst->type == 0)
-				args[index] = add_arg(&data_shell->tok_lst);
+				data_shell->args[index] = add_arg(&data_shell->tok_lst);
 			else if (data_shell->tok_lst->type == 8)
-				args[index] = add_env_var(&data_shell->tok_lst, data_shell->env);
-			if (args[index]) //if NULL than i wont increase index and save the next arg in that same position
+				data_shell->args[index] = add_env_var(&data_shell->tok_lst, data_shell->env);
+			if (data_shell->args[index]) //if NULL than i wont increase index and save the next arg in that same position
 				index++;
 		}
-		args[index] = NULL; //will segfault if args[index] is already NULL? Yes, probably.
+		data_shell->args[index] = NULL; //will segfault if args[index] is already NULL? Yes, probably.
 	}
-	execute_builtins(command, args, data_shell->env);
-	free(args);
+	execute_builtins(command, data_shell);
+	free(data_shell->args);
 }
 
