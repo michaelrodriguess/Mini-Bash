@@ -59,5 +59,6 @@ void	set_sig(void);
 void	ft_pwd(void);
 void	ft_echo(char **args);
 void	ft_cd(char **path);
+char	*parse_arg(char *arg);
 
 #endif

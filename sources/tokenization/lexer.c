@@ -49,7 +49,6 @@ t_token	*special_chr(int type, char **c_line)
 t_token	*cat_quoteword(char **c_line, int type)
 {
 	t_token	*current;
-	t_token	*tmp;
 	char	*str;
 	int		sz;
 
@@ -59,12 +58,6 @@ t_token	*cat_quoteword(char **c_line, int type)
 		sz++;
 	str = ft_substr(*c_line, 0, sz);
 	current = ft_toknew(0, str);
-	if (ft_strchr(str, '$') && type == 6)
-	{
-		tmp = current;
-		current = cat_dollar(str);
-		ft_tokclear(&tmp);
-	}
 	(*c_line) += sz;
 	return (current);
 }
@@ -78,21 +71,13 @@ t_token	*lexer(char *c_line)
 	type = 0;
 	while (*c_line)
 	{
-		type = ft_strchri("|><><\"\'$", *c_line);
-		if (type && type != 8)
+		type = ft_strchri("|><><", *c_line);
+		if (type)
 			ft_tokadd_back(&head, special_chr(type, &c_line));
-		else if (type == 8)
-			ft_tokadd_back(&head, cat_envvar(&c_line));
 		else if ((*c_line) != ' ')
 			ft_tokadd_back(&head, cat_word(&c_line, " |><><"));
 		else
 			c_line++;
-		if (type == 6 || type == 7)
-		{
-			ft_tokadd_back(&head, cat_quoteword(&c_line, type));
-			if (type == ft_strchri("|><><\"\'$-", *c_line))
-				ft_tokadd_back(&head, special_chr(type, &c_line));
-		}
 	}
 	return (head);
 }

@@ -38,6 +38,7 @@ int	main(int argc, char **argv, char **env)
 			add_history(input);
 		head = lexer(input);
 		data_shell.tok_lst = head;
+		ft_tokprint(head);
 		parser(&data_shell);
 		free(input);
 		ft_tokclear(&head);
