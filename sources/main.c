@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:51:58 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/07 18:54:02 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/08 19:48:19 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,9 @@ int	main(int argc, char **argv, char **env)
 		data_shell.tok_lst = lexer(input);
 		parser(&data_shell);
 		clear_memory(input, data_shell);
-//		ft_tokclear(&data_shell.tok_lst);
-//		free(input);
 	}
 	clear_history();
-//	free(input);
-	clear_memory(input, data_shell);
 	free_copy_env(&data_shell);
-//	ft_tokclear(&data_shell.tok_lst);
+	clear_memory(input, data_shell);
 	return (0);
 }

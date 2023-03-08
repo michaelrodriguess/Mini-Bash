@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 10:33:05 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/07 17:28:40 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/08 15:58:40 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	**ft_copy_env(char **env)
 
 	i = 0;
 	j = 0;
-	copy = malloc((ft_size_matriz(env) + 1) * sizeof(char *));
+	copy = malloc(ft_size_matriz(env) * sizeof(char *));
 	if (!copy)
 		return (NULL);
 	while (env[i])

@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:18:50 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/07 19:23:08 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/08 15:59:01 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,6 @@ int	ft_size_matriz(char **matriz)
 	count = 0;
 	while (matriz[count] != NULL)
 		count++;
+	count++;
 	return (count);
 }

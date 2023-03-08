@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:50:06 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/07 18:54:33 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/08 14:53:19 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_token
 typedef struct s_data_shell
 {
 	t_token	*tok_lst;
+	char	*input;
 	char	**copy_env;
 	char	**args;
 }	t_data_shell;
@@ -48,6 +49,7 @@ void	ft_echo(char **args);
 void	ft_cd(char **path);
 void	ft_exit(char **args);
 void	ft_env(char **copy_env);
+void	ft_unset(t_data_shell *data_shell);
 void	free_copy_env(t_data_shell *data_shell);
 void	clear_memory(char *input, t_data_shell data_shell);
 int		ft_toksize(t_token *lst);

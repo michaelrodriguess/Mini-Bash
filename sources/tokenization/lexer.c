@@ -6,7 +6,7 @@
 /*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 10:11:58 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/03/07 15:47:47 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/08 14:58:18 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ t_token	*lexer(char *c_line)
 		if (type == 6 || type == 7)
 		{
 			ft_tokadd_back(&head, cat_quoteword(&c_line, type));
-			if (type == ft_strchri("|><><\"\'$-", *c_line))
+			if (type == ft_strchri("|><><\"\'$-", (*c_line)))
 				ft_tokadd_back(&head, special_chr(type, &c_line));
 		}
 	}
