@@ -97,8 +97,54 @@ char	*add_env_var(t_token **tok_lst, char **env)
 		return (arg);
 	}
 }
+
+char	*double_quote(char	**arg, char *parsed_arg)
+{
+	int		i;
+	char	*ret;
+
+	i = 1;
+	while((*arg)[i] != '\"' && (*arg)[i])
+		i++;
+	return ("");
+}
+
+char	*strjoinchr(char *str, char chr)
+{
+	char	*ret;
+	int		i;
+
+	if (!str)
+		return (NULL);
+	ret = malloc(sizeof(char) * ft_strlen(str) + 2);
+	i = 0;
+	while (str[i])
+	{
+		ret[i] = str[i];
+		i++;
+	}
+	ret[i] = chr;
+	ret[i + 1] = 0;
+	return (ret);
+}
+
 char	*parse_arg(char *arg)
 {
-	(void) *arg;
-	return(ft_strdup("parse_arg"));
+	char	*parsed_arg;
+	char	*temp;
+
+	parsed_arg = ft_strdup("");
+	while (*arg)
+	{
+		temp = parsed_arg;
+		if (*arg == '\"')
+			parsed_arg = double_quote(&arg, parsed_arg);
+		else
+		{
+			parsed_arg = strjoinchr(parsed_arg, *arg);
+			arg++;
+		}
+		free(temp);
+	}
+	return(parsed_arg);
 }
