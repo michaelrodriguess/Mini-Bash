@@ -146,6 +146,8 @@ char	*parse_arg(char *arg)
 		temp = parsed_arg;
 		if (*arg == '\"')
 			parsed_arg = double_quote(&arg, parsed_arg);
+	//	else if (*arg == '\'')
+	//		parsed_arg = single_quote(&arg, parsed_arg);
 		else
 		{
 			parsed_arg = strjoinchr(parsed_arg, *arg);
