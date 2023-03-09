@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clear_memory.c                                     :+:      :+:    :+:   */
+/*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/07 18:13:23 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/09 17:38:03 by microdri         ###   ########.fr       */
+/*   Created: 2023/03/09 17:51:10 by microdri          #+#    #+#             */
+/*   Updated: 2023/03/09 17:54:04 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	free_copy_env(t_data_shell *data_shell)
-{
-	int	i;
+// contrucao parecida com a da unset so que ao inves de tirar sera adicionado na matriz;
+// verificar alguns erros com entradas
+// atualizar caso ja tenha aquela var_global na matriz;
 
-	i = 0;
-	while (data_shell->copy_env[i])
-	{
-		free(data_shell->copy_env[i]);
-		i++;
-	}
-	free(data_shell->copy_env);
-}
 
-void	clear_memory(char *input, t_data_shell data_shell)
+void	ft_export()
 {
-	if (!input)
-		return ;
-	free(input);
-	ft_tokclear(&data_shell.tok_lst);
+	
+	
 }
