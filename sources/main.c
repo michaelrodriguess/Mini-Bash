@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:51:58 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/06 11:51:52 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/09 08:48:00 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(int argc, char **argv, char **env)
 			write(1, "exit\n", 5);
 			clear_history();
 			free(input);
-			ft_tokclear(&head);
+		//	ft_tokclear(&head);
 			break ;
 		}
 		if (input[0] != 0)

@@ -102,11 +102,18 @@ char	*double_quote(char	**arg, char *parsed_arg)
 {
 	int		i;
 	char	*ret;
+	char	*temp;
 
-	i = 1;
-	while((*arg)[i] != '\"' && (*arg)[i])
+	i = 0;
+	while((*arg)[i + 1] != '\"' && (*arg)[i + 1])
 		i++;
-	return ("");
+	temp = ft_substr((*arg), 1, i);
+	ret = ft_strjoin(parsed_arg, temp);
+	free(temp);
+	if ((*arg)[i])
+		i++;
+	(*arg) += i;
+	return (ret);
 }
 
 char	*strjoinchr(char *str, char chr)
