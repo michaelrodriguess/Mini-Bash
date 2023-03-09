@@ -6,7 +6,7 @@
 /*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 10:11:58 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/03/06 11:47:32 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/09 11:26:03 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,21 @@ t_token	*cat_word(char **c_line, char *chr_set)
 {
 	t_token	*current;
 	int		sz;
+	char	quote;
 
 	sz = 0;
-	while (!ft_strchri(chr_set, (*c_line)[sz]))
-		sz++;
+	while (!ft_strchri(chr_set, (*c_line)[sz]) && (*c_line)[sz])
+	{
+		if (ft_strchri("\'\"", (*c_line)[sz]))
+		{
+			quote = (*c_line)[sz];
+			sz++;
+			while ((*c_line)[sz] != quote && (*c_line)[sz])
+				sz++;
+		}
+		if ((*c_line)[sz])
+			sz++;
+	}
 	current = ft_toknew(0, ft_substr(*c_line, 0, sz));
 	(*c_line) += sz;
 	return (current);
