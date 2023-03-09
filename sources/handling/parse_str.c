@@ -6,7 +6,7 @@
 /*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 14:47:39 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/03/09 14:52:20 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/09 15:34:40 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,14 +126,16 @@ char	*double_quote(char	**arg, char *parsed_arg)
 	return (ret);
 }
 
-char	*single_quote(char	**arg, char *parsed_arg)
+char	*quote(char	**arg, char *parsed_arg)
 {
 	int		i;
 	char	*ret;
 	char	*temp;
+	char	quote;
 
 	i = 0;
-	while((*arg)[i + 1] != '\'' && (*arg)[i + 1])
+	quote = **arg;
+	while((*arg)[i + 1] != quote && (*arg)[i + 1])
 		i++;
 	temp = ft_substr((*arg), 1, i);
 	ret = ft_strjoin(parsed_arg, temp);
@@ -153,10 +155,10 @@ char	*parse_arg(char *arg)
 	while (*arg)
 	{
 		temp = parsed_arg;
-		if (*arg == '\"')
-			parsed_arg = double_quote(&arg, parsed_arg);
-		else if (*arg == '\'')
-			parsed_arg = single_quote(&arg, parsed_arg);
+		if (*arg == '\"' || *arg == '\'')
+			parsed_arg = quote(&arg, parsed_arg);
+//		else if (*arg == '\'')
+//			parsed_arg = single_quote(&arg, parsed_arg);
 		else
 		{
 			parsed_arg = strjoinchr(parsed_arg, *arg);
