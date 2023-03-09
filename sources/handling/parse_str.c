@@ -6,13 +6,13 @@
 /*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 14:47:39 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/03/09 15:34:40 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/09 17:12:51 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-/*void	expand_envvar(char **env_var, char **env)
+void	expand(char **env_var, char **env)
 {
 	char	*temp;
 	int		i;
@@ -38,7 +38,7 @@
 		free(env_var[0]);
 		env_var[0] = ft_substr(env[i], ft_strchri(env[i], '='), len);
 	}
-}*/
+}
 
 /*char **split_env_var(char *str)
 {
@@ -108,7 +108,7 @@ char	*add_env_var(t_token **tok_lst, char **env)
 	}
 }*/
 
-char	*double_quote(char	**arg, char *parsed_arg)
+/*char	*double_quote(char	**arg, char *parsed_arg)
 {
 	int		i;
 	char	*ret;
@@ -124,6 +124,30 @@ char	*double_quote(char	**arg, char *parsed_arg)
 		i++;
 	(*arg) += i + 1;
 	return (ret);
+}*/
+
+void	expand_envvar(char **env_str, char **env)
+{
+	char	*ret;
+	char	*pre_suffix;
+	char	*env_var;
+	char	*temp;
+	int		i;
+
+	ret = *env_str;
+	i = 0;
+	while (ret[i])
+	{
+		if (ret[i] == '$' && (ret[i + 1] == '_' || ft_isalnum(ret[i + 1])));
+		{
+			temp = ret;
+			pre_suffix = ft_substr(ret, 0, i);
+			ret += i;
+			free(temp);
+			env_var = (&ret, env); 
+				//ft_substr(ret, i, ft_strlen(&ret[i]));
+		}
+	}
 }
 
 char	*quote(char	**arg, char *parsed_arg)
@@ -138,6 +162,8 @@ char	*quote(char	**arg, char *parsed_arg)
 	while((*arg)[i + 1] != quote && (*arg)[i + 1])
 		i++;
 	temp = ft_substr((*arg), 1, i);
+	if (quote == '\"' && ft_strchri(temp, '$')
+		expand_envvar(&temp);
 	ret = ft_strjoin(parsed_arg, temp);
 	free(temp);
 	if ((*arg)[i + 1])
