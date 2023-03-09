@@ -1,4 +1,14 @@
-//HEADER
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_str.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/09 14:47:39 by fcaetano          #+#    #+#             */
+/*   Updated: 2023/03/09 14:52:20 by fcaetano         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
@@ -30,7 +40,7 @@
 	}
 }*/
 
-char **split_env_var(char *str)
+/*char **split_env_var(char *str)
 {
 	int		i;
 	char	**array;
@@ -96,7 +106,7 @@ char	*add_env_var(t_token **tok_lst, char **env)
 		*tok_lst = (*tok_lst)->next;
 		return (arg);
 	}
-}
+}*/
 
 char	*double_quote(char	**arg, char *parsed_arg)
 {
@@ -110,28 +120,27 @@ char	*double_quote(char	**arg, char *parsed_arg)
 	temp = ft_substr((*arg), 1, i);
 	ret = ft_strjoin(parsed_arg, temp);
 	free(temp);
-	if ((*arg)[i])
+	if ((*arg)[i + 1])
 		i++;
-	(*arg) += i;
+	(*arg) += i + 1;
 	return (ret);
 }
 
-char	*strjoinchr(char *str, char chr)
+char	*single_quote(char	**arg, char *parsed_arg)
 {
-	char	*ret;
 	int		i;
+	char	*ret;
+	char	*temp;
 
-	if (!str)
-		return (NULL);
-	ret = malloc(sizeof(char) * ft_strlen(str) + 2);
 	i = 0;
-	while (str[i])
-	{
-		ret[i] = str[i];
+	while((*arg)[i + 1] != '\'' && (*arg)[i + 1])
 		i++;
-	}
-	ret[i] = chr;
-	ret[i + 1] = 0;
+	temp = ft_substr((*arg), 1, i);
+	ret = ft_strjoin(parsed_arg, temp);
+	free(temp);
+	if ((*arg)[i + 1])
+		i++;
+	(*arg) += i + 1;
 	return (ret);
 }
 
@@ -146,8 +155,8 @@ char	*parse_arg(char *arg)
 		temp = parsed_arg;
 		if (*arg == '\"')
 			parsed_arg = double_quote(&arg, parsed_arg);
-	//	else if (*arg == '\'')
-	//		parsed_arg = single_quote(&arg, parsed_arg);
+		else if (*arg == '\'')
+			parsed_arg = single_quote(&arg, parsed_arg);
 		else
 		{
 			parsed_arg = strjoinchr(parsed_arg, *arg);
