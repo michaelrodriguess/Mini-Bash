@@ -12,7 +12,7 @@
 
 #include "../../includes/minishell.h"
 
-void	expand(char **env_var, char **env)
+/*void	expand(char **env_var, char **env)
 {
 	char	*temp;
 	int		i;
@@ -38,7 +38,7 @@ void	expand(char **env_var, char **env)
 		free(env_var[0]);
 		env_var[0] = ft_substr(env[i], ft_strchri(env[i], '='), len);
 	}
-}
+}*/
 
 /*char **split_env_var(char *str)
 {
@@ -126,31 +126,71 @@ char	*add_env_var(t_token **tok_lst, char **env)
 	return (ret);
 }*/
 
-void	expand_envvar(char **env_str, char **env)
+void	expand(char **env_var, char **env)
 {
-	char	*ret;
-	char	*pre_suffix;
-	char	*env_var;
 	char	*temp;
 	int		i;
+	int		len;
 
-	ret = *env_str;
 	i = 0;
-	while (ret[i])
+	temp = ft_substr(env[0], 0, ft_strchri(env[0], '=') - 1);
+	while (ft_strcmp(temp, &((*env_var)[1])) && env[i])// not pass the $ and simplify the code
 	{
-		if (ret[i] == '$' && (ret[i + 1] == '_' || ft_isalnum(ret[i + 1])));
-		{
-			temp = ret;
-			pre_suffix = ft_substr(ret, 0, i);
-			ret += i;
-			free(temp);
-			env_var = (&ret, env); 
-				//ft_substr(ret, i, ft_strlen(&ret[i]));
-		}
+		i++;
+		free(temp);
+		if (env[i])
+			temp = ft_substr(env[i], 0, ft_strchri(env[i], '=') - 1);
+	}
+	if (!env[i])
+	{
+		free(env_var[0]);
+		env_var[0] = ft_strdup("");
+	}
+	else
+	{
+		free(temp);
+		len = ft_strlen(env[i]) - ft_strchri(env[i], '=') + 1;
+		free(env_var[0]);
+		env_var[0] = ft_substr(env[i], ft_strchri(env[i], '='), len);
 	}
 }
 
-char	*quote(char	**arg, char *parsed_arg)
+void	expand_str(char **str, char **env)
+{
+	char	*ret;
+	char	*env_var;
+	char	*temp;
+	int		i;
+	int		start_envvar;
+
+	ret = *str;
+	i = 0;
+	while (ret[i])
+	{
+		if (ret[i] == '$' && (ret[i + 1] == '_' || ft_isalnum(ret[i + 1])))
+		{
+			start_envvar = i;
+			i++;
+			while (ft_isalnum(ret[i]) || ret[i] == '_')
+				i++;
+			env_var = ft_substr(ret, start_envvar, i - start_envvar);
+			expand(&env_var, env);
+			temp = ret;
+			ret = remove_substr(ret, start_envvar, i);
+			free (temp);
+			temp = ret;
+			ret = insert_substr(ret, env_var, start_envvar);
+			free (temp);
+			free (env_var);
+			*str = ret;
+			i = 0;
+		}
+		else
+			i++;
+	}
+}
+
+char	*quote(char	**arg, char *parsed_arg, char **env)
 {
 	int		i;
 	char	*ret;
@@ -162,8 +202,8 @@ char	*quote(char	**arg, char *parsed_arg)
 	while((*arg)[i + 1] != quote && (*arg)[i + 1])
 		i++;
 	temp = ft_substr((*arg), 1, i);
-	if (quote == '\"' && ft_strchri(temp, '$')
-		expand_envvar(&temp);
+	if (quote == '\"' && ft_strchri(temp, '$'))
+		expand_str(&temp, env);
 	ret = ft_strjoin(parsed_arg, temp);
 	free(temp);
 	if ((*arg)[i + 1])
@@ -172,7 +212,25 @@ char	*quote(char	**arg, char *parsed_arg)
 	return (ret);
 }
 
-char	*parse_arg(char *arg)
+char	*cat_envvar(char **arg, char *parsed_arg, char **env)
+{
+	int		i;
+	char	*env_var;
+	char	*temp;
+
+	i = 1;
+	while (ft_isalnum((*arg)[i]) || (*arg)[i] == '_')
+		i++;
+	env_var = ft_substr(*arg, 0, i);
+	expand_str(&env_var, env);
+	*arg += i + 1;
+	temp = env_var;
+	env_var = ft_strjoin(parsed_arg, env_var);
+	free(temp);
+	return (env_var);
+}
+
+char	*parse_arg(char *arg, char **env)
 {
 	char	*parsed_arg;
 	char	*temp;
@@ -182,9 +240,9 @@ char	*parse_arg(char *arg)
 	{
 		temp = parsed_arg;
 		if (*arg == '\"' || *arg == '\'')
-			parsed_arg = quote(&arg, parsed_arg);
-//		else if (*arg == '\'')
-//			parsed_arg = single_quote(&arg, parsed_arg);
+			parsed_arg = quote(&arg, parsed_arg, env);
+		else if (*arg == '$' && (arg[1] == '_' || ft_isalnum(arg[1])))
+			parsed_arg = cat_envvar(&arg, parsed_arg, env);
 		else
 		{
 			parsed_arg = strjoinchr(parsed_arg, *arg);

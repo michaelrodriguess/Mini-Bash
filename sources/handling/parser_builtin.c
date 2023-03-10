@@ -34,7 +34,7 @@ int	execute_builtins(char *command, t_data_shell *data_shell)
 	return (0);
 }
 
-char *add_arg(t_token **token_lst)
+char *add_arg(t_token **token_lst, char **env)
 {
 	char	*arg;
 	char	*temp;
@@ -47,7 +47,7 @@ char *add_arg(t_token **token_lst)
 			|| ft_strchri(arg, '\"'))
 		{
 			temp = arg;
-			arg = parse_arg(arg);
+			arg = parse_arg(arg, env);
 			free(temp);
 			(*token_lst)->str = arg;
 		}
@@ -75,7 +75,7 @@ void	parser_builtin(t_data_shell *data_shell)
 		while (data_shell->tok_lst != NULL)
 		{
 			if (data_shell->tok_lst->type == 0)
-				data_shell->args[index] = add_arg(&data_shell->tok_lst);
+				data_shell->args[index] = add_arg(&data_shell->tok_lst, data_shell->env);
 			if (data_shell->args[index]) //if NULL than i wont increase index
 				index++;
 		}

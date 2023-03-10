@@ -50,7 +50,7 @@ void	ft_tokclear(t_token **lst);
 void	ft_tokprint(t_token *lst);
 t_token	*cat_word(char **c_line, char *chr_set);
 int		validation(t_token *token);
-t_token	*cat_envvar(char **qt_str);
+char	*cat_envvar(char **arg, char *parsed_arg, char **env);
 t_token	*cat_dollar(char *qt_str);
 t_token	*special_chr(int type, char **c_line);
 char	**parser(t_data_shell *data_shell);
@@ -59,6 +59,6 @@ void	set_sig(void);
 void	ft_pwd(void);
 void	ft_echo(char **args);
 void	ft_cd(char **path);
-char	*parse_arg(char *arg);
+char	*parse_arg(char *arg, char **env);
 
 #endif

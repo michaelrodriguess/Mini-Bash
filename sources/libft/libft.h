@@ -91,5 +91,7 @@ size_t	ft_array_len(char **str);
 int		ft_ahtoi(char *str);
 int		ft_strchri(const char *s, int c);
 char	*strjoinchr(char *str, char chr);
+char	*remove_substr(char	*str, int from, int to);
+char	*insert_substr(char	*str, char *substr, int i);
 
 #endif

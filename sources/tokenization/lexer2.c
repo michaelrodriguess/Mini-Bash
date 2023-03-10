@@ -12,7 +12,7 @@
 
 #include "../../includes/minishell.h"
 
-t_token	*cat_envvar(char **qt_str)
+/*t_token	*cat_envvar(char **qt_str)
 {
 	t_token	*current;
 	int		sz;
@@ -40,4 +40,4 @@ t_token	*cat_dollar(char *qt_str)
 			ft_tokadd_back(&head, cat_word(&qt_str, "$"));
 	}
 	return (head);
-}
+}*/
