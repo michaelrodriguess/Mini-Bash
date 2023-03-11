@@ -20,7 +20,7 @@ void	expand(char **env_var, char **env)
 
 	i = 0;
 	temp = ft_substr(env[0], 0, ft_strchri(env[0], '=') - 1);
-	while (env[i] && ft_strcmp(temp, &((*env_var)[1])))// not pass the $ and simplify the code
+	while (env[i] && ft_strcmp(temp, &((*env_var)[1])))
 	{
 		i++;
 		free(temp);
@@ -41,34 +41,38 @@ void	expand(char **env_var, char **env)
 	}
 }
 
+void	insert_envvar(char **str, char *env_var, int start, int end)
+{
+	char	*temp;
+
+	temp = *str;
+	*str = remove_substr(*str, start, end - 1);
+	free (temp);
+	temp = *str;
+	*str = insert_substr(*str, env_var, start);
+	free (temp);
+}
+
 void	expand_str(char **str, char **env)
 {
-	char	*ret;
 	char	*env_var;
-	char	*temp;
 	int		i;
 	int		start_envvar;
 
-	ret = *str;
 	i = 0;
-	while (ret[i])
+	while ((*str)[i])
 	{
-		if (ret[i] == '$' && (ret[i + 1] == '_' || ft_isalnum(ret[i + 1])))
+		if ((*str)[i] == '$' && ((*str)[i + 1] == '_'
+			|| ft_isalnum((*str)[i + 1])))
 		{
 			start_envvar = i;
 			i++;
-			while (ft_isalnum(ret[i]) || ret[i] == '_')
+			while (ft_isalnum((*str)[i]) || (*str)[i] == '_')
 				i++;
-			env_var = ft_substr(ret, start_envvar, i - start_envvar);
+			env_var = ft_substr(*str, start_envvar, i - start_envvar);
 			expand(&env_var, env);
-			temp = ret;
-			ret = remove_substr(ret, start_envvar, i - 1);
-			free (temp);
-			temp = ret;
-			ret = insert_substr(ret, env_var, start_envvar);
-			free (temp);
+			insert_envvar(str, env_var, start_envvar, i);
 			free (env_var);
-			*str = ret;
 			i = 0;
 		}
 		else
@@ -85,7 +89,7 @@ char	*quote(char	**arg, char *parsed_arg, char **env)
 
 	i = 0;
 	quote = **arg;
-	while((*arg)[i + 1] != quote && (*arg)[i + 1])
+	while ((*arg)[i + 1] != quote && (*arg)[i + 1])
 		i++;
 	temp = ft_substr((*arg), 1, i);
 	if (quote == '\"' && ft_strchri(temp, '$'))
@@ -146,5 +150,5 @@ char	*parse_arg(char *arg, char **env)
 		}
 		free(temp);
 	}
-	return(parsed_arg);
+	return (parsed_arg);
 }
