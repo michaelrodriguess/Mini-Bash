@@ -7,12 +7,14 @@ SRCS			=	./sources/main.c \
 					./sources/tokenization/lst_token.c\
 					./sources/tokenization/lexer.c \
 					./sources/tokenization/lexer2.c \
+					./sources/built-ins/util_builtins.c \
 					./sources/built-ins/pwd.c \
 					./sources/built-ins/echo.c \
 					./sources/built-ins/cd.c \
 					./sources/built-ins/exit.c \
 					./sources/built-ins/env.c \
 					./sources/built-ins/unset.c \
+					./sources/built-ins/export.c \
 
 NAME			= minishell
 OBJS			= $(SRCS:.c=.o)

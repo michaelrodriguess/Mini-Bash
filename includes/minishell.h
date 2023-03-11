@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:50:06 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/08 14:53:19 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/11 15:53:33 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,10 @@ void	ft_cd(char **path);
 void	ft_exit(char **args);
 void	ft_env(char **copy_env);
 void	ft_unset(t_data_shell *data_shell);
+void	ft_export(t_data_shell *data_shell);
 void	free_copy_env(t_data_shell *data_shell);
 void	clear_memory(char *input, t_data_shell data_shell);
+int		has_equal(char *str);
 int		ft_toksize(t_token *lst);
 int		ft_toksize_w(t_token *lst);
 int		is_builtin(char *command);

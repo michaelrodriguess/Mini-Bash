@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:20:34 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/08 15:04:09 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/11 15:47:32 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int	execute_builtins(char *command, t_data_shell *data_shell)
 		ft_env(data_shell->copy_env);
 	if (!ft_strcmp(command, "unset"))
 		ft_unset(data_shell);
+	if (!ft_strcmp(command, "export"))
+		ft_export(data_shell);
 	return (0);
 }
 

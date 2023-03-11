@@ -6,25 +6,11 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 19:24:01 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/09 16:22:08 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/11 15:51:48 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-int has_equal(char *str)
-{
-	int i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '=')
-			return (0);
-		i++;
-	}
-	return (1);
-}
 
 char **new_env(t_data_shell *data_shell, int current_args_i)
 {
