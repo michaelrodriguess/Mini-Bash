@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   handle_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/11 18:41:16 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/11 18:42:39 by microdri         ###   ########.fr       */
+/*   Created: 2023/03/11 20:48:07 by microdri          #+#    #+#             */
+/*   Updated: 2023/03/11 20:50:16 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	ft_echo(char **args)
+int	verify_input(char *input)
 {
-	int	n;
-
-	n = 1;
-	if (!ft_strcmp(*args, "-n"))
+	if (input != NULL && input[0] != 0)
+		add_history(input);
+	if (ft_strcmp("exit", input) == 0 || input == NULL)
 	{
-		n = 0;
-		args++;
+		write(2, "exit\n", 5);
+		return (0);
 	}
-	while (*args)
-	{
-		printf("%s", *args);
-		if (args[1] != NULL)
-			printf(" ");
-		args++;
-	}
-	if (n)
-		printf("\n");
+	return (1);
 }

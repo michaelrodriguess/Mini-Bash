@@ -6,7 +6,7 @@
 /*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 10:11:58 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/03/08 14:58:18 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/11 19:37:46 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,22 +96,3 @@ t_token	*lexer(char *c_line)
 	}
 	return (head);
 }
-
-/*int main(void)
-{
-	char	*command = "echo test \"|$PWD.test' \"'' ";
-	t_token	*token;
-
-	command = ft_strdup(command);
-	token = lexer(command);
-	if (token)
-	{
-		ft_tokprint(token);
-		if (validation(token))
-			ft_printf("\nError.\n");
-		else
-			ft_printf("\n%s\n", command);
-		ft_tokclear(&token);
-	}
-	free(command);
-}*/

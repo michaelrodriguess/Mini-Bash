@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:50:06 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/11 15:53:33 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/11 20:51:38 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int		ft_toksize_w(t_token *lst);
 int		is_builtin(char *command);
 int		execute_builtins(char *command, t_data_shell *data_shell);
 int		validation(t_token *token);
+int		verify_input(char *input);
 char	**parser(t_data_shell *data_shell);
 char	**ft_copy_env(char **env);
 t_token	*ft_toknew(int type, char *str);

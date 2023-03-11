@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:20:34 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/11 15:47:32 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/11 20:45:53 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	parser_builtin(t_data_shell *data_shell)
 			if (data_shell->tok_lst->type == 0)
 				data_shell->args[index] = add_arg(&data_shell->tok_lst);
 			else if (data_shell->tok_lst->type == 8)
-				data_shell->args[index] = add_arg(&data_shell->tok_lst); //call add_env_var instead
+				data_shell->args[index] = add_arg(&data_shell->tok_lst);
 			index++;
 		}
 		data_shell->args[index] = NULL;
@@ -84,4 +84,3 @@ void	parser_builtin(t_data_shell *data_shell)
 	execute_builtins(command, data_shell);
 	free(data_shell->args);
 }
-

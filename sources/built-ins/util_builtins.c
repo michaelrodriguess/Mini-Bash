@@ -6,15 +6,15 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 15:50:43 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/11 15:51:30 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/11 18:43:13 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int has_equal(char *str)
+int	has_equal(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -25,4 +25,3 @@ int has_equal(char *str)
 	}
 	return (1);
 }
-

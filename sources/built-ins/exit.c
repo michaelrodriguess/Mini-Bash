@@ -6,20 +6,20 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:15:28 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/06 17:34:11 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/11 18:44:42 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int verify_only_num(char *str)
+int	verify_only_num(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (str[i] == '-' || str[i] == '+')
 		i++;
-	while(str[i]) 
+	while (str[i])
 	{
 		if (str[i] >= '0' && str[i] <= '9')
 				i++;
@@ -31,7 +31,7 @@ int verify_only_num(char *str)
 
 void	ft_exit(char **args)
 {
-	int temp_var_g;
+	int	temp_var_g;
 
 	temp_var_g = 0;
 	if (args == NULL)
@@ -47,12 +47,6 @@ void	ft_exit(char **args)
 		printf("microtano: exit: %s: numeric argument required\n", args[0]);
 		exit(temp_var_g);
 	}
-//	else if (*args[0] >= 'a' && *args[0] <= 'z')
-//	{
-//		temp_var_g = 255;
-//		printf("microtano: exit: %s: numeric argument required\n", args[0]);
-//		exit(temp_var_g);
-//	}	
 	else if (ft_isnum(ft_atoi(args[0]) == 1))
 	{
 		temp_var_g = ft_atoi(args[0]);
