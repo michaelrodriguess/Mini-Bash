@@ -60,5 +60,7 @@ void	ft_pwd(void);
 void	ft_echo(char **args);
 void	ft_cd(char **path);
 char	*parse_arg(char *arg, char **env);
+char	*cat_envvar(char **arg, char *parsed_arg, char **env);
+void	expand_str(char **str, char **env);
 
 #endif
