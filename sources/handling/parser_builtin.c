@@ -34,24 +34,24 @@ int	execute_builtins(char *command, t_data_shell *data_shell)
 	return (0);
 }
 
-char *add_arg(t_token **token_lst, char **env)
+char	*add_arg(t_data_shell *data_shell)
 {
 	char	*arg;
 	char	*temp;
 
 	arg = NULL;
-	if (*token_lst)
+	if (data_shell->tok_lst)
 	{
-		arg = (*token_lst)->str;
+		arg = data_shell->tok_lst->str;
 		if (ft_strchri(arg, '$') || ft_strchri(arg, '\'')
 			|| ft_strchri(arg, '\"'))
 		{
 			temp = arg;
-			arg = parse_arg(arg, env);
+			arg = parse_arg(arg, data_shell->env);
 			free(temp);
-			(*token_lst)->str = arg;
+			data_shell->tok_lst->str = arg;
 		}
-		*token_lst = (*token_lst)->next;
+		data_shell->tok_lst = data_shell->tok_lst->next;
 	}
 	return (arg);
 }
@@ -75,8 +75,8 @@ void	parser_builtin(t_data_shell *data_shell)
 		while (data_shell->tok_lst != NULL)
 		{
 			if (data_shell->tok_lst->type == 0)
-				data_shell->args[index] = add_arg(&data_shell->tok_lst, data_shell->env);
-			if (data_shell->args[index]) //if NULL than i wont increase index
+				data_shell->args[index] = add_arg(data_shell);
+			if (data_shell->args[index])
 				index++;
 		}
 		data_shell->args[index] = NULL;
@@ -84,4 +84,3 @@ void	parser_builtin(t_data_shell *data_shell)
 	execute_builtins(command, data_shell);
 	free(data_shell->args);
 }
-
