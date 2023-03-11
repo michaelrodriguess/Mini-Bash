@@ -6,24 +6,41 @@
 /*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:50:34 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/03/06 11:52:12 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/11 17:50:43 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	ft_cd(char **path)
+char	*get_home(char **env)
 {
-	int	sz;
+	while (*env && ft_strncmp(*env, "HOME", ft_strchri(*env, '=') - 1))
+		env++;
+	if (!*env)
+		return (NULL);
+	return (&((*env)[5]));
+}
 
-	sz = 0;
-	if (path == NULL)
-		return ;
-		//get HOME from env
-	while (path[sz])
-		sz++;
-	if (sz > 1)
+void	ft_cd(char **args, char **env)
+{
+	char	*path;
+
+	if (ft_array_len(args) <= 1)
+	{
+		if (args == NULL)
+		{
+			path = get_home(env);
+			if (!path)
+			{
+				printf("cd: HOME not set\n");
+				return ;
+			}
+		}
+		else
+			path = *args;
+		if (chdir(path))
+			ft_printf ("No such file or directory\n");
+	}
+	else
 		printf("too many arguments\n");
-	else if (chdir(path[0]))
-		ft_printf ("No such file or directory\n");
 }

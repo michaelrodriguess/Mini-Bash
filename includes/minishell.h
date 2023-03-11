@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:50:06 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/06 11:48:51 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/11 16:53:15 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	handle_signals(int signum);
 void	set_sig(void);
 void	ft_pwd(void);
 void	ft_echo(char **args);
-void	ft_cd(char **path);
+void	ft_cd(char **path, char **env);
 char	*parse_arg(char *arg, char **env);
 char	*cat_envvar(char **arg, char *parsed_arg, char **env);
 void	expand_str(char **str, char **env);

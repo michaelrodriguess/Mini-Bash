@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:20:34 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/06 18:56:37 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/11 16:51:26 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	execute_builtins(char *command, t_data_shell *data_shell)
 	if (!ft_strcmp(command, "pwd"))
 		ft_pwd();
 	if (!ft_strcmp(command, "cd"))
-		ft_cd(data_shell->args);
+		ft_cd(data_shell->args, data_shell->env);
 	return (0);
 }
 

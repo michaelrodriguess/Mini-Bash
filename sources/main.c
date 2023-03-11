@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:51:58 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/09 08:48:00 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/11 16:41:30 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int	main(int argc, char **argv, char **env)
 			add_history(input);
 		head = lexer(input);
 		data_shell.tok_lst = head;
-		ft_tokprint(head);
 		parser(&data_shell);
 		free(input);
 		ft_tokclear(&head);
