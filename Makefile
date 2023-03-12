@@ -16,6 +16,8 @@ SRCS			=	./sources/main.c \
 					./sources/built-ins/env.c \
 					./sources/built-ins/unset.c \
 					./sources/built-ins/export.c \
+					./sources/handling/parse_str.c \
+					./sources/handling/expand_envvar.c \
 
 NAME			= minishell
 OBJS			= $(SRCS:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 15:04:52 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/03/07 17:26:39 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/09 14:52:09 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,9 @@ char	*ft_strtrim_free(char const *s1, char const *set, char **addr);
 char	*ft_itoa(int n);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	*ft_strjoin(char const *s1, char const *s2);
+char	*strjoinchr(char *str, char chr);
+char	*remove_substr(char	*str, int from, int to);
+char	*insert_substr(char	*str, char *substr, int i);
 char	**ft_split(char const *s, char c);
 char	*ft_strjoin_gnl(char *s1, char *s2);
 t_list	*ft_lstlast(t_list *lst);

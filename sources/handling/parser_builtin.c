@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:20:34 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/11 20:45:53 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/11 16:51:26 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	execute_builtins(char *command, t_data_shell *data_shell)
 	if (!ft_strcmp(command, "pwd"))
 		ft_pwd();
 	if (!ft_strcmp(command, "cd"))
-		ft_cd(data_shell->args);
+		ft_cd(data_shell->args, data_shell->env);
 	if (!ft_strcmp(command, "exit"))
 		ft_exit(data_shell->args);
 	if (!ft_strcmp(command, "env"))
@@ -42,15 +42,24 @@ int	execute_builtins(char *command, t_data_shell *data_shell)
 	return (0);
 }
 
-char	*add_arg(t_token **token_lst)
+char	*add_arg(t_data_shell *data_shell)
 {
 	char	*arg;
+	char	*temp;
 
 	arg = NULL;
-	if (*token_lst)
+	if (data_shell->tok_lst)
 	{
-		arg = (*token_lst)->str;
-		*token_lst = (*token_lst)->next;
+		arg = data_shell->tok_lst->str;
+		if (ft_strchri(arg, '$') || ft_strchri(arg, '\'')
+			|| ft_strchri(arg, '\"'))
+		{
+			temp = arg;
+			arg = parse_arg(arg, data_shell->env);
+			free(temp);
+			data_shell->tok_lst->str = arg;
+		}
+		data_shell->tok_lst = data_shell->tok_lst->next;
 	}
 	return (arg);
 }
@@ -74,10 +83,9 @@ void	parser_builtin(t_data_shell *data_shell)
 		while (data_shell->tok_lst != NULL)
 		{
 			if (data_shell->tok_lst->type == 0)
-				data_shell->args[index] = add_arg(&data_shell->tok_lst);
-			else if (data_shell->tok_lst->type == 8)
-				data_shell->args[index] = add_arg(&data_shell->tok_lst);
-			index++;
+				data_shell->args[index] = add_arg(data_shell);
+			if (data_shell->args[index])
+				index++;
 		}
 		data_shell->args[index] = NULL;
 	}

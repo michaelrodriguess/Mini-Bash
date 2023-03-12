@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   strjoinchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/06 11:52:54 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/03/06 11:53:04 by fcaetano         ###   ########.fr       */
+/*   Created: 2023/03/09 14:50:33 by fcaetano          #+#    #+#             */
+/*   Updated: 2023/03/09 14:54:22 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "libft.h"
 
-void	ft_echo(char **args)
+char	*strjoinchr(char *str, char chr)
 {
-	int	n;
+	char	*ret;
+	int		i;
 
-	n = 1;
-	if (!ft_strcmp(*args, "-n"))
+	if (!str)
+		return (NULL);
+	ret = malloc(sizeof(char) * ft_strlen(str) + 2);
+	i = 0;
+	while (str[i])
 	{
-		n = 0;
-		args++;
+		ret[i] = str[i];
+		i++;
 	}
-	while (*args)
-	{
-		printf("%s", *args);
-		if (args[1] != NULL)
-			printf(" ");
-		args++;
-	}
-	if (n)
-		printf("\n");
+	ret[i] = chr;
+	ret[i + 1] = 0;
+	return (ret);
 }

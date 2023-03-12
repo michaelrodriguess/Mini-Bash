@@ -7,6 +7,7 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:50:06 by microdri          #+#    #+#             */
 /*   Updated: 2023/03/12 17:26:05 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/11 16:53:15 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +40,7 @@ typedef struct s_data_shell
 }	t_data_shell;
 
 void	parser_builtin(t_data_shell *data_shell);
+void	expand_str(char **str, char **env);
 void	ft_tokadd_back(t_token **lst, t_token *new);
 void	ft_tokclear(t_token **lst);
 void	ft_tokprint(t_token *lst);
@@ -61,6 +63,8 @@ int		is_builtin(char *command);
 int		execute_builtins(char *command, t_data_shell *data_shell);
 int		validation(t_token *token);
 int		verify_input(char *input);
+char	*parse_arg(char *arg, char **env);
+char	*cat_envvar(char **arg, char *parsed_arg, char **env);
 char	**parser(t_data_shell *data_shell);
 char	**ft_copy_env(char **env);
 t_token	*ft_toknew(int type, char *str);
