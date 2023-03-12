@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 15:50:43 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/12 17:31:37 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/12 17:38:25 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	has_equal(char *str)
 	return (1);
 }
 
-int	is_name_valid(char *str) //funcao que verifica se o nome da variavel de ambiente é valido
+int	is_name_valid(char *str)
 {
 	int	i;
 

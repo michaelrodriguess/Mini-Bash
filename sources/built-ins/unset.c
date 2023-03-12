@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 19:24:01 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/12 17:24:58 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/12 17:37:50 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	exec_unset(t_data_shell *data_shell, int j)
 			free_copy_env(data_shell);
 			data_shell->copy_env = temp;
 		}
-		else //como vc tira um, o tamanho do array dminui e i nao deve ser incrementado >> fix invalid read when removing the last env var from the array
+		else
 			i++;
 	}
 	return ;
@@ -72,9 +72,10 @@ void	ft_unset(t_data_shell *data_shell)
 		return ;
 	while (data_shell->args[j])
 	{
-		if (data_shell->args[j] == NULL) //é a condição do loop, acho q nao precisa
+		if (data_shell->args[j] == NULL)
 			break ;
-		if (has_equal(data_shell->args[j]) == 0 || is_name_valid(data_shell->args[j]) == 0)
+		if (has_equal(data_shell->args[j]) == 0
+			|| is_name_valid(data_shell->args[j]) == 0)
 			printf("microtano: unset: `%s': not a valid identifier\n",
 				data_shell->args[j++]);
 		if (data_shell->args[j] == NULL)

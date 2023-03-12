@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 17:51:10 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/12 17:27:07 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/12 17:39:06 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	ft_export(t_data_shell *data_shell)
 	{
 		if (is_name_valid(data_shell->args[i]) == 0)
 			printf("microtano: export: %s: not a valida identifier\n",
-					data_shell->args[i]);
+				data_shell->args[i]);
 		else if (has_equal(data_shell->args[i]) == 0)
 		{
 			if (exec_export(data_shell, i) == 0)
