@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:51:58 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/11 20:50:55 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/12 11:22:56 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int argc, char **argv, char **env)
 	(void) argc;
 	(void) *argv;
 	set_sig();
-	data_shell.tok_lst = NULL;
+	header = NULL; //é o header que devemos inicializar em NULL, pq sempre apontamos data_shell->tok_lst de volta para o header antes de limparmos a memória.
 	data_shell.copy_env = ft_copy_env(env);
 	while (42)
 	{
@@ -33,6 +33,7 @@ int	main(int argc, char **argv, char **env)
 		parser(&data_shell);
 		data_shell.tok_lst = header;
 		clear_memory(input, data_shell);
+		header = NULL; //mesma coisa
 	}
 	clear_history();
 	free_copy_env(&data_shell);

@@ -6,7 +6,7 @@
 /*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 15:49:44 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/03/06 14:41:25 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/12 16:58:20 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 int	ft_isalnum(int c)
 {
-	return (ft_isdigit(c) && ft_isalpha(c));
+	return (ft_isdigit(c) || ft_isalpha(c));
 }
