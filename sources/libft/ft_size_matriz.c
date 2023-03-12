@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ft_size_matriz.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
+/*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/09 15:49:44 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/03/12 16:58:20 by fcaetano         ###   ########.fr       */
+/*   Created: 2023/03/07 17:18:50 by microdri          #+#    #+#             */
+/*   Updated: 2023/03/08 15:59:01 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isalnum(int c)
+int	ft_size_matriz(char **matriz)
 {
-	return (ft_isdigit(c) || ft_isalpha(c));
+	int	count;
+
+	count = 0;
+	while (matriz[count] != NULL)
+		count++;
+	count++;
+	return (count);
 }

@@ -6,24 +6,11 @@
 /*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 15:10:14 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/03/02 19:08:45 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/11 19:38:09 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-/*int	ft_toksize(t_token *lst)
-{
-	int	count;
-
-	count = 0;
-	while (lst)                           // maybe we use
-	{
-		count++;
-		lst = lst->next;
-	}
-	return (count);
-}*/
 
 int	ft_toksize_w(t_token *lst)
 {

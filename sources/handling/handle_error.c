@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   handle_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
+/*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/09 15:49:44 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/03/12 16:58:20 by fcaetano         ###   ########.fr       */
+/*   Created: 2023/03/11 20:48:07 by microdri          #+#    #+#             */
+/*   Updated: 2023/03/11 20:50:16 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/minishell.h"
 
-int	ft_isalnum(int c)
+int	verify_input(char *input)
 {
-	return (ft_isdigit(c) || ft_isalpha(c));
+	if (input != NULL && input[0] != 0)
+		add_history(input);
+	if (ft_strcmp("exit", input) == 0 || input == NULL)
+	{
+		write(2, "exit\n", 5);
+		return (0);
+	}
+	return (1);
 }

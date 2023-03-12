@@ -16,31 +16,27 @@ int	main(int argc, char **argv, char **env)
 {
 	char			*input;
 	t_data_shell	data_shell;
-	t_token			*head;
+	t_token			*header;
 
 	(void) argc;
 	(void) *argv;
 	set_sig();
-	data_shell.tok_lst = NULL;
-	data_shell.env = env;
+	header = NULL;
+	data_shell.copy_env = ft_copy_env(env);
 	while (42)
 	{
 		input = readline("microtano$: ");
-		if (ft_strcmp(input, "exit") == 0 || input == NULL)
-		{
-			write(1, "exit\n", 5);
-			clear_history();
-			free(input);
-		//	ft_tokclear(&head);
+		if (verify_input(input) == 0)
 			break ;
-		}
-		if (input[0] != 0)
-			add_history(input);
-		head = lexer(input);
-		data_shell.tok_lst = head;
+		header = lexer(input);
+		data_shell.tok_lst = header;
 		parser(&data_shell);
-		free(input);
-		ft_tokclear(&head);
+		data_shell.tok_lst = header;
+		clear_memory(input, data_shell);
+		header = NULL;
 	}
-	return (0);
+	clear_history();
+	free_copy_env(&data_shell);
+	data_shell.tok_lst = header;
+	clear_memory(input, data_shell);
 }

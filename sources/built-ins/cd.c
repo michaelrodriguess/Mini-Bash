@@ -23,10 +23,7 @@ char	*get_home(char **env)
 
 void	ft_error(int err_n)
 {
-//	if (err_n == -1)
 		ft_printf ("%i: No such directory\n", err_n);
-	//else if (err_n == 2)
-//		ft_printf ("%iNot a directory\n", err_n);
 }
 
 void	ft_cd(char **args, char **env)
