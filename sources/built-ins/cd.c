@@ -6,7 +6,7 @@
 /*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:50:34 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/03/11 18:07:03 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/12 19:16:19 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*get_home(char **env)
 
 void	ft_error(int err_n)
 {
-		ft_printf ("%i: No such directory\n", err_n);
+	ft_printf ("%i: No such directory\n", err_n);
 }
 
 void	ft_cd(char **args, char **env)
