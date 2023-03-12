@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:50:06 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/12 17:26:05 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/12 18:28:42 by fcaetano         ###   ########.fr       */
 /*   Updated: 2023/03/11 16:53:15 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -48,7 +48,7 @@ void	handle_signals(int signum);
 void	set_sig(void);
 void	ft_pwd(void);
 void	ft_echo(char **args);
-void	ft_cd(char **path);
+void	ft_cd(char **path, char **env);
 void	ft_exit(char **args);
 void	ft_env(char **copy_env);
 void	ft_unset(t_data_shell *data_shell);
@@ -71,7 +71,6 @@ t_token	*ft_toknew(int type, char *str);
 t_token	*ft_toklast(t_token *lst);
 t_token	*lexer(char *c_line);
 t_token	*cat_word(char **c_line, char *chr_set);
-t_token	*cat_envvar(char **qt_str);
 t_token	*cat_dollar(char *qt_str);
 t_token	*special_chr(int type, char **c_line);
 

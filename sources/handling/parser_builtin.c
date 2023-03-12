@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:20:34 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/11 16:51:26 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/12 18:29:24 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	execute_builtins(char *command, t_data_shell *data_shell)
 	if (!ft_strcmp(command, "pwd"))
 		ft_pwd();
 	if (!ft_strcmp(command, "cd"))
-		ft_cd(data_shell->args, data_shell->env);
+		ft_cd(data_shell->args, data_shell->copy_env);
 	if (!ft_strcmp(command, "exit"))
 		ft_exit(data_shell->args);
 	if (!ft_strcmp(command, "env"))
@@ -55,7 +55,7 @@ char	*add_arg(t_data_shell *data_shell)
 			|| ft_strchri(arg, '\"'))
 		{
 			temp = arg;
-			arg = parse_arg(arg, data_shell->env);
+			arg = parse_arg(arg, data_shell->copy_env);
 			free(temp);
 			data_shell->tok_lst->str = arg;
 		}
