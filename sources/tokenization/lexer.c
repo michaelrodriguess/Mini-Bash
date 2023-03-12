@@ -6,7 +6,7 @@
 /*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 10:11:58 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/03/02 10:30:11 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/09 11:26:03 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,21 @@ t_token	*cat_word(char **c_line, char *chr_set)
 {
 	t_token	*current;
 	int		sz;
+	char	quote;
 
 	sz = 0;
-	while (!ft_strchri(chr_set, (*c_line)[sz]))
-		sz++;
+	while (!ft_strchri(chr_set, (*c_line)[sz]) && (*c_line)[sz])
+	{
+		if (ft_strchri("\'\"", (*c_line)[sz]))
+		{
+			quote = (*c_line)[sz];
+			sz++;
+			while ((*c_line)[sz] != quote && (*c_line)[sz])
+				sz++;
+		}
+		if ((*c_line)[sz])
+			sz++;
+	}
 	current = ft_toknew(0, ft_substr(*c_line, 0, sz));
 	(*c_line) += sz;
 	return (current);
@@ -49,7 +60,6 @@ t_token	*special_chr(int type, char **c_line)
 t_token	*cat_quoteword(char **c_line, int type)
 {
 	t_token	*current;
-	t_token	*tmp;
 	char	*str;
 	int		sz;
 
@@ -59,12 +69,6 @@ t_token	*cat_quoteword(char **c_line, int type)
 		sz++;
 	str = ft_substr(*c_line, 0, sz);
 	current = ft_toknew(0, str);
-	if (ft_strchr(str, '$') && type == 6)
-	{
-		tmp = current;
-		current = cat_dollar(str);
-		ft_tokclear(&tmp);
-	}
 	(*c_line) += sz;
 	return (current);
 }
@@ -78,21 +82,13 @@ t_token	*lexer(char *c_line)
 	type = 0;
 	while (*c_line)
 	{
-		type = ft_strchri("|><><\"\'$-", *c_line);
+		type = ft_strchri("|><><", *c_line);
 		if (type)
 			ft_tokadd_back(&head, special_chr(type, &c_line));
 		else if ((*c_line) != ' ')
 			ft_tokadd_back(&head, cat_word(&c_line, " |><><"));
 		else
 			c_line++;
-		if (type == 6 || type == 7)
-		{
-			ft_tokadd_back(&head, cat_quoteword(&c_line, type));
-			if (type == ft_strchri("|><><\"\'$-", *c_line))
-				ft_tokadd_back(&head, special_chr(type, &c_line));
-		}
-		else if (type == 8)
-			ft_tokadd_back(&head, cat_envvar(&c_line));
 	}
 	return (head);
 }

@@ -1,37 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_signals.c                                   :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/01 18:20:34 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/02 18:32:41 by microdri         ###   ########.fr       */
+/*   Created: 2023/03/02 18:45:22 by microdri          #+#    #+#             */
+/*   Updated: 2023/03/06 11:54:34 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-// setar variavel global para 1 na linha 21
-// que armazena a saida padrao do ctrl+c
-// igual ao bash
-
-void	handle_signals(int signum)
+char	**parser(t_data_shell *data_shell)
 {
-	(void)signum;
-	if (RL_ISSTATE(RL_STATE_READCMD))
+	char	*command;
+
+	if (data_shell->tok_lst == NULL)
+		return (NULL);
+	command = data_shell->tok_lst->str;
+	if (is_builtin(command) == 1)
 	{
-		write(1, "\n", 1);
+		parser_builtin(data_shell);
 	}
-	else
-		ioctl(1, TIOCSTI, "\n");
-	rl_on_new_line();
-	rl_replace_line("", 0);
-	rl_redisplay();
-}
-
-void	set_sig(void)
-{
-	signal(SIGINT, handle_signals);
-	signal(SIGQUIT, SIG_IGN);
+	return (NULL);
 }

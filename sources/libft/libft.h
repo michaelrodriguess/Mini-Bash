@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 15:04:52 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/02/23 19:07:39 by marvin           ###   ########.fr       */
+/*   Updated: 2023/03/09 14:52:09 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,8 @@ char	*get_next_line(int fd);
 size_t	ft_array_len(char **str);
 int		ft_ahtoi(char *str);
 int		ft_strchri(const char *s, int c);
+char	*strjoinchr(char *str, char chr);
+char	*remove_substr(char	*str, int from, int to);
+char	*insert_substr(char	*str, char *substr, int i);
 
 #endif
