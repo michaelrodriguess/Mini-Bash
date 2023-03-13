@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:51:58 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/13 18:16:11 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/13 18:21:30 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	main(int argc, char **argv, char **env)
 	while (42)
 	{
 		input = readline("microtano$: ");
+		init_values_struct(&data_shell);
 		if (verify_input(input) == 0)
 			break ;
 		init_values_struct(&data_shell);
