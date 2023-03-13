@@ -6,11 +6,18 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:51:58 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/11 16:41:30 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/13 17:50:12 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+void	init_values_struct(t_data_shell *data_shell)
+{
+	data_shell->sentence_list = malloc(sizeof(t_sentence));
+	if (!data_shell->sentence_list)	
+		printf("error with sentence_list malloc\n");
+}
 
 int	main(int argc, char **argv, char **env)
 {
@@ -26,6 +33,7 @@ int	main(int argc, char **argv, char **env)
 	while (42)
 	{
 		input = readline("microtano$: ");
+		init_values_struct(&data_shell);
 		if (verify_input(input) == 0)
 			break ;
 		header = lexer(input);
