@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:50:06 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/12 18:28:42 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/13 17:06:26 by microdri         ###   ########.fr       */
 /*   Updated: 2023/03/11 16:53:15 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -31,12 +31,20 @@ typedef struct s_token
 	struct s_token	*prev;
 }	t_token;
 
+typedef struct s_sentence
+{
+	int					fd_in;
+	int					fd_out;
+	char				**args;
+	struct s_sentence	*next;	
+}	t_sentence;
+
 typedef struct s_data_shell
 {
-	t_token	*tok_lst;
-	char	*input;
-	char	**copy_env;
-	char	**args;
+	t_token		*tok_lst;
+	char		*input;
+	char		**copy_env;
+	t_sentence	*sentence_list;
 }	t_data_shell;
 
 void	parser_builtin(t_data_shell *data_shell);

@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 19:24:01 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/12 17:37:50 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/13 17:18:25 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ char	**new_env(t_data_shell	*data_shell, int current_args_i)
 	while (data_shell->copy_env[i])
 	{
 		env_size = ft_strchri(data_shell->copy_env[i], '=') - 1;
-		if ((int)ft_strlen(data_shell->args[current_args_i]) == env_size
-			&& ft_strncmp(data_shell->args[current_args_i],
+		if ((int)ft_strlen(data_shell->sentence_list->args[current_args_i]) == env_size
+			&& ft_strncmp(data_shell->sentence_list->args[current_args_i],
 				data_shell->copy_env[i], env_size) == 0)
 			i++;
 		else
@@ -46,11 +46,11 @@ void	exec_unset(t_data_shell *data_shell, int j)
 	char	**temp;
 
 	i = 0;
-	while (data_shell->copy_env[i] && data_shell->args[j])
+	while (data_shell->copy_env[i] && data_shell->sentence_list->args[j])
 	{
 		env_until_equal = ft_strchri(data_shell->copy_env[i], '=') - 1;
-		if ((int)ft_strlen(data_shell->args[j]) == env_until_equal
-			&& ft_strncmp(data_shell->args[j],
+		if ((int)ft_strlen(data_shell->sentence_list->args[j]) == env_until_equal
+			&& ft_strncmp(data_shell->sentence_list->args[j],
 				data_shell->copy_env[i], env_until_equal) == 0)
 		{
 			temp = new_env(data_shell, j);
@@ -68,21 +68,21 @@ void	ft_unset(t_data_shell *data_shell)
 	int		j;
 
 	j = 0;
-	if (data_shell->args == NULL)
+	if (data_shell->sentence_list->args == NULL)
 		return ;
-	while (data_shell->args[j])
+	while (data_shell->sentence_list->args[j])
 	{
-		if (data_shell->args[j] == NULL)
+		if (data_shell->sentence_list->args[j] == NULL)
 			break ;
-		if (has_equal(data_shell->args[j]) == 0
-			|| is_name_valid(data_shell->args[j]) == 0)
+		if (has_equal(data_shell->sentence_list->args[j]) == 0
+			|| is_name_valid(data_shell->sentence_list->args[j]) == 0)
 			printf("microtano: unset: `%s': not a valid identifier\n",
-				data_shell->args[j++]);
-		if (data_shell->args[j] == NULL)
+				data_shell->sentence_list->args[j++]);
+		if (data_shell->sentence_list->args[j] == NULL)
 			break ;
 		else
 		{
-			if (ft_strcmp("_", &data_shell->args[j][0]) != 0)
+			if (ft_strcmp("_", &data_shell->sentence_list->args[j][0]) != 0)
 				exec_unset(data_shell, j);
 		}
 		j++;
