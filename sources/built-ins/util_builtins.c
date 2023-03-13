@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 15:50:43 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/12 17:38:25 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/13 20:50:39 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int	is_name_valid(char *str)
 
 	i = 0;
 	if (str == NULL)
+		return (0);
+	else if (!ft_isalpha(str[0]) && str[0] != '_')
 		return (0);
 	while (str[i] && str[i] != '=')
 	{
