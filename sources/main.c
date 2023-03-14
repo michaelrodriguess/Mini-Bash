@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:51:58 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/14 15:33:25 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/14 19:31:53 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	init_values_struct(t_data_shell *data_shell)
 {
 	data_shell->sentence_list = malloc(sizeof(t_sentence));
+	data_shell->sentence_list->args = NULL;
 	if (!data_shell->sentence_list)	
 		printf("error with sentence_list malloc\n");
 }

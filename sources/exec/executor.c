@@ -47,9 +47,14 @@ int	execute_builtins(t_data_shell *data_shell)
 
 void	execute_cmd(t_data_shell *data_shell)
 {
-	//parser_builtin(data_shell);
-	(void) *data_shell;
-	printf("Command: %s\n", data_shell->sentence_list->args[0]);
+	int	pid;
+	pid = fork();
+	if (pid == -1)
+		ft_putstr_fd("Error with Fork", 2);
+	if (pid == 0 && execve(data_shell->sentence_list->args[0], data_shell->sentence_list->args, data_shell->copy_env) == -1)
+		ft_putstr_fd("Error with second command", 2);
+	else if (pid !=  0)
+		wait(&pid);
 }
 
 void	verify_and_exec(t_data_shell *data_shell)
@@ -63,5 +68,5 @@ void	verify_and_exec(t_data_shell *data_shell)
 	 	execute_builtins(data_shell);
 	else
 		execute_cmd(data_shell);
-	free(data_shell->sentence_list->args);
+	//free(data_shell->sentence_list->args);
 }

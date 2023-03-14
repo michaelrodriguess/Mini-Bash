@@ -116,5 +116,5 @@ void	parser(t_data_shell *data_shell)
 		data_shell->sentence_list->args = NULL;
 		return ;
 	}
-	tok_list_to_args(data_shell); //transformar em função int para excluir proximo if
+	tok_list_to_args(data_shell);
 }
