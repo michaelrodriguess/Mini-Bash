@@ -52,20 +52,16 @@ void	execute_cmd(t_data_shell *data_shell)
 	printf("Command: %s\n", data_shell->sentence_list->args[0]);
 }
 
-char	**parser(t_data_shell *data_shell) //sould be a void function?
+void	verify_and_exec(t_data_shell *data_shell)
 {
-	char	*command;
+	char *command;
 
-	if (data_shell->tok_lst == NULL)
-		return (NULL);
-	tok_list_to_args(data_shell); //transformar em função int para excluir proximo if
 	if (!data_shell->sentence_list->args)
-		return (NULL);
+		return ;
 	command = data_shell->sentence_list->args[0];
 	if (is_builtin(command) == 1)
 	 	execute_builtins(data_shell);
 	else
 		execute_cmd(data_shell);
 	free(data_shell->sentence_list->args);
-	return (NULL);
 }

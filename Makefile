@@ -1,7 +1,6 @@
 SRCS			=	./sources/main.c \
 					./sources/handling/handle_signals.c \
 					./sources/handling/handle_parser/parser_args.c \
-					./sources/handling/handle_parser/parser_cmd.c \
 					./sources/handling/handle_memory/clear_memory.c \
 					./sources/handling/handle_error/handle_error.c \
 					./sources/handling/handle_parser/expand_envvar.c \

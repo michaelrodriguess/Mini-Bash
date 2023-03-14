@@ -39,6 +39,7 @@ int	main(int argc, char **argv, char **env)
 		header = lexer(input);
 		data_shell.tok_lst = header;
 		parser(&data_shell);
+		verify_and_exec(&data_shell);
 		data_shell.tok_lst = header;
 		clear_memory(input, data_shell);
 		header = NULL;
