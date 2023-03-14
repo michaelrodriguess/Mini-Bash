@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:50:34 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/03/12 19:16:19 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/14 10:45:50 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_cd(char **args, char **env)
 
 	if (ft_array_len(args) <= 1)
 	{
-		if (args == NULL)
+		if (*args == NULL)
 		{
 			path = get_home(env);
 			if (!path)
