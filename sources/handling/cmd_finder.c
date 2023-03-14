@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 07:26:46 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/03/14 08:04:13 by marvin           ###   ########.fr       */
+/*   Updated: 2023/03/14 11:55:38 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,18 @@ char	*find_path(char **cmd, char **envp)
 	}
 	clear_matrix(matrix);
 	return (path_temp);
+}
+
+void	find_cmd(t_data_shell *data_shell)
+{
+	char	*temp;
+
+	temp = data_shell->tok_lst->str;
+	data_shell->tok_lst->str = find_path(&(data_shell->tok_lst->str), data_shell->copy_env);
+	if (!data_shell->tok_lst->str)
+	{
+		printf("%s: command not found\n", temp);
+		//set $? to 127.
+	}
+	free(temp);
 }

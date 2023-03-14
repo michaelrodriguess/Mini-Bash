@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:20:34 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/14 10:32:08 by marvin           ###   ########.fr       */
+/*   Updated: 2023/03/14 11:48:57 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,16 +69,17 @@ char	*add_arg(t_data_shell *data_shell)
 
 void	parser_builtin(t_data_shell *data_shell)
 {
-//	char	*command;
 	int		size;
 	int		index;
 
 	index = 0;
-//	command = data_shell->tok_lst->str;
-//	data_shell->tok_lst = data_shell->tok_lst->next;
 	data_shell->sentence_list->args = NULL;
 	if (data_shell->tok_lst != NULL)
 	{
+		if (!is_builtin(data_shell->tok_lst->str))	// colocar find_cmd para retornar int e mudar para um só if
+			find_cmd(data_shell);					// if(!is_builtin(data_shell->tok_lst->str && !find_cmd(data_shell))
+		if (!data_shell->tok_lst->str)
+			return ;
 		size = ft_toksize_w(data_shell->tok_lst);
 		data_shell->sentence_list->args = malloc((size + 1) * sizeof(char *));
 		if (!data_shell->sentence_list->args)
@@ -92,6 +93,6 @@ void	parser_builtin(t_data_shell *data_shell)
 		}
 		data_shell->sentence_list->args[index] = NULL;
 	}
-	execute_builtins(data_shell);
-	free(data_shell->sentence_list->args);
+	// execute_builtins(data_shell);
+	//free(data_shell->sentence_list->args);
 }
