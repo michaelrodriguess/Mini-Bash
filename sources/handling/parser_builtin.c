@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:20:34 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/14 10:13:35 by marvin           ###   ########.fr       */
+/*   Updated: 2023/03/14 10:32:08 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,19 @@ int	is_builtin(char *command)
 		return (0);
 }
 
-int	execute_builtins(char *command, t_data_shell *data_shell)
-{	
-	if (!ft_strcmp(command, "echo"))
-		ft_echo(data_shell->sentence_list->args);
-	if (!ft_strcmp(command, "pwd"))
+int	execute_builtins(t_data_shell *data_shell)
+{
+	char	*command;
+
+	command = data_shell->sentence_list->args[0];
+	if (!ft_strcmp(command, "echo")) //printar quebra de linha quando o input for echo sem argumentos ou flags
+		ft_echo(&(data_shell->sentence_list->args[1]));
+	if (!ft_strcmp(command, "pwd")) //atualizar $PWD e $OLDPWD
 		ft_pwd();
-	if (!ft_strcmp(command, "cd"))
-		ft_cd(data_shell->sentence_list->args, data_shell->copy_env);
+	if (!ft_strcmp(command, "cd")) // error with only cd HOME at env[4]
+		ft_cd(&(data_shell->sentence_list->args[1]), data_shell->copy_env);
 	if (!ft_strcmp(command, "exit"))
-		ft_exit(data_shell->sentence_list->args);
+		ft_exit(&(data_shell->sentence_list->args[1]));
 	if (!ft_strcmp(command, "env"))
 		ft_env(data_shell->copy_env);
 	if (!ft_strcmp(command, "unset"))
@@ -66,13 +69,13 @@ char	*add_arg(t_data_shell *data_shell)
 
 void	parser_builtin(t_data_shell *data_shell)
 {
-	char	*command;
+//	char	*command;
 	int		size;
 	int		index;
 
 	index = 0;
-	command = data_shell->tok_lst->str;
-	data_shell->tok_lst = data_shell->tok_lst->next;
+//	command = data_shell->tok_lst->str;
+//	data_shell->tok_lst = data_shell->tok_lst->next;
 	data_shell->sentence_list->args = NULL;
 	if (data_shell->tok_lst != NULL)
 	{
@@ -89,6 +92,6 @@ void	parser_builtin(t_data_shell *data_shell)
 		}
 		data_shell->sentence_list->args[index] = NULL;
 	}
-	execute_builtins(command, data_shell);
+	execute_builtins(data_shell);
 	free(data_shell->sentence_list->args);
 }
