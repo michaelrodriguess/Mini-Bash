@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:51:58 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/13 18:21:30 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/13 22:44:16 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	main(int argc, char **argv, char **env)
 		init_values_struct(&data_shell);
 		if (verify_input(input) == 0)
 			break ;
-		init_values_struct(&data_shell);
 		header = lexer(input);
 		data_shell.tok_lst = header;
 		parser(&data_shell);

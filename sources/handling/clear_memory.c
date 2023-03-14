@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 18:13:23 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/13 18:21:49 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/13 22:41:06 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,8 @@ void	free_copy_env(t_data_shell *data_shell)
 
 void	clear_memory(char *input, t_data_shell data_shell)
 {
-	if (!input)
-		return ;
-	free(input);
+	if (input)
+		free(input);
 	ft_tokclear(&data_shell.tok_lst);
 	free(data_shell.sentence_list);
 }
