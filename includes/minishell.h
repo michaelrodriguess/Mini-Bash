@@ -6,10 +6,10 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:50:06 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/13 22:12:30 by fcaetano         ###   ########.fr       */
-/*   Updated: 2023/03/11 16:53:15 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/14 07:30:37 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
@@ -72,6 +72,7 @@ int		execute_builtins(char *command, t_data_shell *data_shell);
 int		validation(t_token *token);
 int		verify_input(char *input);
 char	*parse_arg(char *arg, char **env);
+char	*find_path(char **cmd, char **envp);
 char	*cat_envvar(char **arg, char *parsed_arg, char **env);
 char	**parser(t_data_shell *data_shell);
 char	**ft_copy_env(char **env);
