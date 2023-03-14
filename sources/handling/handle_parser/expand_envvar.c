@@ -6,11 +6,11 @@
 /*   By: fcaetano <fcaetano@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:22:42 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/03/11 16:22:52 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/14 14:31:35 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
 void	expand(char **env_var, char **env)
 {

@@ -6,46 +6,60 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:20:34 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/14 11:48:57 by marvin           ###   ########.fr       */
+/*   Updated: 2023/03/14 14:41:39 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
-int	is_builtin(char *command)
+char	*quote(char	**arg, char *parsed_arg, char **env)
 {
-	if (!ft_strcmp(command, "echo") || !ft_strcmp(command, "cd")
-		|| !ft_strcmp(command, "exit") || !ft_strcmp(command, "pwd")
-		|| !ft_strcmp(command, "env") || !ft_strcmp(command, "export")
-		|| !ft_strcmp(command, "unset"))
-		return (1);
-	else
-		return (0);
+	int		i;
+	char	*ret;
+	char	*temp;
+	char	quote;
+
+	i = 0;
+	quote = **arg;
+	while ((*arg)[i + 1] != quote && (*arg)[i + 1])
+		i++;
+	temp = ft_substr((*arg), 1, i);
+	if (quote == '\"' && ft_strchri(temp, '$'))
+		expand_str(&temp, env);
+	ret = ft_strjoin(parsed_arg, temp);
+	free(temp);
+	if ((*arg)[i + 1])
+		i++;
+	(*arg) += i + 1;
+	return (ret);
 }
 
-int	execute_builtins(t_data_shell *data_shell)
+char	*parse_arg(char *arg, char **env)
 {
-	char	*command;
+	char	*parsed_arg;
+	char	*temp;
 
-	command = data_shell->sentence_list->args[0];
-	if (!ft_strcmp(command, "echo")) //printar quebra de linha quando o input for echo sem argumentos ou flags
-		ft_echo(&(data_shell->sentence_list->args[1]));
-	if (!ft_strcmp(command, "pwd")) //atualizar $PWD e $OLDPWD
-		ft_pwd();
-	if (!ft_strcmp(command, "cd")) // error with only cd HOME at env[4]
-		ft_cd(&(data_shell->sentence_list->args[1]), data_shell->copy_env);
-	if (!ft_strcmp(command, "exit"))
-		ft_exit(&(data_shell->sentence_list->args[1]));
-	if (!ft_strcmp(command, "env"))
-		ft_env(data_shell->copy_env);
-	if (!ft_strcmp(command, "unset"))
-		ft_unset(data_shell);
-	if (!ft_strcmp(command, "export"))
-		ft_export(data_shell);
-	return (0);
+	parsed_arg = ft_strdup("");
+	while (*arg)
+	{
+		if (!parsed_arg)
+			parsed_arg = ft_strdup("");
+		temp = parsed_arg;
+		if (*arg == '\"' || *arg == '\'')
+			parsed_arg = quote(&arg, parsed_arg, env);
+		else if (*arg == '$' && (arg[1] == '_' || ft_isalnum(arg[1])))
+			parsed_arg = cat_envvar(&arg, parsed_arg, env);
+		else
+		{
+			parsed_arg = strjoinchr(parsed_arg, *arg);
+			arg++;
+		}
+		free(temp);
+	}
+	return (parsed_arg);
 }
 
-char	*add_arg(t_data_shell *data_shell)
+static char	*add_arg(t_data_shell *data_shell)
 {
 	char	*arg;
 	char	*temp;
@@ -67,7 +81,7 @@ char	*add_arg(t_data_shell *data_shell)
 	return (arg);
 }
 
-void	parser_builtin(t_data_shell *data_shell)
+void	tok_list_to_args(t_data_shell *data_shell)
 {
 	int		size;
 	int		index;
@@ -93,6 +107,4 @@ void	parser_builtin(t_data_shell *data_shell)
 		}
 		data_shell->sentence_list->args[index] = NULL;
 	}
-	// execute_builtins(data_shell);
-	//free(data_shell->sentence_list->args);
 }

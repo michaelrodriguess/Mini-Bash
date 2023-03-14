@@ -6,11 +6,11 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 07:26:46 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/03/14 11:55:38 by marvin           ###   ########.fr       */
+/*   Updated: 2023/03/14 14:31:23 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
 static char	**matrix_path(char **envp)
 {
@@ -80,10 +80,9 @@ void	find_cmd(t_data_shell *data_shell)
 
 	temp = data_shell->tok_lst->str;
 	data_shell->tok_lst->str = find_path(&(data_shell->tok_lst->str), data_shell->copy_env);
-	if (!data_shell->tok_lst->str)
+	if (data_shell->tok_lst->str == NULL)
 	{
 		printf("%s: command not found\n", temp);
 		//set $? to 127.
 	}
-	free(temp);
 }

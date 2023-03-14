@@ -6,11 +6,11 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:48:07 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/11 20:50:16 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/14 14:34:45 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
 int	verify_input(char *input)
 {

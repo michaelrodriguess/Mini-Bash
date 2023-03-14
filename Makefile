@@ -1,10 +1,11 @@
 SRCS			=	./sources/main.c \
 					./sources/handling/handle_signals.c \
-					./sources/handling/parser.c \
-					./sources/handling/parser_builtin.c \
-					./sources/handling/parser_cmd.c \
-					./sources/handling/clear_memory.c \
-					./sources/handling/handle_error.c \
+					./sources/handling/handle_parser/parser_args.c \
+					./sources/handling/handle_parser/parser_cmd.c \
+					./sources/handling/handle_memory/clear_memory.c \
+					./sources/handling/handle_error/handle_error.c \
+					./sources/handling/handle_parser/expand_envvar.c \
+					./sources/handling/handle_parser/cmd_finder.c \
 					./sources/tokenization/lst_token2.c\
 					./sources/tokenization/lst_token.c\
 					./sources/tokenization/lexer.c \
@@ -17,9 +18,6 @@ SRCS			=	./sources/main.c \
 					./sources/built-ins/env.c \
 					./sources/built-ins/unset.c \
 					./sources/built-ins/export.c \
-					./sources/handling/parse_str.c \
-					./sources/handling/expand_envvar.c \
-					./sources/handling/cmd_finder.c \
 					./sources/exec/executor.c \
 
 NAME			= minishell

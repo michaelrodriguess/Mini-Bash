@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:50:06 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/14 11:13:40 by marvin           ###   ########.fr       */
+/*   Updated: 2023/03/14 14:53:14 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_data_shell
 	t_sentence	*sentence_list;
 }	t_data_shell;
 
-void	parser_builtin(t_data_shell *data_shell);
+void	tok_list_to_args(t_data_shell *data_shell);
 void	expand_str(char **str, char **env);
 void	ft_tokadd_back(t_token **lst, t_token *new);
 void	ft_tokclear(t_token **lst);
