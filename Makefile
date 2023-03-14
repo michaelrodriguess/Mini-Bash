@@ -20,6 +20,7 @@ SRCS			=	./sources/main.c \
 					./sources/handling/parse_str.c \
 					./sources/handling/expand_envvar.c \
 					./sources/handling/cmd_finder.c \
+					./sources/exec/executor.c \
 
 NAME			= minishell
 OBJS			= $(SRCS:.c=.o)

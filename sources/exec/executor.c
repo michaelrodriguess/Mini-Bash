@@ -1,34 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clear_memory.c                                     :+:      :+:    :+:   */
+/*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/07 18:13:23 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/14 10:13:42 by marvin           ###   ########.fr       */
+/*   Created: 2023/03/14 08:15:21 by fcaetano          #+#    #+#             */
+/*   Updated: 2023/03/14 10:14:47 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	free_copy_env(t_data_shell *data_shell)
+void	execute_cmd(char *command, t_data_shell *data_shell)
 {
-	int	i;
-
-	i = 0;
-	while (data_shell->copy_env[i])
-	{
-		free(data_shell->copy_env[i]);
-		i++;
-	}
-	free(data_shell->copy_env);
-}
-
-void	clear_memory(char *input, t_data_shell data_shell)
-{
-	if (input)
-		free(input);
-	ft_tokclear(&data_shell.tok_lst);
-	free(data_shell.sentence_list);
+	//parser_builtin(data_shell);
+	(void) *data_shell;
+	printf("Command: %s\n", command);
 }

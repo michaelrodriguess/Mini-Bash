@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 07:26:46 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/03/14 07:59:12 by marvin           ###   ########.fr       */
+/*   Updated: 2023/03/14 08:04:13 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ char	*find_path(char **cmd, char **envp)
 			return (path_temp);
 		}
 		free(path_temp);
+		path_temp = NULL;
 		i++;
 	}
 	clear_matrix(matrix);
