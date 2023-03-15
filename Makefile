@@ -1,5 +1,6 @@
 SRCS			=	./sources/main.c \
 					./sources/handling/handle_signals.c \
+					./sources/handling/handle_parser/utils_pipe.c \
 					./sources/handling/handle_parser/parser_args.c \
 					./sources/handling/handle_memory/clear_memory.c \
 					./sources/handling/handle_error/handle_error.c \
@@ -9,6 +10,7 @@ SRCS			=	./sources/main.c \
 					./sources/tokenization/lst_token.c\
 					./sources/tokenization/lexer.c \
 					./sources/tokenization/lexer2.c \
+					./sources/tokenization/sentence_lst.c \
 					./sources/built-ins/util_builtins.c \
 					./sources/built-ins/pwd.c \
 					./sources/built-ins/echo.c \

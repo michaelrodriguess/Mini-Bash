@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_builtin.c                                   :+:      :+:    :+:   */
+/*   parser_args.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:20:34 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/14 14:41:39 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/15 20:20:12 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	tok_list_to_args(t_data_shell *data_shell)
 		data_shell->sentence_list->args = malloc((size + 1) * sizeof(char *));
 		if (!data_shell->sentence_list->args)
 			printf("Error in parser built-in malloc.\n");
-		while (data_shell->tok_lst != NULL)
+		while (data_shell->tok_lst != NULL && data_shell->tok_lst->type != 1)
 		{
 			if (data_shell->tok_lst->type == 0)
 				data_shell->sentence_list->args[index] = add_arg(data_shell);
@@ -111,10 +111,24 @@ void	tok_list_to_args(t_data_shell *data_shell)
 
 void	parser(t_data_shell *data_shell)
 {
+	t_sentence *head;
+
 	if (data_shell->tok_lst == NULL)
 	{
 		data_shell->sentence_list->args = NULL;
 		return ;
 	}
-	tok_list_to_args(data_shell);
+	data_shell->sentence_list = sentence_new(-1, -1, NULL);
+	head = data_shell->sentence_list;
+	while (data_shell->tok_lst != NULL)
+	{
+		tok_list_to_args(data_shell);
+		if (data_shell->tok_lst != NULL)
+		{
+			sentence_add_back(&data_shell->sentence_list, sentence_new(-1, -1, NULL));
+			data_shell->tok_lst = data_shell->tok_lst->next;
+			data_shell->sentence_list = data_shell->sentence_list->next;
+		}
+	}
+	data_shell->sentence_list = head;
 }

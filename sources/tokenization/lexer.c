@@ -6,7 +6,7 @@
 /*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 10:11:58 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/03/09 11:26:03 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/15 19:26:22 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ t_token	*lexer(char *c_line)
 	t_token	*head;
 	int		type;
 
+	if (c_line == NULL)
+		return (NULL);
 	head = NULL;
 	type = 0;
 	while (*c_line)
