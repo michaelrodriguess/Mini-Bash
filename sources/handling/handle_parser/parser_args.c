@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:20:34 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/15 20:20:12 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/16 11:49:55 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,11 @@ void	tok_list_to_args(t_data_shell *data_shell)
 		if (!is_builtin(data_shell->tok_lst->str))	// colocar find_cmd para retornar int e mudar para um só if
 			find_cmd(data_shell);					// if(!is_builtin(data_shell->tok_lst->str && !find_cmd(data_shell))
 		if (!data_shell->tok_lst->str)
+		{
+			while (data_shell->tok_lst && data_shell->tok_lst->type != 1)
+				data_shell->tok_lst = data_shell->tok_lst->next;
 			return ;
+		}
 		size = ft_toksize_w(data_shell->tok_lst);
 		data_shell->sentence_list->args = malloc((size + 1) * sizeof(char *));
 		if (!data_shell->sentence_list->args)
@@ -114,10 +118,7 @@ void	parser(t_data_shell *data_shell)
 	t_sentence *head;
 
 	if (data_shell->tok_lst == NULL)
-	{
-		data_shell->sentence_list->args = NULL;
 		return ;
-	}
 	data_shell->sentence_list = sentence_new(-1, -1, NULL);
 	head = data_shell->sentence_list;
 	while (data_shell->tok_lst != NULL)
