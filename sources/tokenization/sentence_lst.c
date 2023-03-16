@@ -6,7 +6,7 @@
 /*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 10:17:38 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/03/15 20:38:35 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/16 10:19:13 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,13 @@ void	sentence_print(t_sentence	*lst)
 {
 	int	i;
 
-	i = 0;
 	while (lst)
 	{
-		ft_printf("FD_IN [%d] ", lst->fd_in);
-		ft_printf("FD_OUT [%d] ", lst->fd_out);
+		printf("FD_IN [%d] ", lst->fd_in);
+		printf("FD_OUT [%d] ", lst->fd_out);
+		i = 0;
 		while (lst->args[i] != NULL)
-			ft_printf("args [%s]\n", lst->args[i++]);
+			printf("args [%s]\n", lst->args[i++]);
 		lst = lst->next;
 	}
 }

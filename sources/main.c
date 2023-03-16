@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:51:58 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/15 20:41:41 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/16 09:30:09 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	init_values_struct(t_data_shell *data_shell)
 {
 	data_shell->sentence_list = NULL;
-	data_shell->sentence_list->args = NULL;
+//	data_shell->sentence_list->args = NULL;
 }
 
 int	main(int argc, char **argv, char **env)
