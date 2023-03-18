@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 08:15:21 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/03/16 11:54:41 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/18 13:26:40 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,10 @@ void	verify_and_exec(t_data_shell *data_shell)
 	if (!data_shell->sentence_list)
 		return ;
 	if (data_shell->sentence_list->args == NULL)
+	{
 		printf("cmd not found: depois volta aqui\n");
+		return ;
+	}
 	command = data_shell->sentence_list->args[0];
 	if (is_builtin(command) == 1)
 	 	execute_builtins(data_shell);

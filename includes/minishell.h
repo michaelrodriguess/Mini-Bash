@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:50:06 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/15 20:39:24 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/18 13:19:10 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <readline/history.h>
 # include <signal.h>
 # include <sys/ioctl.h>
+# include <sys/wait.h>
 # include "../sources/libft/libft.h"
 
 typedef struct s_token
