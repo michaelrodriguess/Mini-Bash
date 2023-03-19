@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:50:06 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/18 13:19:10 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/18 22:20:41 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <signal.h>
 # include <sys/ioctl.h>
 # include <sys/wait.h>
+# include <errno.h>
 # include "../sources/libft/libft.h"
 
 typedef struct s_token
@@ -71,6 +72,7 @@ void		verify_and_exec(t_data_shell *data_shell);
 void		sentence_print(t_sentence *lst);
 void		sentence_clear(t_sentence **lst);
 void		sentence_add_back(t_sentence **lst, t_sentence *new);
+void		message_error(char *msg);
 int			has_equal(char *str);
 int			is_name_valid(char *str);
 int			ft_toksize(t_token *lst);

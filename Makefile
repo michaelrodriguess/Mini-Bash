@@ -3,9 +3,11 @@ SRCS			=	./sources/main.c \
 					./sources/handling/handle_parser/utils_pipe.c \
 					./sources/handling/handle_parser/parser_args.c \
 					./sources/handling/handle_memory/clear_memory.c \
-					./sources/handling/handle_error/handle_error.c \
+					./sources/handling/handle_error/msg_error.c \
+					./sources/handling/handle_error/check_input.c \
 					./sources/handling/handle_parser/expand_envvar.c \
 					./sources/handling/handle_parser/cmd_finder.c \
+					./sources/handling/handle_pipes/pipes.c \
 					./sources/tokenization/lst_token2.c\
 					./sources/tokenization/lst_token.c\
 					./sources/tokenization/lexer.c \
