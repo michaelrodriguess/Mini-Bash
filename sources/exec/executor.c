@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 08:15:21 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/03/18 13:26:40 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/20 14:03:06 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,16 @@ int	execute_builtins(t_data_shell *data_shell)
 
 void	execute_cmd(t_data_shell *data_shell)
 {
-	int	pid;
+	/*int	pid;
 	pid = fork();
 	if (pid == -1)
 		ft_putstr_fd("Error with Fork", 2);
 	if (pid == 0 && execve(data_shell->sentence_list->args[0], data_shell->sentence_list->args, data_shell->copy_env) == -1)
 		ft_putstr_fd("Error with second command", 2);
 	else if (pid !=  0)
-		wait(&pid);
+		wait(&pid);*/
+	pipes_cmd(data_shell);
+
 }
 
 void	verify_and_exec(t_data_shell *data_shell)

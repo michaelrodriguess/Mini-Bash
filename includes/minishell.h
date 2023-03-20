@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:50:06 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/18 22:20:41 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/20 14:18:17 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void		sentence_print(t_sentence *lst);
 void		sentence_clear(t_sentence **lst);
 void		sentence_add_back(t_sentence **lst, t_sentence *new);
 void		message_error(char *msg);
+void		pipes_cmd(t_data_shell *data_shell);
 int			has_equal(char *str);
 int			is_name_valid(char *str);
 int			ft_toksize(t_token *lst);
