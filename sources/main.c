@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:51:58 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/20 14:40:46 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/20 18:43:07 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	main(int argc, char **argv, char **env)
 		if (verify_input(input) == 0)
 			break ;
 //		ft_tokprint(data_shell.tok_lst);
-		parser(&data_shell);
+//		parser(&data_shell);
 //		sentence_print(data_shell.sentence_list);
 		verify_and_exec(&data_shell);
 		data_shell.tok_lst = header;

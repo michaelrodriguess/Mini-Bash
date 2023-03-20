@@ -6,21 +6,21 @@
 /*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 10:17:38 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/03/16 11:31:25 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/20 16:55:58 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-t_sentence	*sentence_new(int fd_in, int fd_out, char **args)
+t_sentence	*sentence_new(char **args)
 {
 	t_sentence	*node;
 
 	node = malloc(sizeof(t_sentence));
 	if (!node)
 		return (NULL);
-	node->fd_in = fd_in;
-	node->fd_out = fd_out;
+	node->fd_in = 0;
+	node->fd_out = 1;
 	node->args = args;
 	node->next = NULL;
 	node->prev = NULL;

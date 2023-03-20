@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:50:06 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/20 14:18:17 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/20 18:38:55 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,10 @@ typedef struct s_sentence
 
 typedef struct s_data_shell
 {
-	t_token		*tok_lst;
+	int			number_of_sentence;
 	char		*input;
 	char		**copy_env;
+	t_token		*tok_lst;
 	t_sentence	*sentence_list;
 }	t_data_shell;
 
@@ -73,7 +74,8 @@ void		sentence_print(t_sentence *lst);
 void		sentence_clear(t_sentence **lst);
 void		sentence_add_back(t_sentence **lst, t_sentence *new);
 void		message_error(char *msg);
-void		pipes_cmd(t_data_shell *data_shell);
+void		config_pipes(t_data_shell *data_shell);
+int			count_pipes(t_token *tok_lst);
 int			has_equal(char *str);
 int			is_name_valid(char *str);
 int			ft_toksize(t_token *lst);
@@ -82,7 +84,6 @@ int			is_builtin(char *command);
 int			execute_builtins(t_data_shell *data_shell);
 int			validation(t_token *token);
 int			verify_input(char *input);
-int			count_pipes(t_token *lst_tok);
 char		*parse_arg(char *arg, char **env);
 char		*find_path(char **cmd, char **envp);
 char		*cat_envvar(char **arg, char *parsed_arg, char **env);
@@ -95,6 +96,6 @@ t_token		*cat_word(char **c_line, char *chr_set);
 t_token		*cat_dollar(char *qt_str);
 t_token		*special_chr(int type, char **c_line);
 t_sentence	*sentence_last(t_sentence *lst);
-t_sentence	*sentence_new(int fd_in, int fd_out, char **args);
+t_sentence	*sentence_new(char **args);
 
 #endif
