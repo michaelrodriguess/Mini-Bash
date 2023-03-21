@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 08:15:21 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/03/20 18:46:58 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/21 14:59:36 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,26 +47,32 @@ int	execute_builtins(t_data_shell *data_shell)
 
 void	execute_cmd(t_data_shell *data_shell)
 {
-	config_pipes(data_shell);
-	/*int	pid;
-	
-	config_pipes_cmd(data_shell);
-	pid = fork();
-	
-	if (pid == -1)
-		ft_putstr_fd("Error with Fork", 2);
-	if (pid == 0 && execve(data_shell->sentence_list->args[0], data_shell->sentence_list->args, data_shell->copy_env) == -1)
-		ft_putstr_fd("Error with second command", 2);
-	else if (pid !=  0)
-		wait(&pid);
-*/
+	int	pid;
 
+	if (data_shell->number_of_sentence == 1)
+	{
+		pid = fork();
+	
+		if (pid == -1)
+			ft_putstr_fd("Error with Fork", 2);
+		if (pid == 0 && execve(data_shell->sentence_list->args[0], data_shell->sentence_list->args, data_shell->copy_env) == -1)
+			ft_putstr_fd("Error with second command", 2);
+		else if (pid !=  0)
+			wait(&pid);
+	}
+	else if (data_shell->number_of_sentence > 1)
+	{
+		config_pipes(data_shell);
+		config_forks(data_shell);
+		exec_pipes(data_shell);
+	}
 }
 
 void	verify_and_exec(t_data_shell *data_shell)
 {
 	char *command;
 
+	data_shell->number_of_sentence = (count_pipes(data_shell->tok_lst) + 1);
 	if (!data_shell->sentence_list)
 		return ;
 	if (data_shell->sentence_list->args == NULL)
