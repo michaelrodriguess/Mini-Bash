@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:50:06 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/21 11:23:17 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/22 12:11:38 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_sentence
 {
 	int					fd_in;
 	int					fd_out;
+	int					pid;
 	char				**args;
 	struct s_sentence	*next;	
 	struct s_sentence	*prev;	

@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 08:15:21 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/03/21 14:59:36 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/22 11:55:54 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ void	execute_cmd(t_data_shell *data_shell)
 	{
 		config_pipes(data_shell);
 		config_forks(data_shell);
-		exec_pipes(data_shell);
 	}
 }
 
