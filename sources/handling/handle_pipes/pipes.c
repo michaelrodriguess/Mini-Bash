@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 13:42:30 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/22 14:02:33 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/23 12:05:15 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ void	config_pipes(t_data_shell *data_shell)
 	{
 		if(pipe(pipefd) == -1)
 			message_error("Error with Pipe");
-		data_shell->sentence_list->fd_in = pipefd[0];
+		if (data_shell->sentence_list->prev != NULL)
+			data_shell->sentence_list->fd_in = data_shell->sentence_list->prev->fd_in;
+		else
+			data_shell->sentence_list->fd_in = pipefd[0];
 		data_shell->sentence_list->fd_out = pipefd[1];
 		data_shell->sentence_list = data_shell->sentence_list->next;
 		n_pipe--;
@@ -54,22 +57,21 @@ void	close_pipes(t_data_shell *data_shell)
 	head = data_shell->sentence_list;
 	while (head)
 	{
-		if (data_shell->sentence_list->prev != NULL)
-			close(data_shell->sentence_list->fd_in);
-		if (data_shell->sentence_list->next != NULL)
-			close(data_shell->sentence_list->fd_in);
-		data_shell->sentence_list = data_shell-> sentence_list->next;
+		if (head->fd_in > 2)
+			close(head->fd_in);
+		if (head->fd_out > 2)
+			close(head->fd_out);
+		head = head->next;
 	}
-	data_shell->sentence_list = head;
+	head = data_shell->sentence_list;
 	while (head)
 	{
-		if (data_shell->sentence_list->prev != NULL)
-			close(data_shell->sentence_list->fd_in);
-		if (data_shell->sentence_list->next != NULL)
-			close(data_shell->sentence_list->fd_in);
-		data_shell->sentence_list = data_shell-> sentence_list->prev;
+		if (head->fd_in > 2)
+			close(head->fd_in);
+		if (head->fd_out > 2)
+			close(head->fd_out);
+		head = head->prev;
 	}
-	data_shell->sentence_list = head;
 }
 
 void	config_forks(t_data_shell *data_shell)
@@ -87,17 +89,19 @@ void	config_forks(t_data_shell *data_shell)
 			ft_putstr_fd("Error with Fork", 2);
 		if (pid == 0)
 		{
-			if (n_sentence != 0)
+			if (n_sentence == 1)
 			{
 				dup2(data_shell->sentence_list->fd_in, 0);
 				close(data_shell->sentence_list->fd_in);
 			}
+			else
+				dup2(data_shell->sentence_list->fd_in, 0);
 			if (n_sentence != (data_shell->number_of_sentence - 1))
 			{
 				dup2(data_shell->sentence_list->fd_out, 1);
 				close(data_shell->sentence_list->fd_out);
 			}
-	//		close_pipes(data_shell);
+			close_pipes(data_shell);
 			exec_pipes(data_shell);
 		}
 		data_shell->sentence_list->pid = pid;
