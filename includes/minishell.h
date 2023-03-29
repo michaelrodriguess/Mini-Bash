@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:50:06 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/29 12:38:24 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/29 14:12:53 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # include <sys/wait.h>
 # include <errno.h>
 # include "../sources/libft/libft.h"
+
+extern	int var_global;
 
 typedef struct s_token
 {
@@ -76,7 +78,7 @@ void		verify_and_exec(t_data_shell *data_shell);
 void		sentence_print(t_sentence *lst);
 void		sentence_clear(t_sentence **lst);
 void		sentence_add_back(t_sentence **lst, t_sentence *new);
-void		message_error(char *msg);
+void		message_error(char *msg, int exit_status);
 void		config_pipes(t_data_shell *data_shell);
 void		config_forks(t_data_shell *data_shell);
 void		exec_pipes(t_data_shell *data_shell, int n_sentence);

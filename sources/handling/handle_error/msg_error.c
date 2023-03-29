@@ -6,16 +6,16 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 22:18:00 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/18 22:18:31 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/29 14:16:26 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../../../includes/minishell.h"
 
-void    message_error(char *msg)
+void    message_error(char *msg, int exit_status)
 {
     perror(msg);
-    exit(EXIT_FAILURE);
+    var_global = exit_status;
 }
 

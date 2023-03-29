@@ -6,21 +6,18 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:20:34 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/02 18:32:41 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/29 14:34:08 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-// setar variavel global para 1 na linha 21
-// que armazena a saida padrao do ctrl+c
-// igual ao bash
 
 void	handle_signals(int signum)
 {
 	(void)signum;
 	if (RL_ISSTATE(RL_STATE_READCMD))
 	{
+		var_global = 1;
 		write(1, "\n", 1);
 	}
 	else

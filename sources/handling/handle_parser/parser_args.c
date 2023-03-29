@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:20:34 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/20 16:52:24 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/29 13:50:27 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	tok_list_to_args(t_data_shell *data_shell)
 		size = ft_toksize_w(data_shell->tok_lst);
 		data_shell->sentence_list->args = malloc((size + 1) * sizeof(char *));
 		if (!data_shell->sentence_list->args)
-			printf("Error in parser built-in malloc.\n");
+			ft_putstr_fd("Error malloc.\n", 2);
 		while (data_shell->tok_lst != NULL && data_shell->tok_lst->type != 1)
 		{
 			if (data_shell->tok_lst->type == 0)

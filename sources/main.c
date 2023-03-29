@@ -6,11 +6,12 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:51:58 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/29 12:27:51 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/29 14:23:18 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+int	var_global = 0;
 
 void	init_values_struct(t_data_shell *data_shell)
 {
