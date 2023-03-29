@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 18:13:23 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/15 20:39:53 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/29 12:28:28 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,6 @@ void	clear_memory(char *input, t_data_shell data_shell)
 		free(input);
 	ft_tokclear(&data_shell.tok_lst);
 	sentence_clear(&data_shell.sentence_list);
+	if (data_shell.fd_pipes)
+		free(data_shell.fd_pipes);
 }

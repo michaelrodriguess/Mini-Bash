@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:50:06 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/22 12:11:38 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/28 14:30:48 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ typedef struct s_data_shell
 	char		**copy_env;
 	t_token		*tok_lst;
 	t_sentence	*sentence_list;
+	int			n_pipes;
+	int			*fd_pipes;
 }	t_data_shell;
 
 void		tok_list_to_args(t_data_shell *data_shell);
