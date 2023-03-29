@@ -6,11 +6,31 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:20:34 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/29 13:50:27 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/29 17:37:01 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
+
+void	expand_exit_status(char **str)
+{
+	char	*current_exit_status;
+	int		i;
+
+	current_exit_status = ft_itoa(var_global);
+	i = 0;
+	while ((*str)[i])
+	{
+		if ((*str)[i] == '$' && ((*str)[i + 1] == '?'))
+		{
+			insert_envvar(str, current_exit_status, i, i + 2);
+			i++;
+		}
+		else
+			i++;
+	}
+	free(current_exit_status);
+}
 
 char	*quote(char	**arg, char *parsed_arg, char **env)
 {
@@ -31,6 +51,8 @@ char	*quote(char	**arg, char *parsed_arg, char **env)
 	if ((*arg)[i + 1])
 		i++;
 	(*arg) += i + 1;
+	if (quote == '\"' && ft_strchri(ret, '$'))
+		expand_exit_status(&ret);
 	return (ret);
 }
 
@@ -49,6 +71,8 @@ char	*parse_arg(char *arg, char **env)
 			parsed_arg = quote(&arg, parsed_arg, env);
 		else if (*arg == '$' && (arg[1] == '_' || ft_isalnum(arg[1])))
 			parsed_arg = cat_envvar(&arg, parsed_arg, env);
+		else if (*arg == '$' && arg[1] == '?')
+			parsed_arg = cat_exitstatus(&arg, parsed_arg);
 		else
 		{
 			parsed_arg = strjoinchr(parsed_arg, *arg);
@@ -115,7 +139,7 @@ void	tok_list_to_args(t_data_shell *data_shell)
 
 void	parser(t_data_shell *data_shell)
 {
-	t_sentence *head;
+	t_sentence *head; //no need to walk with sentence_list, since we are using sentence_add_back
 
 	if (data_shell->tok_lst == NULL)
 		return ;
