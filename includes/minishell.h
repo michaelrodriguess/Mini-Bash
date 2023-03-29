@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:50:06 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/28 14:30:48 by marvin           ###   ########.fr       */
+/*   Updated: 2023/03/29 12:38:24 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void		sentence_add_back(t_sentence **lst, t_sentence *new);
 void		message_error(char *msg);
 void		config_pipes(t_data_shell *data_shell);
 void		config_forks(t_data_shell *data_shell);
-void		exec_pipes(t_data_shell *data_shell);
+void		exec_pipes(t_data_shell *data_shell, int n_sentence);
 int			count_pipes(t_token *tok_lst);
 int			has_equal(char *str);
 int			is_name_valid(char *str);
