@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:20:34 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/02 18:32:41 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/29 19:33:25 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,23 @@
 
 void	handle_signals(int signum)
 {
-	(void)signum;
-	if (RL_ISSTATE(RL_STATE_READCMD))
+	int temp_var_g;
+
+	temp_var_g = 0;
+	if (signum == SIGINT)
 	{
-		write(1, "\n", 1);
+		if (RL_ISSTATE(RL_STATE_READCMD))
+		{
+			ioctl(1, TIOCSTI, "\n");
+		}
+		else
+		{
+			write(1, "\n", 1);
+		}
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		temp_var_g = 128 + SIGINT;
 	}
-	else
-		ioctl(1, TIOCSTI, "\n");
-	rl_on_new_line();
-	rl_replace_line("", 0);
-	rl_redisplay();
 }
 
 void	set_sig(void)
