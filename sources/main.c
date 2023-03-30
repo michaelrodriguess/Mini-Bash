@@ -6,18 +6,20 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:51:58 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/29 14:23:18 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/30 10:40:44 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 int	var_global = 0;
 
-void	init_values_struct(t_data_shell *data_shell)
+void	init_values_struct(t_data_shell *data_shell, char *input)
 {
 	data_shell->sentence_list = NULL;
 	data_shell->tok_lst = NULL;
 	data_shell->fd_pipes = NULL;
+	if (input)
+		data_shell->input = input;
 }
 
 int	main(int argc, char **argv, char **env)
@@ -34,7 +36,7 @@ int	main(int argc, char **argv, char **env)
 	while (42)
 	{
 		input = readline("microtano$: ");
-		init_values_struct(&data_shell);
+		init_values_struct(&data_shell, input);
 		header = lexer(input);
 		data_shell.tok_lst = header;
 		if (verify_input(input) == 0)
@@ -45,11 +47,11 @@ int	main(int argc, char **argv, char **env)
 		data_shell.tok_lst = header;
 		verify_and_exec(&data_shell);
 //		data_shell.tok_lst = header;
-		clear_memory(input, data_shell);
+		clear_memory(data_shell);
 		header = NULL;
 	}
 	clear_history();
 	free_copy_env(&data_shell);
 	data_shell.tok_lst = header;
-	clear_memory(input, data_shell);
+	clear_memory(data_shell);
 }

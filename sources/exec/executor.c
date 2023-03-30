@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 08:15:21 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/03/29 13:43:31 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/30 10:48:15 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,21 @@ void	execute_cmd(t_data_shell *data_shell)
 
 	if (data_shell->number_of_sentence == 1)
 	{
-		pid = fork();
-	
-		if (pid == -1)
-			message_error("Error with Fork", -1);
-		if (pid == 0 && execve(data_shell->sentence_list->args[0], data_shell->sentence_list->args, data_shell->copy_env) == -1)
-			message_error("Error with exec command", -1);
-		else if (pid !=  0)
-			wait(&pid);
+		if (is_builtin(data_shell->sentence_list->args[0]) == 1)
+	 		execute_builtins(data_shell);
+		else
+		{
+			pid = fork();
+			if (pid == -1)
+				message_error("Error with Fork", -1);
+			if (pid == 0)
+			{
+				if (execve(data_shell->sentence_list->args[0], data_shell->sentence_list->args, data_shell->copy_env) == -1)
+				message_error("Error with exec command", -1);
+			}
+			else if (pid !=  0)
+				wait(&pid);
+		}
 	}
 	else if (data_shell->number_of_sentence > 1)
 	{
@@ -69,8 +76,6 @@ void	execute_cmd(t_data_shell *data_shell)
 
 void	verify_and_exec(t_data_shell *data_shell)
 {
-	char *command;
-
 	data_shell->number_of_sentence = (count_pipes(data_shell->tok_lst) + 1);
 	if (!data_shell->sentence_list)
 		return ;
@@ -79,9 +84,5 @@ void	verify_and_exec(t_data_shell *data_shell)
 		message_error("microtano: command not found", 127);
 		return ;
 	}
-	command = data_shell->sentence_list->args[0];
-	if (is_builtin(command) == 1)
-	 	execute_builtins(data_shell);
-	else
 		execute_cmd(data_shell);
 }

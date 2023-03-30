@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 13:42:30 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/29 13:40:50 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/30 11:02:29 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,17 @@ void	exec_pipes(t_data_shell *data_shell, int n_sentence)
 	if (n_sentence != (data_shell->number_of_sentence - 1))
 		dup2(data_shell->sentence_list->fd_out, 1);
 	close_pipes(data_shell);
-	if (execve(data_shell->sentence_list->args[0],
+	if (is_builtin(data_shell->sentence_list->args[0]))
+	{
+		execute_builtins(data_shell);
+	//	close(0);
+	//	close(1);
+		clear_history();
+		free_copy_env(data_shell);
+		clear_memory(*data_shell);
+		exit(1);
+	}
+	else if (execve(data_shell->sentence_list->args[0],
 			data_shell->sentence_list->args, data_shell->copy_env) == -1)
 		message_error("Error with exec command", -1);
 }

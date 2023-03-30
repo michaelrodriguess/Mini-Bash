@@ -11,7 +11,6 @@ SRCS			=	./sources/main.c \
 					./sources/tokenization/lst_token2.c\
 					./sources/tokenization/lst_token.c\
 					./sources/tokenization/lexer.c \
-					./sources/tokenization/lexer2.c \
 					./sources/tokenization/sentence_lst.c \
 					./sources/built-ins/util_builtins.c \
 					./sources/built-ins/pwd.c \

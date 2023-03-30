@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:50:06 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/29 14:12:53 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/30 10:40:01 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void		ft_env(char **copy_env);
 void		ft_unset(t_data_shell *data_shell);
 void		ft_export(t_data_shell *data_shell);
 void		free_copy_env(t_data_shell *data_shell);
-void		clear_memory(char *input, t_data_shell data_shell);
+void		clear_memory(t_data_shell data_shell);
 void		execute_cmd(t_data_shell *data_shell);
 void		find_cmd(t_data_shell *data_shell);
 void		verify_and_exec(t_data_shell *data_shell);
