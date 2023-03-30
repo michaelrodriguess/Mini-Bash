@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 13:42:30 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/30 11:02:29 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/30 18:04:10 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,12 @@ void	config_pipes(t_data_shell *shell)
 			message_error("Error with Pipe", -1);
 		shell->fd_pipes[current_pipe * 2] = pipefd[0];
 		shell->fd_pipes[(current_pipe * 2) + 1] = pipefd[1];
-		if (shell->sentence_list->prev != NULL)
+		if (shell->sentence_list->prev != NULL && shell->sentence_list->fd_in == 0)
 			shell->sentence_list->fd_in = shell->sentence_list->prev->fd_in;
-		else
+		else if (shell->sentence_list->fd_in == 0)
 			shell->sentence_list->fd_in = pipefd[0];
-		shell->sentence_list->fd_out = pipefd[1];
+		if (shell->sentence_list->fd_out == 1)
+			shell->sentence_list->fd_out = pipefd[1];
 		shell->sentence_list = shell->sentence_list->next;
 		current_pipe++;
 	}
