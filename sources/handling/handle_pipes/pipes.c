@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 13:42:30 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/29 12:59:52 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/29 13:40:50 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	config_pipes(t_data_shell *shell)
 	while (shell->n_pipes > current_pipe)
 	{
 		if (pipe(pipefd) == -1)
-			message_error("Error with Pipe");
+			message_error("Error with Pipe", -1);
 		shell->fd_pipes[current_pipe * 2] = pipefd[0];
 		shell->fd_pipes[(current_pipe * 2) + 1] = pipefd[1];
 		if (shell->sentence_list->prev != NULL)
@@ -79,7 +79,7 @@ void	config_forks(t_data_shell *data_shell)
 	{
 		pid = fork();
 		if (pid == -1)
-			ft_putstr_fd("Error with Fork", 2);
+			message_error("Error with Fork", -1);
 		if (pid == 0)
 		{
 			exec_pipes(data_shell, n_sentence);
@@ -102,5 +102,5 @@ void	exec_pipes(t_data_shell *data_shell, int n_sentence)
 	close_pipes(data_shell);
 	if (execve(data_shell->sentence_list->args[0],
 			data_shell->sentence_list->args, data_shell->copy_env) == -1)
-		ft_putstr_fd("Error with command", 2);
+		message_error("Error with exec command", -1);
 }

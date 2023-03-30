@@ -6,15 +6,12 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 17:51:10 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/13 17:30:10 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/29 14:21:34 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-// caso o nome da variavel de ambiente ja exista atualizaremos
-// o valor dela na lnha 40;
-// senao cria uma copia da env com a variavel nova!
 
 char	**update_env(t_data_shell *data_shell, int current_args_i)
 {
@@ -97,8 +94,7 @@ void	ft_export(t_data_shell *data_shell)
 	while (data_shell->sentence_list->args[i])
 	{
 		if (is_name_valid(data_shell->sentence_list->args[i]) == 0)
-			printf("microtano: export: %s: not a valida identifier\n",
-				data_shell->sentence_list->args[i]);
+			message_error("microtano: export: not a valid identifier\n", 1);
 		else if (has_equal(data_shell->sentence_list->args[i]) == 0)
 		{
 			if (exec_export(data_shell, i) == 0)

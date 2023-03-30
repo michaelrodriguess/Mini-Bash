@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 08:15:21 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/03/22 11:55:54 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/29 13:43:31 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ void	execute_cmd(t_data_shell *data_shell)
 		pid = fork();
 	
 		if (pid == -1)
-			ft_putstr_fd("Error with Fork", 2);
+			message_error("Error with Fork", -1);
 		if (pid == 0 && execve(data_shell->sentence_list->args[0], data_shell->sentence_list->args, data_shell->copy_env) == -1)
-			ft_putstr_fd("Error with second command", 2);
+			message_error("Error with exec command", -1);
 		else if (pid !=  0)
 			wait(&pid);
 	}
@@ -76,7 +76,7 @@ void	verify_and_exec(t_data_shell *data_shell)
 		return ;
 	if (data_shell->sentence_list->args == NULL)
 	{
-		printf("cmd not found: depois volta aqui\n");
+		message_error("microtano: command not found", 127);
 		return ;
 	}
 	command = data_shell->sentence_list->args[0];
