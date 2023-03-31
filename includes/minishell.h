@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:50:06 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/30 10:40:01 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/31 10:00:25 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_data_shell
 
 void		tok_list_to_args(t_data_shell *data_shell);
 void		expand_str(char **str, char **env);
+void		insert_envvar(char **str, char *env_var, int start, int end);
 void		ft_tokadd_back(t_token **lst, t_token *new);
 void		ft_tokclear(t_token **lst);
 void		ft_tokprint(t_token *lst);
@@ -94,6 +95,7 @@ int			verify_input(char *input);
 char		*parse_arg(char *arg, char **env);
 char		*find_path(char **cmd, char **envp);
 char		*cat_envvar(char **arg, char *parsed_arg, char **env);
+char		*cat_exitstatus(char **arg, char *parsed_arg);
 void		parser(t_data_shell *data_shell);
 char		**ft_copy_env(char **env);
 t_token		*ft_toknew(int type, char *str);
