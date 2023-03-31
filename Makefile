@@ -7,6 +7,7 @@ SRCS			=	./sources/main.c \
 					./sources/handling/handle_error/check_input.c \
 					./sources/handling/handle_parser/expand_envvar.c \
 					./sources/handling/handle_parser/cmd_finder.c \
+					./sources/handling/handle_parser/token_validation.c \
 					./sources/handling/handle_pipes/pipes.c \
 					./sources/tokenization/lst_token2.c\
 					./sources/tokenization/lst_token.c\

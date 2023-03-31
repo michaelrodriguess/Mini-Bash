@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 13:42:30 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/30 18:04:10 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/31 09:57:38 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,6 @@ void	exec_pipes(t_data_shell *data_shell, int n_sentence)
 	if (is_builtin(data_shell->sentence_list->args[0]))
 	{
 		execute_builtins(data_shell);
-	//	close(0);
-	//	close(1);
 		clear_history();
 		free_copy_env(data_shell);
 		clear_memory(*data_shell);
