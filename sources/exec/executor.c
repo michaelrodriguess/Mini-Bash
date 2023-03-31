@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 08:15:21 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/03/30 10:48:15 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/30 11:59:26 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	verify_and_exec(t_data_shell *data_shell)
 	data_shell->number_of_sentence = (count_pipes(data_shell->tok_lst) + 1);
 	if (!data_shell->sentence_list)
 		return ;
-	if (data_shell->sentence_list->args == NULL)
+	else if (data_shell->sentence_list->args == NULL)
 	{
 		message_error("microtano: command not found", 127);
 		return ;
