@@ -6,7 +6,7 @@
 /*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 10:33:57 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/03/14 14:32:36 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/04/02 08:42:16 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	val_pipe(t_token *token)
 
 int	val_redr(t_token *token)
 {
-	if (token->prev == NULL || token->next == NULL)
+	if (token->next == NULL)
 		return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:20:34 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/31 10:00:47 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/04/02 15:29:28 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,15 +139,14 @@ void	tok_list_to_args(t_data_shell *data_shell)
 
 void	parser(t_data_shell *data_shell)
 {
-	t_sentence *head; //no need to walk with sentence_list, since we are using sentence_add_back
-
+	t_sentence *head;
 	if (data_shell->tok_lst == NULL)
 		return ;
 	data_shell->sentence_list = sentence_new(NULL);
 	head = data_shell->sentence_list;
 	while (data_shell->tok_lst != NULL)
 	{
-		//redirect
+		process_redirect(data_shell);
 		tok_list_to_args(data_shell);
 		if (data_shell->tok_lst != NULL)
 		{

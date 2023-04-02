@@ -6,7 +6,7 @@
 /*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 15:10:14 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/03/11 19:38:09 by microdri         ###   ########.fr       */
+/*   Updated: 2023/04/02 16:57:06 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,25 @@ int	ft_toksize_w(t_token *lst)
 		lst = lst->next;
 	}
 	return (count);
+}
+
+void remove_tok_nodes(t_token **lst, int n_nodes)
+{
+	t_token	*temp;
+
+	while (n_nodes)
+	{
+		temp = (*lst)->next;
+		free((*lst)->str);
+		if ((*lst)->prev)
+			(*lst)->prev->next = (*lst)->next;
+		if ((*lst)->next)
+			(*lst)->next->prev = (*lst)->prev;
+		else
+			temp = (*lst)->prev;
+		free(*lst);
+		*lst = NULL;
+		*lst = temp;
+		n_nodes--;
+	}
 }
