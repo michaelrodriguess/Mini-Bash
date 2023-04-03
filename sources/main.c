@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:51:58 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/30 12:17:50 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/04/03 18:19:43 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	init_values_struct(t_data_shell *data_shell, char *input)
 	data_shell->sentence_list = NULL;
 	data_shell->tok_lst = NULL;
 	data_shell->fd_pipes = NULL;
+	data_shell->fd_redis = NULL;
 	if (input)
 		data_shell->input = input;
 }

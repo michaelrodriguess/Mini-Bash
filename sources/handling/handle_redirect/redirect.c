@@ -6,11 +6,25 @@
 /*   By: fcaetano <fcaetano@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 14:11:29 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/04/03 14:05:04 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/04/03 18:34:49 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
+
+int	count_redirects(t_token *tok_lst)
+{
+	int count;
+
+	count = 0;
+	while (tok_lst)
+	{
+		if (tok_lst->type > 1)
+			count++;
+		tok_lst = tok_lst->next;
+	}
+	return (count);
+}
 
 t_token	*reset_head(t_token *tok_lst)
 {
@@ -34,14 +48,23 @@ void	clean_input(t_data_shell *data_shell)
 void	config_redirect(t_data_shell *data_shell)
 {
 	t_token	*head;
+	int		i_fd;
 
 	head = data_shell->tok_lst;
+	data_shell->fd_redis = malloc(count_redirects(data_shell->tok_lst) * sizeof(int));
+	i_fd = 0;
+	if (!data_shell->fd_redis)
+		message_error("Error with fd_redis", errno); // salvar valor de errno antes.
 	while (data_shell->tok_lst && data_shell->tok_lst->type != 1)
 	{
 		if (data_shell->tok_lst->type == 2 ||data_shell->tok_lst->type == 4)
-			r_output(*data_shell);
+		{
+			r_output(*data_shell, i_fd);
+			i_fd++;
+		}
+//		else if (data_shell->tok_lst->type == 5)
+//			open_heredoc(data_shell);
 		data_shell->tok_lst = data_shell->tok_lst->next;
-
 	}
 	data_shell->tok_lst = head;
 }
