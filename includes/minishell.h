@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:50:06 by microdri          #+#    #+#             */
-/*   Updated: 2023/04/02 15:55:08 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/04/03 14:03:57 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ typedef struct s_data_shell
 	int			*fd_pipes;
 }	t_data_shell;
 
-void		process_redirect(t_data_shell *data_shell);
+void		redirect(t_data_shell *data_shell);
 void		tok_list_to_args(t_data_shell *data_shell);
 void		r_output(t_data_shell shell);
 void		remove_tok_nodes(t_token **lst, int n_nodes);
@@ -86,7 +86,7 @@ void		sentence_add_back(t_sentence **lst, t_sentence *new);
 void		message_error(char *msg, int exit_status);
 void		config_pipes(t_data_shell *data_shell);
 void		config_forks(t_data_shell *data_shell);
-void		exec_pipes(t_data_shell *data_shell, int n_sentence);
+void		exec_pipes(t_data_shell *data_shell);
 int			count_pipes(t_token *tok_lst);
 int			has_equal(char *str);
 int			is_name_valid(char *str);

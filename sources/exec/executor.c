@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 08:15:21 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/03/30 11:59:26 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/04/03 14:17:49 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,12 @@ int	execute_builtins(t_data_shell *data_shell)
 	return (0);
 }
 
+void	execute_pipeline(t_data_shell *data_shell)
+{
+	config_pipes(data_shell);
+	config_forks(data_shell);
+}
+
 void	execute_cmd(t_data_shell *data_shell)
 {
 	int	pid;
@@ -60,6 +66,10 @@ void	execute_cmd(t_data_shell *data_shell)
 				message_error("Error with Fork", -1);
 			if (pid == 0)
 			{
+				if (data_shell->sentence_list->fd_in != 0)
+					dup2(data_shell->sentence_list->fd_in, 0);
+				if (data_shell->sentence_list->fd_out != 1)
+					dup2(data_shell->sentence_list->fd_out, 1);
 				if (execve(data_shell->sentence_list->args[0], data_shell->sentence_list->args, data_shell->copy_env) == -1)
 				message_error("Error with exec command", -1);
 			}
@@ -68,10 +78,7 @@ void	execute_cmd(t_data_shell *data_shell)
 		}
 	}
 	else if (data_shell->number_of_sentence > 1)
-	{
-		config_pipes(data_shell);
-		config_forks(data_shell);
-	}
+		execute_pipeline(data_shell);
 }
 
 void	verify_and_exec(t_data_shell *data_shell)

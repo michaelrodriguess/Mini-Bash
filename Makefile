@@ -1,7 +1,7 @@
 SRCS			=	./sources/main.c \
 					./sources/handling/handle_signals.c \
-					./sources/handling/handle_parser/redirect.c \
-					./sources/handling/handle_parser/redirect2.c \
+					./sources/handling/handle_redirect/redirect.c \
+					./sources/handling/handle_redirect/redirect2.c \
 					./sources/handling/handle_parser/utils_pipe.c \
 					./sources/handling/handle_parser/parser_args.c \
 					./sources/handling/handle_memory/clear_memory.c \

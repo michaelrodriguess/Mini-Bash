@@ -6,38 +6,48 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 13:42:30 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/31 09:57:38 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/04/03 11:06:37 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-void	config_pipes(t_data_shell *shell)
+void	open_pipes(t_data_shell *shell)
 {
-	int			pipefd[2];
-	int			current_pipe;
-	t_sentence	*head;
+	int	pipefd[2];
+	int	current_pipe;
 
-	head = shell->sentence_list;
+	current_pipe = 0;
 	shell->n_pipes = count_pipes(shell->tok_lst);
 	shell->fd_pipes = malloc(sizeof(int) * 2 * shell->n_pipes);
-	current_pipe = 0;
 	while (shell->n_pipes > current_pipe)
 	{
 		if (pipe(pipefd) == -1)
 			message_error("Error with Pipe", -1);
 		shell->fd_pipes[current_pipe * 2] = pipefd[0];
 		shell->fd_pipes[(current_pipe * 2) + 1] = pipefd[1];
-		if (shell->sentence_list->prev != NULL && shell->sentence_list->fd_in == 0)
-			shell->sentence_list->fd_in = shell->sentence_list->prev->fd_in;
-		else if (shell->sentence_list->fd_in == 0)
-			shell->sentence_list->fd_in = pipefd[0];
-		if (shell->sentence_list->fd_out == 1)
-			shell->sentence_list->fd_out = pipefd[1];
-		shell->sentence_list = shell->sentence_list->next;
 		current_pipe++;
 	}
-	shell->sentence_list->fd_in = pipefd[0];
+}
+
+void	config_pipes(t_data_shell *shell)
+{
+	t_sentence	*head;
+	int			current_sentence;
+
+	head = shell->sentence_list;
+	open_pipes(shell);
+	current_sentence = 0;
+	while (shell->n_pipes > current_sentence)
+	{
+		if (shell->sentence_list->prev != NULL && shell->sentence_list->fd_in == 0)
+			shell->sentence_list->fd_in = shell->fd_pipes[(current_sentence - 1) * 2];
+		if (shell->sentence_list->fd_out == 1 && shell->sentence_list->next != NULL)
+			shell->sentence_list->fd_out = shell->fd_pipes[(current_sentence * 2) + 1];
+		shell->sentence_list = shell->sentence_list->next;
+		current_sentence++;
+	}
+	shell->sentence_list->fd_in = shell->fd_pipes[(current_sentence - 1) * 2];
 	shell->sentence_list = head;
 }
 
@@ -67,7 +77,6 @@ void	close_pipes(t_data_shell *data_shell)
 		current_pipe++;
 	}
 }
-
 void	config_forks(t_data_shell *data_shell)
 {
 	t_sentence	*head;
@@ -83,7 +92,7 @@ void	config_forks(t_data_shell *data_shell)
 			message_error("Error with Fork", -1);
 		if (pid == 0)
 		{
-			exec_pipes(data_shell, n_sentence);
+			exec_pipes(data_shell);
 		}
 		data_shell->sentence_list->pid = pid;
 		n_sentence++;
@@ -94,11 +103,11 @@ void	config_forks(t_data_shell *data_shell)
 	wait_sentences(data_shell);
 }
 
-void	exec_pipes(t_data_shell *data_shell, int n_sentence)
+void	exec_pipes(t_data_shell *data_shell)
 {
-	if (n_sentence != 0)
+	if (data_shell->sentence_list->fd_in != 0)
 		dup2(data_shell->sentence_list->fd_in, 0);
-	if (n_sentence != (data_shell->number_of_sentence - 1))
+	if (data_shell->sentence_list->fd_in != 1)
 		dup2(data_shell->sentence_list->fd_out, 1);
 	close_pipes(data_shell);
 	if (is_builtin(data_shell->sentence_list->args[0]))
