@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:50:06 by microdri          #+#    #+#             */
-/*   Updated: 2023/04/04 17:11:37 by microdri         ###   ########.fr       */
+/*   Updated: 2023/04/04 17:24:36 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct s_data_shell
 
 void		open_heredoc(t_data_shell *data_shell, int i_fd);
 void		redirect(t_data_shell *data_shell);
+void		r_input(t_data_shell shell, int i_fd);
 void		tok_list_to_args(t_data_shell *data_shell);
 void		r_output(t_data_shell shell, int i_fd);
 void		remove_tok_nodes(t_token **lst, int n_nodes);
@@ -71,7 +72,7 @@ void		ft_tokprint(t_token *lst);
 void		handle_signals(int signum);
 void		set_sig(void);
 void		ft_pwd(void);
-void		ft_echo(char **args);
+void		ft_echo(char **args, int fd_out);
 void		ft_cd(char **path, char **env);
 void		ft_exit(char **args);
 void		ft_env(char **copy_env);

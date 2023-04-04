@@ -6,7 +6,7 @@
 /*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:52:54 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/03/13 20:41:30 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/04/04 10:58:59 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	check_flag(char *flag)
 	return (1);
 }
 
-void	ft_echo(char **args)
+void	ft_echo(char **args, int fd_out)
 {
 	int	n;
 	int	i;
@@ -44,11 +44,11 @@ void	ft_echo(char **args)
 	}
 	while (args[i])
 	{
-		printf("%s", args[i]);
+		ft_putstr_fd(args[i], fd_out);
 		if (args[i + 1] != NULL)
-			printf(" ");
+			ft_putstr_fd(" ", fd_out);
 		i++;
 	}
 	if (n)
-		printf("\n");
+		ft_putstr_fd("\n", fd_out);
 }

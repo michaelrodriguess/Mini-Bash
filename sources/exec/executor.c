@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 08:15:21 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/04/03 14:17:49 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/04/04 10:54:41 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	execute_builtins(t_data_shell *data_shell)
 
 	command = data_shell->sentence_list->args[0];
 	if (!ft_strcmp(command, "echo")) //printar quebra de linha quando o input for echo sem argumentos ou flags
-		ft_echo(&(data_shell->sentence_list->args[1]));
+		ft_echo(&(data_shell->sentence_list->args[1]), data_shell->sentence_list->fd_out);
 	if (!ft_strcmp(command, "pwd")) //atualizar $PWD e $OLDPWD
 		ft_pwd();
 	if (!ft_strcmp(command, "cd")) // error with only cd HOME at env[4]

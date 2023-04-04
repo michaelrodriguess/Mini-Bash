@@ -6,7 +6,7 @@
 /*   By: fcaetano <fcaetano@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 15:39:50 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/04/04 17:13:29 by microdri         ###   ########.fr       */
+/*   Updated: 2023/04/04 17:26:45 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,21 @@
 
 void	r_output(t_data_shell shell, int i_fd)
 {
-	int err;
+	int	err;
 
-	shell.tok_lst = shell.tok_lst->next;
-	shell.fd_redis[i_fd] = open(shell.tok_lst->str, O_CREAT | O_RDWR | O_TRUNC, 0666);
-	shell.sentence_list->fd_out = shell.fd_redis[i_fd];
-	if (shell.sentence_list->fd_out == -1)
+	if (shell.tok_lst->type == 2)
+	{
+		shell.fd_redis[i_fd] = open(shell.tok_lst->next->str,
+				O_CREAT | O_RDWR | O_TRUNC, 0666);
+		shell.sentence_list->fd_out = shell.fd_redis[i_fd];
+	}
+	else
+	{
+		shell.fd_redis[i_fd] = open(shell.tok_lst->next->str,
+				O_CREAT | O_RDWR | O_APPEND, 0666);
+		shell.sentence_list->fd_out = shell.fd_redis[i_fd];
+	}
+	if (shell.fd_redis[i_fd] == -1)
 	{
 		err = errno;
 		message_error("Failed to open redirect output", err);//check returned value 
@@ -62,4 +71,17 @@ void	open_heredoc(t_data_shell *data_shell, int i_fd)
 	data_shell->fd_redis[i_fd] = open(file_name, O_RDONLY);
 	data_shell->sentence_list->fd_in = data_shell->fd_redis[i_fd];
 	free(file_name);
+}
+
+void	r_input(t_data_shell shell, int i_fd)
+{
+	int	err;
+
+	shell.fd_redis[i_fd] = open(shell.tok_lst->next->str, O_RDONLY);
+	shell.sentence_list->fd_in = shell.fd_redis[i_fd];
+	if (shell.fd_redis[i_fd] == -1)
+	{
+		err = errno;
+		message_error("Failed to open redirect output", err);//check returned value 
+	}
 }

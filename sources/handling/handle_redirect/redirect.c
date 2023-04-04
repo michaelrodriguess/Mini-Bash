@@ -6,7 +6,7 @@
 /*   By: fcaetano <fcaetano@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 14:11:29 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/04/04 17:15:59 by microdri         ###   ########.fr       */
+/*   Updated: 2023/04/04 17:25:57 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,11 @@ void	config_redirect(t_data_shell *data_shell)
 		else if (data_shell->tok_lst->type == 5)
 		{
 			open_heredoc(data_shell, i_fd);
+			i_fd++;
+		}
+		else if (data_shell->tok_lst->type == 3)
+		{
+			r_input(*data_shell, i_fd);
 			i_fd++;
 		}
 		data_shell->tok_lst = data_shell->tok_lst->next;
