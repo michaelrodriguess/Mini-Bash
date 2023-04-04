@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:50:06 by microdri          #+#    #+#             */
-/*   Updated: 2023/04/03 18:14:00 by microdri         ###   ########.fr       */
+/*   Updated: 2023/04/04 17:11:37 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_data_shell
 	int			*fd_redis;
 }	t_data_shell;
 
+void		open_heredoc(t_data_shell *data_shell, int i_fd);
 void		redirect(t_data_shell *data_shell);
 void		tok_list_to_args(t_data_shell *data_shell);
 void		r_output(t_data_shell shell, int i_fd);

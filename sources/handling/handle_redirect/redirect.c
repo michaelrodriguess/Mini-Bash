@@ -6,7 +6,7 @@
 /*   By: fcaetano <fcaetano@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 14:11:29 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/04/03 18:34:49 by microdri         ###   ########.fr       */
+/*   Updated: 2023/04/04 17:15:59 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	clean_input(t_data_shell *data_shell)
 {
 	while (data_shell->tok_lst && data_shell->tok_lst->next && data_shell->tok_lst->type != 1) //check unnecessary loop conditions
 	{
-		if (data_shell->tok_lst->type == 2)
+		if (data_shell->tok_lst->type > 1)
 			remove_tok_nodes(&(data_shell->tok_lst), 2);
 		else
 			data_shell->tok_lst = data_shell->tok_lst->next;
@@ -50,9 +50,9 @@ void	config_redirect(t_data_shell *data_shell)
 	t_token	*head;
 	int		i_fd;
 
+	i_fd = 0;
 	head = data_shell->tok_lst;
 	data_shell->fd_redis = malloc(count_redirects(data_shell->tok_lst) * sizeof(int));
-	i_fd = 0;
 	if (!data_shell->fd_redis)
 		message_error("Error with fd_redis", errno); // salvar valor de errno antes.
 	while (data_shell->tok_lst && data_shell->tok_lst->type != 1)
@@ -62,8 +62,11 @@ void	config_redirect(t_data_shell *data_shell)
 			r_output(*data_shell, i_fd);
 			i_fd++;
 		}
-//		else if (data_shell->tok_lst->type == 5)
-//			open_heredoc(data_shell);
+		else if (data_shell->tok_lst->type == 5)
+		{
+			open_heredoc(data_shell, i_fd);
+			i_fd++;
+		}
 		data_shell->tok_lst = data_shell->tok_lst->next;
 	}
 	data_shell->tok_lst = head;
