@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 13:42:30 by microdri          #+#    #+#             */
-/*   Updated: 2023/04/03 11:06:37 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/04/04 18:57:32 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ void	config_pipes(t_data_shell *shell)
 		shell->sentence_list = shell->sentence_list->next;
 		current_sentence++;
 	}
-	shell->sentence_list->fd_in = shell->fd_pipes[(current_sentence - 1) * 2];
+	if (shell->sentence_list->prev != NULL && shell->sentence_list->fd_in == 0)
+		shell->sentence_list->fd_in = shell->fd_pipes[(current_sentence - 1) * 2];
 	shell->sentence_list = head;
 }
 

@@ -6,7 +6,7 @@
 /*   By: fcaetano <fcaetano@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 14:11:29 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/04/04 17:25:57 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/04/04 18:33:05 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,9 @@ void	clean_input(t_data_shell *data_shell)
 
 void	config_redirect(t_data_shell *data_shell)
 {
-	t_token	*head;
-	int		i_fd;
+	t_token			*head;
+	static int		i_fd;
 
-	i_fd = 0;
 	head = data_shell->tok_lst;
 	data_shell->fd_redis = malloc(count_redirects(data_shell->tok_lst) * sizeof(int));
 	if (!data_shell->fd_redis)
@@ -74,6 +73,8 @@ void	config_redirect(t_data_shell *data_shell)
 		}
 		data_shell->tok_lst = data_shell->tok_lst->next;
 	}
+	if(data_shell->tok_lst == NULL)
+		i_fd = 0;
 	data_shell->tok_lst = head;
 }
 
