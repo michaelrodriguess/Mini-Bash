@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 13:42:30 by microdri          #+#    #+#             */
-/*   Updated: 2023/04/04 18:57:32 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/04/05 19:09:32 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,17 +86,22 @@ void	config_forks(t_data_shell *data_shell)
 
 	head = data_shell->sentence_list;
 	n_sentence = 0;
-	while (n_sentence < data_shell->number_of_sentence)
+	while (n_sentence < data_shell->number_of_sentence)// chande function to only count valis sentences
 	{
-		pid = fork();
-		if (pid == -1)
-			message_error("Error with Fork", -1);
-		if (pid == 0)
+		if (data_shell->sentence_list->args == NULL)
+			message_error("microtano: command not found", 127);
+		else
 		{
-			exec_pipes(data_shell);
+			pid = fork();
+			if (pid == -1)
+				message_error("Error with Fork", -1);
+			if (pid == 0)
+			{
+				exec_pipes(data_shell);
+			}
+			data_shell->sentence_list->pid = pid;
+			n_sentence++;
 		}
-		data_shell->sentence_list->pid = pid;
-		n_sentence++;
 		data_shell->sentence_list = data_shell->sentence_list->next;
 	}
 	data_shell->sentence_list = head;
