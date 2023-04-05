@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:51:58 by microdri          #+#    #+#             */
-/*   Updated: 2023/04/04 17:11:08 by microdri         ###   ########.fr       */
+/*   Updated: 2023/04/05 12:05:50 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	main(int argc, char **argv, char **env)
 			data_shell.tok_lst = header;
 			parser(&data_shell);
 //		sentence_print(data_shell.sentence_list);
-			data_shell.tok_lst = header;
+	//		data_shell.tok_lst = header;
 			verify_and_exec(&data_shell);
 		}
 //		data_shell.tok_lst = header;
