@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 08:15:21 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/04/04 10:54:41 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/04/05 14:04:13 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	verify_and_exec(t_data_shell *data_shell)
 	data_shell->number_of_sentence = (count_pipes(data_shell->tok_lst) + 1);
 	if (!data_shell->sentence_list)
 		return ;
-	else if (data_shell->sentence_list->args == NULL)
+	else if (data_shell->sentence_list->args == NULL) //check inside execute pipeline, inside config_forks >> separete execution of forks from config_forks
 	{
 		message_error("microtano: command not found", 127);
 		return ;
