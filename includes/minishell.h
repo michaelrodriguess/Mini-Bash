@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:50:06 by microdri          #+#    #+#             */
-/*   Updated: 2023/04/06 18:15:49 by microdri         ###   ########.fr       */
+/*   Updated: 2023/04/06 19:45:54 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct s_data_shell
 
 
 void		open_heredoc(t_data_shell *data_shell, int i_fd);
+void		execute_pipeline(t_data_shell *data_shell);
 void		redirect(t_data_shell *data_shell);
 void		r_input(t_data_shell shell, int i_fd);
 void		tok_list_to_args(t_data_shell *data_shell);
@@ -100,6 +101,8 @@ void		message_error(char *msg, int exit_status);
 void		config_pipes(t_data_shell *data_shell);
 void		exec_pipes(t_data_shell *data_shell);
 void		exec_sentence(t_data_shell *data_shell);
+void		wait_sentences(t_data_shell *data_shell);
+void		close_pipes(t_data_shell *data_shell);
 int			count_pipes(t_token *tok_lst);
 int			has_equal(char *str);
 int			is_name_valid(char *str);

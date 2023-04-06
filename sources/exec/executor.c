@@ -6,22 +6,11 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 08:15:21 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/04/06 18:28:01 by microdri         ###   ########.fr       */
+/*   Updated: 2023/04/06 19:52:16 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-int	is_builtin(char *command)
-{
-	if (!ft_strcmp(command, "echo") || !ft_strcmp(command, "cd")
-		|| !ft_strcmp(command, "exit") || !ft_strcmp(command, "pwd")
-		|| !ft_strcmp(command, "env") || !ft_strcmp(command, "export")
-		|| !ft_strcmp(command, "unset"))
-		return (1);
-	else
-		return (0);
-}
 
 int	execute_builtins(t_data_shell *data_shell)
 {
@@ -43,12 +32,6 @@ int	execute_builtins(t_data_shell *data_shell)
 	if (!ft_strcmp(command, "export"))
 		ft_export(data_shell);
 	return (0);
-}
-
-void	execute_pipeline(t_data_shell *data_shell)
-{
-	config_pipes(data_shell);
-	exec_pipes(data_shell);
 }
 
 void	execute_cmd(t_data_shell *data_shell)
@@ -80,7 +63,7 @@ void	execute_cmd(t_data_shell *data_shell)
 
 void	verify_and_exec(t_data_shell *data_shell)
 {
-	data_shell->number_of_sentence = (count_pipes(data_shell->tok_lst) + 1); // change to line 85
+	data_shell->number_of_sentence = (count_pipes(data_shell->tok_lst) + 1); // change to line 68
 	if (!data_shell->sentence_list)
 		return ;
 	if (data_shell->number_of_sentence == 1)

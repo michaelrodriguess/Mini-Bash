@@ -24,6 +24,8 @@ SRCS			=	./sources/main.c \
 					./sources/built-ins/unset.c \
 					./sources/built-ins/export.c \
 					./sources/exec/executor.c \
+					./sources/exec/exec_utils.c \
+					./sources/exec/execute_pipeline.c \
 
 NAME			= minishell
 OBJS			= $(SRCS:.c=.o)
