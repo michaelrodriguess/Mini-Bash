@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 13:42:30 by microdri          #+#    #+#             */
-/*   Updated: 2023/04/05 19:09:32 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/04/06 09:18:21 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,9 @@ void	config_forks(t_data_shell *data_shell)
 
 	head = data_shell->sentence_list;
 	n_sentence = 0;
-	while (n_sentence < data_shell->number_of_sentence)// chande function to only count valis sentences
+	while (n_sentence < data_shell->number_of_sentence)
 	{
+		data_shell->sentence_list->pid = -1;
 		if (data_shell->sentence_list->args == NULL)
 			message_error("microtano: command not found", 127);
 		else
@@ -100,8 +101,8 @@ void	config_forks(t_data_shell *data_shell)
 				exec_pipes(data_shell);
 			}
 			data_shell->sentence_list->pid = pid;
-			n_sentence++;
 		}
+		n_sentence++;
 		data_shell->sentence_list = data_shell->sentence_list->next;
 	}
 	data_shell->sentence_list = head;
@@ -124,7 +125,12 @@ void	exec_pipes(t_data_shell *data_shell)
 		clear_memory(*data_shell);
 		exit(1);
 	}
-	else if (execve(data_shell->sentence_list->args[0],
+	else
+	{
+		if (data_shell->fd_redis)
+			free(data_shell->fd_redis);
+		if (execve(data_shell->sentence_list->args[0],
 			data_shell->sentence_list->args, data_shell->copy_env) == -1)
-		message_error("Error with exec command", -1);
+			message_error("Error with exec command", -1);
+	}
 }

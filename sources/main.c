@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:51:58 by microdri          #+#    #+#             */
-/*   Updated: 2023/04/05 12:05:50 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/04/06 08:57:54 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	main(int argc, char **argv, char **env)
 	data_shell.copy_env = ft_copy_env(env);
 	while (42)
 	{
+		printf("%i\n", getpid());
 		input = readline("microtano$: ");
 		init_values_struct(&data_shell, input);
 		header = lexer(input);

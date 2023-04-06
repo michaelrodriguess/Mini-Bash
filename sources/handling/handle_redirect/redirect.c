@@ -6,7 +6,7 @@
 /*   By: fcaetano <fcaetano@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 14:11:29 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/04/04 18:33:05 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/04/06 09:15:59 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_token	*reset_head(t_token *tok_lst)
 
 void	clean_input(t_data_shell *data_shell)
 {
-	while (data_shell->tok_lst && data_shell->tok_lst->next && data_shell->tok_lst->type != 1) //check unnecessary loop conditions
+	while (data_shell->tok_lst && data_shell->tok_lst->next && data_shell->tok_lst->type != 1)
 	{
 		if (data_shell->tok_lst->type > 1)
 			remove_tok_nodes(&(data_shell->tok_lst), 2);
@@ -53,29 +53,24 @@ void	config_redirect(t_data_shell *data_shell)
 	head = data_shell->tok_lst;
 	data_shell->fd_redis = malloc(count_redirects(data_shell->tok_lst) * sizeof(int));
 	if (!data_shell->fd_redis)
-		message_error("Error with fd_redis", errno); // salvar valor de errno antes.
+		message_error("Error with malloc fd_redis", errno); // copy errno value to another variable 
 	while (data_shell->tok_lst && data_shell->tok_lst->type != 1)
 	{
-		if (data_shell->tok_lst->type == 2 ||data_shell->tok_lst->type == 4)
-		{
+		if (data_shell->tok_lst->type == 2 || data_shell->tok_lst->type == 4)
 			r_output(*data_shell, i_fd);
-			i_fd++;
-		}
 		else if (data_shell->tok_lst->type == 5)
-		{
 			open_heredoc(data_shell, i_fd);
-			i_fd++;
-		}
 		else if (data_shell->tok_lst->type == 3)
-		{
 			r_input(*data_shell, i_fd);
+		if (data_shell->tok_lst->type > 1)
 			i_fd++;
-		}
 		data_shell->tok_lst = data_shell->tok_lst->next;
 	}
 	if(data_shell->tok_lst == NULL)
 		i_fd = 0;
 	data_shell->tok_lst = head;
+//	free(data_shell->fd_redis);
+//	data_shell->fd_redis = NULL;
 }
 
 void	redirect(t_data_shell *data_shell)
