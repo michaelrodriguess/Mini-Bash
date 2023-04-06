@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 13:42:30 by microdri          #+#    #+#             */
-/*   Updated: 2023/04/06 09:18:21 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/04/06 15:28:55 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,8 @@ void	exec_pipes(t_data_shell *data_shell)
 		execute_builtins(data_shell);
 		clear_history();
 		free_copy_env(data_shell);
-		clear_memory(*data_shell);
+		clear_memory(*data_shell, EXIT_EXEC);
+		var_global = 1;
 		exit(1);
 	}
 	else

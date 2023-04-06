@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:50:06 by microdri          #+#    #+#             */
-/*   Updated: 2023/04/04 17:24:36 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/04/06 15:27:10 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@
 # include <errno.h>
 # include <fcntl.h>
 # include "../sources/libft/libft.h"
+
+# define RESET 0
+# define EXIT_EXEC 1
 
 extern	int var_global;
 
@@ -79,7 +82,7 @@ void		ft_env(char **copy_env);
 void		ft_unset(t_data_shell *data_shell);
 void		ft_export(t_data_shell *data_shell);
 void		free_copy_env(t_data_shell *data_shell);
-void		clear_memory(t_data_shell data_shell);
+void		clear_memory(t_data_shell data_shell, int end_exec);
 void		execute_cmd(t_data_shell *data_shell);
 void		find_cmd(t_data_shell *data_shell);
 void		verify_and_exec(t_data_shell *data_shell);

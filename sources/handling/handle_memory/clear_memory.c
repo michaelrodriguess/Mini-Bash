@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 18:13:23 by microdri          #+#    #+#             */
-/*   Updated: 2023/04/04 17:11:22 by microdri         ###   ########.fr       */
+/*   Updated: 2023/04/06 15:26:02 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	free_copy_env(t_data_shell *data_shell)
 	free(data_shell->copy_env);
 }
 
-void	clear_memory(t_data_shell data_shell)
+void	clear_memory(t_data_shell data_shell, int end_exec)
 {
 	if (data_shell.input)
 		free(data_shell.input);
@@ -35,4 +35,9 @@ void	clear_memory(t_data_shell data_shell)
 		free(data_shell.fd_pipes);
 	if (data_shell.fd_redis)
 		free(data_shell.fd_redis);
+	if (end_exec == 1)
+	{
+		clear_history();
+		free_copy_env(&data_shell);
+	}
 }
