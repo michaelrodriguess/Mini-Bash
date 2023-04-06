@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:50:06 by microdri          #+#    #+#             */
-/*   Updated: 2023/04/06 15:27:10 by microdri         ###   ########.fr       */
+/*   Updated: 2023/04/06 18:15:49 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,13 @@ typedef struct s_data_shell
 	int			*fd_redis;
 }	t_data_shell;
 
+
+/*---------------init---------------*/
+/*--------------handling------------*/
+/*--------------verify--------------*/
+/*--------------executions----------*/
+
+
 void		open_heredoc(t_data_shell *data_shell, int i_fd);
 void		redirect(t_data_shell *data_shell);
 void		r_input(t_data_shell shell, int i_fd);
@@ -91,8 +98,8 @@ void		sentence_clear(t_sentence **lst);
 void		sentence_add_back(t_sentence **lst, t_sentence *new);
 void		message_error(char *msg, int exit_status);
 void		config_pipes(t_data_shell *data_shell);
-void		config_forks(t_data_shell *data_shell);
 void		exec_pipes(t_data_shell *data_shell);
+void		exec_sentence(t_data_shell *data_shell);
 int			count_pipes(t_token *tok_lst);
 int			has_equal(char *str);
 int			is_name_valid(char *str);

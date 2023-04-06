@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 13:42:30 by microdri          #+#    #+#             */
-/*   Updated: 2023/04/06 15:28:55 by microdri         ###   ########.fr       */
+/*   Updated: 2023/04/06 18:12:49 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	close_pipes(t_data_shell *data_shell)
 		current_pipe++;
 	}
 }
-void	config_forks(t_data_shell *data_shell)
+void	exec_pipes(t_data_shell *data_shell)
 {
 	t_sentence	*head;
 	int			pid;
@@ -98,7 +98,7 @@ void	config_forks(t_data_shell *data_shell)
 				message_error("Error with Fork", -1);
 			if (pid == 0)
 			{
-				exec_pipes(data_shell);
+				exec_sentence(data_shell);
 			}
 			data_shell->sentence_list->pid = pid;
 		}
@@ -110,7 +110,7 @@ void	config_forks(t_data_shell *data_shell)
 	wait_sentences(data_shell);
 }
 
-void	exec_pipes(t_data_shell *data_shell)
+void	exec_sentence(t_data_shell *data_shell)
 {
 	if (data_shell->sentence_list->fd_in != 0)
 		dup2(data_shell->sentence_list->fd_in, 0);

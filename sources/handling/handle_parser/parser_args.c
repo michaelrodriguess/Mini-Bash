@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:20:34 by microdri          #+#    #+#             */
-/*   Updated: 2023/04/05 12:27:40 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/04/06 18:48:49 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,17 @@ void	tok_list_to_args(t_data_shell *data_shell)
 	}
 }
 
+int	has_redirect(t_token *tok_lst)
+{
+	while (tok_lst)
+	{
+		if (tok_lst->type > 1)
+			return (1);
+		tok_lst = tok_lst->next;
+	}
+	return (0);
+}
+
 void	parser(t_data_shell *data_shell)
 {
 	t_sentence	*head_sent;
@@ -147,7 +158,8 @@ void	parser(t_data_shell *data_shell)
 	head_sent = data_shell->sentence_list;
 	while (data_shell->tok_lst != NULL)
 	{
-		redirect(data_shell);
+		if (has_redirect(data_shell->tok_lst))
+			redirect(data_shell);
 		if (data_shell->sentence_list->prev == NULL)
 			head_tok = data_shell->tok_lst;
 		tok_list_to_args(data_shell);

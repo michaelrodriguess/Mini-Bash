@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 08:15:21 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/04/05 18:27:10 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/04/06 18:28:01 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ int	execute_builtins(t_data_shell *data_shell)
 	char	*command;
 
 	command = data_shell->sentence_list->args[0];
-	if (!ft_strcmp(command, "echo")) //printar quebra de linha quando o input for echo sem argumentos ou flags
+	if (!ft_strcmp(command, "echo"))
 		ft_echo(&(data_shell->sentence_list->args[1]), data_shell->sentence_list->fd_out);
-	if (!ft_strcmp(command, "pwd")) //atualizar $PWD e $OLDPWD
+	if (!ft_strcmp(command, "pwd")) //atualizar $PWD e $OLDPWD //update branch
 		ft_pwd();
-	if (!ft_strcmp(command, "cd")) // error with only cd HOME at env[4]
+	if (!ft_strcmp(command, "cd"))
 		ft_cd(&(data_shell->sentence_list->args[1]), data_shell->copy_env);
 	if (!ft_strcmp(command, "exit"))
 		ft_exit(&(data_shell->sentence_list->args[1]));
@@ -48,7 +48,7 @@ int	execute_builtins(t_data_shell *data_shell)
 void	execute_pipeline(t_data_shell *data_shell)
 {
 	config_pipes(data_shell);
-	config_forks(data_shell);
+	exec_pipes(data_shell);
 }
 
 void	execute_cmd(t_data_shell *data_shell)
