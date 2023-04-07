@@ -6,7 +6,7 @@
 /*   By: fcaetano <fcaetano@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 14:11:29 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/04/06 09:15:59 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/04/07 17:36:36 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	config_redirect(t_data_shell *data_shell)
 	if (i_fd == 0)
 		data_shell->fd_redis = malloc(count_redirects(data_shell->tok_lst) * sizeof(int));
 	if (!data_shell->fd_redis)
-		message_error("Error with malloc fd_redis", errno); // copy errno value to another variable 
+		message_error("Error with malloc fd_redis", -1); // copy errno value to another variable 
 	while (data_shell->tok_lst && data_shell->tok_lst->type != 1)
 	{
 		if (data_shell->tok_lst->type == 2 || data_shell->tok_lst->type == 4)
