@@ -22,7 +22,7 @@ int	execute_builtins(t_data_shell *data_shell)
 	if (!ft_strcmp(command, "pwd")) //atualizar $PWD e $OLDPWD //update branch
 		ft_pwd();
 	if (!ft_strcmp(command, "cd"))
-		ft_cd(&(data_shell->sentence_list->args[1]), data_shell->copy_env);
+		ft_cd(&(data_shell->sentence_list->args[1]), &data_shell->copy_env);
 	if (!ft_strcmp(command, "exit"))
 		ft_exit(&(data_shell->sentence_list->args[1]));
 	if (!ft_strcmp(command, "env"))
@@ -30,7 +30,7 @@ int	execute_builtins(t_data_shell *data_shell)
 	if (!ft_strcmp(command, "unset"))
 		ft_unset(data_shell);
 	if (!ft_strcmp(command, "export"))
-		ft_export(data_shell);
+		ft_export(&(data_shell->sentence_list->args[1]), &data_shell->copy_env);
 	return (0);
 }
 

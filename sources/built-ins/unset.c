@@ -54,7 +54,7 @@ void	exec_unset(t_data_shell *data_shell, int j)
 				data_shell->copy_env[i], env_until_equal) == 0)
 		{
 			temp = new_env(data_shell, j);
-			free_copy_env(data_shell);
+			free_copy_env(data_shell->copy_env);
 			data_shell->copy_env = temp;
 		}
 		else

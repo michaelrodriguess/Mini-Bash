@@ -12,13 +12,13 @@
 
 #include "../../includes/minishell.h"
 
-char	*get_home(char **env)
+char	*get_envvar(char **env, char *var)
 {
-	while (*env && ft_strncmp(*env, "HOME", ft_strchri(*env, '=') - 1))
+	while (*env && ft_strncmp(*env, var, ft_strchri(*env, '=') - 1))
 		env++;
 	if (!*env)
 		return (NULL);
-	return (&((*env)[5]));
+	return (&((*env)[ft_strchri(*env,'=')]));
 }
 
 void	ft_error(int err_n)
@@ -26,7 +26,27 @@ void	ft_error(int err_n)
 	ft_printf ("%i: No such directory\n", err_n);
 }
 
-void	ft_cd(char **args, char **env)
+void	updat_env(char ***env)
+{
+	char **new_var;
+	char *temp;
+
+	new_var = malloc(sizeof(char *) * 2);
+	new_var[1] = NULL;
+	new_var[0] = get_envvar(*env, "PWD");
+	new_var[0] = ft_strjoin("OLDPWD=", new_var[0]);
+	ft_export(new_var, env);
+	free(new_var[0]);
+	new_var[0] = getcwd(NULL, '\0');
+	temp = new_var[0];
+	new_var[0] = ft_strjoin("PWD=", new_var[0]);
+	free(temp);
+	ft_export(new_var, env);
+	free(new_var[0]);
+	free(new_var);
+}
+
+void	ft_cd(char **args, char ***env)
 {
 	char	*path;
 	int		err_n;
@@ -35,7 +55,7 @@ void	ft_cd(char **args, char **env)
 	{
 		if (*args == NULL)
 		{
-			path = get_home(env);
+			path = get_envvar(*env, "HOME");
 			if (!path)
 			{
 				printf("cd: HOME not set\n");
@@ -47,6 +67,8 @@ void	ft_cd(char **args, char **env)
 		err_n = chdir(path);
 		if (err_n)
 			ft_error(err_n);
+		else
+			updat_env(env);
 	}
 	else
 		printf("too many arguments\n");

@@ -61,7 +61,7 @@ void	exec_sentence(t_data_shell *data_shell)
 	{
 		execute_builtins(data_shell);
 		clear_history();
-		free_copy_env(data_shell);
+		free_copy_env(data_shell->copy_env);
 		clear_memory(*data_shell, EXIT_EXEC);
 		var_global = 1;
 		exit(1);

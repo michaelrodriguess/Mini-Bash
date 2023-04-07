@@ -12,17 +12,17 @@
 
 #include "../../../includes/minishell.h"
 
-void	free_copy_env(t_data_shell *data_shell)
+void	free_copy_env(char **env_copy)
 {
 	int	i;
 
 	i = 0;
-	while (data_shell->copy_env[i])
+	while (env_copy[i])
 	{
-		free(data_shell->copy_env[i]);
+		free(env_copy[i]);
 		i++;
 	}
-	free(data_shell->copy_env);
+	free(env_copy);
 }
 
 void	clear_memory(t_data_shell data_shell, int end_exec)
@@ -44,6 +44,6 @@ void	clear_memory(t_data_shell data_shell, int end_exec)
 	if (end_exec == 1)
 	{
 		clear_history();
-		free_copy_env(&data_shell);
+		free_copy_env(data_shell.copy_env);
 	}
 }
