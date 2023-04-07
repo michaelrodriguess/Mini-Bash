@@ -57,20 +57,15 @@ int		try_path(char *str)
 	return (0);
 }
 
-char	*find_path(char **cmd, char **envp)
+char	*try_matrix_path(char **envp, char **cmd)
 {
-	int		i;
-	char	*pathname;
-	char	*path_temp;
-	char	*path_try;
 	char	**matrix;
+	char	*path_temp;
+	char	*pathname;
+	int		i;
 
 	i = 0;
 	pathname = NULL;
-	path_try = ft_strdup(cmd[0]);
-	if (try_path(path_try) == 1)
-		return (path_try);
-	free(path_try);
 	matrix = matrix_path(envp);
 	while (matrix[i])
 	{
@@ -87,6 +82,19 @@ char	*find_path(char **cmd, char **envp)
 		i++;
 	}
 	clear_matrix(matrix);
+	return (path_temp);
+}
+
+char	*find_path(char **cmd, char **envp)
+{
+	char	*path_try;
+	char	*path_temp;
+
+	path_try = ft_strdup(cmd[0]);
+	if (try_path(path_try) == 1)
+		return (path_try);
+	free(path_try);
+	path_temp = try_matrix_path(envp, cmd);
 	return (path_temp);
 }
 
