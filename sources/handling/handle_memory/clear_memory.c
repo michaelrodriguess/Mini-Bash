@@ -25,6 +25,16 @@ void	free_copy_env(char **env_copy)
 	free(env_copy);
 }
 
+void	close_red_files(t_data_shell data_shell)
+{
+	while(data_shell.n_redis)
+	{
+		close(data_shell.fd_redis[data_shell.n_redis]);
+		data_shell.n_redis--;
+	}
+	close(data_shell.fd_redis[data_shell.n_redis]);
+}
+
 void	clear_memory(t_data_shell data_shell, int end_exec)
 {
 	if (data_shell.input)
@@ -41,6 +51,7 @@ void	clear_memory(t_data_shell data_shell, int end_exec)
 		free(data_shell.fd_redis);
 		data_shell.fd_redis = NULL;
 	}
+	close_red_files(data_shell);
 	if (end_exec == 1)
 	{
 		clear_history();

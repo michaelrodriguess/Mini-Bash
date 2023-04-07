@@ -64,7 +64,10 @@ void	config_redirect(t_data_shell *data_shell)
 		else if (data_shell->tok_lst->type == 3)
 			r_input(*data_shell, i_fd);
 		if (data_shell->tok_lst->type > 1)
+		{
 			i_fd++;
+			data_shell->n_redis = i_fd; // exclude i_fd and use struct value and reset it to 0 in clear memory
+		}
 		data_shell->tok_lst = data_shell->tok_lst->next;
 	}
 	if(data_shell->tok_lst == NULL)

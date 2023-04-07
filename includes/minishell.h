@@ -56,7 +56,8 @@ typedef struct s_data_shell
 	char		**copy_env;
 	t_token		*tok_lst;
 	t_sentence	*sentence_list;
-	int			n_pipes; //is beeing used ?
+	int			n_pipes;
+	int			n_redis;
 	int			*fd_pipes;
 	int			*fd_redis;
 }	t_data_shell;
