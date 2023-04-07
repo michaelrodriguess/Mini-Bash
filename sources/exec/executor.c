@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 08:15:21 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/04/06 19:52:16 by microdri         ###   ########.fr       */
+/*   Updated: 2023/04/07 14:32:48 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	execute_cmd(t_data_shell *data_shell)
 
 void	verify_and_exec(t_data_shell *data_shell)
 {
-	data_shell->number_of_sentence = (count_pipes(data_shell->tok_lst) + 1); // change to line 68
+	data_shell->number_of_sentence = (count_pipes(data_shell->tok_lst) + 1);
 	if (!data_shell->sentence_list)
 		return ;
 	if (data_shell->number_of_sentence == 1)
