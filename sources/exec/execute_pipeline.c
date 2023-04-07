@@ -18,10 +18,21 @@ void	execute_pipeline(t_data_shell *data_shell)
 	exec_pipes(data_shell);
 }
 
+void	do_fork(t_data_shell *data_shell)
+{
+	int	pid;
+
+	pid = fork();
+	if (pid == -1)
+		message_error("Error with Fork", -1);
+	if (pid == 0)
+		exec_sentence(data_shell);
+	data_shell->sentence_list->pid = pid;
+}
+
 void	exec_pipes(t_data_shell *data_shell)
 {
 	t_sentence	*head;
-	int			pid;
 	int			n_sentence;
 
 	head = data_shell->sentence_list;
@@ -32,16 +43,7 @@ void	exec_pipes(t_data_shell *data_shell)
 		if (data_shell->sentence_list->args == NULL)
 			message_error("microtano: command not found", 127);
 		else
-		{
-			pid = fork();
-			if (pid == -1)
-				message_error("Error with Fork", -1);
-			if (pid == 0)
-			{
-				exec_sentence(data_shell);
-			}
-			data_shell->sentence_list->pid = pid;
-		}
+			do_fork(data_shell);
 		n_sentence++;
 		data_shell->sentence_list = data_shell->sentence_list->next;
 	}

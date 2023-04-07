@@ -92,7 +92,7 @@ void		ft_export(char **input, char ***env);
 void		free_copy_env(char **env_copy);
 void		clear_memory(t_data_shell data_shell, int end_exec);
 void		execute_cmd(t_data_shell *data_shell);
-void		find_cmd(t_data_shell *data_shell);
+int			find_cmd(t_data_shell *data_shell);
 void		verify_and_exec(t_data_shell *data_shell);
 void		sentence_print(t_sentence *lst);
 void		sentence_clear(t_sentence **lst);

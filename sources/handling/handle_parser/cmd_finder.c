@@ -90,11 +90,15 @@ char	*find_path(char **cmd, char **envp)
 	return (path_temp);
 }
 
-void	find_cmd(t_data_shell *data_shell)
+int	find_cmd(t_data_shell *data_shell)
 {
 	char	*temp;
 
 	temp = data_shell->tok_lst->str;
 	data_shell->tok_lst->str = find_path(&(data_shell->tok_lst->str), data_shell->copy_env);
 	free(temp);
+	if (data_shell->tok_lst->str)
+		return (1);
+	else
+		return (0);
 }

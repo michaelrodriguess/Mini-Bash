@@ -112,29 +112,26 @@ void	tok_list_to_args(t_data_shell *data_shell)
 
 	index = 0;
 	data_shell->sentence_list->args = NULL;
-	if (data_shell->tok_lst != NULL)
+	if (!data_shell->tok_lst)
+		return ;
+	if (!is_builtin(data_shell->tok_lst->str) && !find_cmd(data_shell))
 	{
-		if (!is_builtin(data_shell->tok_lst->str))	// colocar find_cmd para retornar int e mudar para um só if
-			find_cmd(data_shell);					// if(!is_builtin(data_shell->tok_lst->str && !find_cmd(data_shell))
-		if (!data_shell->tok_lst->str)
-		{
-			while (data_shell->tok_lst && data_shell->tok_lst->type != 1)
-				data_shell->tok_lst = data_shell->tok_lst->next;
-			return ;
-		}
-		size = ft_toksize_w(data_shell->tok_lst);
-		data_shell->sentence_list->args = malloc((size + 1) * sizeof(char *));
-		if (!data_shell->sentence_list->args)
-			ft_putstr_fd("Error malloc.\n", 2);
-		while (data_shell->tok_lst != NULL && data_shell->tok_lst->type != 1)
-		{
-			if (data_shell->tok_lst->type == 0)
-				data_shell->sentence_list->args[index] = add_arg(data_shell);
-			if (data_shell->sentence_list->args[index])
-				index++;
-		}
-		data_shell->sentence_list->args[index] = NULL;
+		while (data_shell->tok_lst && data_shell->tok_lst->type != 1)
+			data_shell->tok_lst = data_shell->tok_lst->next;
+		return ;
 	}
+	size = ft_toksize_w(data_shell->tok_lst);
+	data_shell->sentence_list->args = malloc((size + 1) * sizeof(char *));
+	if (!data_shell->sentence_list->args)
+		ft_putstr_fd("Error malloc.\n", 2);
+	while (data_shell->tok_lst != NULL && data_shell->tok_lst->type != 1)
+	{
+		if (data_shell->tok_lst->type == 0)
+			data_shell->sentence_list->args[index] = add_arg(data_shell);
+		if (data_shell->sentence_list->args[index])
+			index++;
+	}
+	data_shell->sentence_list->args[index] = NULL;
 }
 
 int	has_redirect(t_token *tok_lst)
@@ -152,6 +149,7 @@ void	parser(t_data_shell *data_shell)
 {
 	t_sentence	*head_sent;
 	t_token		*head_tok;
+
 	if (data_shell->tok_lst == NULL)
 		return ;
 	data_shell->sentence_list = sentence_new(NULL);
