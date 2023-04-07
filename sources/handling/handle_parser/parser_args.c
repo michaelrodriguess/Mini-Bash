@@ -139,7 +139,7 @@ void	tok_list_to_args(t_data_shell *data_shell)
 
 int	has_redirect(t_token *tok_lst)
 {
-	while (tok_lst)
+	while (tok_lst && tok_lst->type != 1)
 	{
 		if (tok_lst->type > 1)
 			return (1);

@@ -51,7 +51,8 @@ void	config_redirect(t_data_shell *data_shell)
 	static int		i_fd;
 
 	head = data_shell->tok_lst;
-	data_shell->fd_redis = malloc(count_redirects(data_shell->tok_lst) * sizeof(int));
+	if (i_fd == 0)
+		data_shell->fd_redis = malloc(count_redirects(data_shell->tok_lst) * sizeof(int));
 	if (!data_shell->fd_redis)
 		message_error("Error with malloc fd_redis", errno); // copy errno value to another variable 
 	while (data_shell->tok_lst && data_shell->tok_lst->type != 1)
@@ -69,8 +70,6 @@ void	config_redirect(t_data_shell *data_shell)
 	if(data_shell->tok_lst == NULL)
 		i_fd = 0;
 	data_shell->tok_lst = head;
-//	free(data_shell->fd_redis);
-//	data_shell->fd_redis = NULL;
 }
 
 void	redirect(t_data_shell *data_shell)
