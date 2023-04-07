@@ -1,13 +1,20 @@
 SRCS			=	./sources/main.c \
 					./sources/handling/handle_signals.c \
-					./sources/handling/parser.c \
-					./sources/handling/parser_builtin.c \
-					./sources/handling/clear_memory.c \
-					./sources/handling/handle_error.c \
+					./sources/handling/handle_redirect/redirect.c \
+					./sources/handling/handle_redirect/redirect2.c \
+					./sources/handling/handle_parser/utils_pipe.c \
+					./sources/handling/handle_parser/parser_args.c \
+					./sources/handling/handle_memory/clear_memory.c \
+					./sources/handling/handle_error/msg_error.c \
+					./sources/handling/handle_error/check_input.c \
+					./sources/handling/handle_error/valid_pipe_redirect.c \
+					./sources/handling/handle_parser/expand_envvar.c \
+					./sources/handling/handle_parser/cmd_finder.c \
+					./sources/handling/handle_pipes/pipes.c \
 					./sources/tokenization/lst_token2.c\
 					./sources/tokenization/lst_token.c\
 					./sources/tokenization/lexer.c \
-					./sources/tokenization/lexer2.c \
+					./sources/tokenization/sentence_lst.c \
 					./sources/built-ins/util_builtins.c \
 					./sources/built-ins/pwd.c \
 					./sources/built-ins/echo.c \
@@ -16,8 +23,9 @@ SRCS			=	./sources/main.c \
 					./sources/built-ins/env.c \
 					./sources/built-ins/unset.c \
 					./sources/built-ins/export.c \
-					./sources/handling/parse_str.c \
-					./sources/handling/expand_envvar.c \
+					./sources/exec/executor.c \
+					./sources/exec/exec_utils.c \
+					./sources/exec/execute_pipeline.c \
 
 NAME			= minishell
 OBJS			= $(SRCS:.c=.o)

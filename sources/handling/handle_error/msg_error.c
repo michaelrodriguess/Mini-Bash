@@ -1,37 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_signals.c                                   :+:      :+:    :+:   */
+/*   msg_error.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/01 18:20:34 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/30 17:24:33 by microdri         ###   ########.fr       */
+/*   Created: 2023/03/18 22:18:00 by microdri          #+#    #+#             */
+/*   Updated: 2023/03/29 14:16:26 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
 
-void	handle_signals(int signum)
+#include "../../../includes/minishell.h"
+
+void    message_error(char *msg, int exit_status)
 {
-	if (signum == SIGINT)
-	{
-		if (RL_ISSTATE(RL_STATE_READCMD))
-		{
-			ioctl(1, TIOCSTI, "\n");
-		}
-		else
-		{
-			write(1, "\n", 1);
-		}
-		rl_on_new_line();
-		rl_replace_line("", 0);
-		var_global = 128 + SIGINT;
-	}
+    perror(msg);
+    var_global = exit_status;
 }
 
-void	set_sig(void)
-{
-	signal(SIGINT, handle_signals);
-	signal(SIGQUIT, SIG_IGN);
-}

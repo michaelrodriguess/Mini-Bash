@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:15:28 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/11 18:44:42 by microdri         ###   ########.fr       */
+/*   Updated: 2023/03/29 14:33:40 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,25 +31,20 @@ int	verify_only_num(char *str)
 
 void	ft_exit(char **args)
 {
-	int	temp_var_g;
-
-	temp_var_g = 0;
 	if (args == NULL)
 		exit(EXIT_SUCCESS);
 	else if (args[1] != NULL)
 	{
-		temp_var_g = 1;
-		printf("bash: exit: too many arguments\n");
+		message_error("microtano: exit: too many arguments\n", 1);
 	}
 	else if (verify_only_num(*args) == 1)
 	{
-		temp_var_g = 255;
-		printf("microtano: exit: %s: numeric argument required\n", args[0]);
-		exit(temp_var_g);
+		message_error("microtano: exit: numeric argument required\n", 255);
+		exit(var_global);
 	}
 	else if (ft_isnum(ft_atoi(args[0]) == 1))
 	{
-		temp_var_g = ft_atoi(args[0]);
-		exit(temp_var_g);
+		var_global = ft_atoi(args[0]);
+		exit(var_global);
 	}
 }

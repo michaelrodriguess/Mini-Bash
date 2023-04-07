@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   utils_pipe.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/02 18:45:22 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/06 11:54:34 by fcaetano         ###   ########.fr       */
+/*   Created: 2023/03/15 18:56:22 by microdri          #+#    #+#             */
+/*   Updated: 2023/03/21 14:08:54 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
-char	**parser(t_data_shell *data_shell)
+int	count_pipes(t_token *lst_tok)
 {
-	char	*command;
+	int count;
+	if (!lst_tok)
+		return (0);
+	t_token *temp;
 
-	if (data_shell->tok_lst == NULL)
-		return (NULL);
-	command = data_shell->tok_lst->str;
-	if (is_builtin(command) == 1)
+	temp = lst_tok;
+	count = 0;
+	while(temp != NULL)
 	{
-		parser_builtin(data_shell);
+		if (temp->type == 1)
+			count++;
+		temp = temp->next;
 	}
-	return (NULL);
+	return (count);
 }

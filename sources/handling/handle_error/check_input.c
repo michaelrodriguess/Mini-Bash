@@ -1,37 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_signals.c                                   :+:      :+:    :+:   */
+/*   handle_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/01 18:20:34 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/30 17:24:33 by microdri         ###   ########.fr       */
+/*   Created: 2023/03/11 20:48:07 by microdri          #+#    #+#             */
+/*   Updated: 2023/03/14 14:34:45 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
-void	handle_signals(int signum)
+int	verify_input(char *input)
 {
-	if (signum == SIGINT)
+	if (input != NULL && input[0] != 0)
+		add_history(input);
+	if (ft_strcmp("exit", input) == 0 || input == NULL)
 	{
-		if (RL_ISSTATE(RL_STATE_READCMD))
-		{
-			ioctl(1, TIOCSTI, "\n");
-		}
-		else
-		{
-			write(1, "\n", 1);
-		}
-		rl_on_new_line();
-		rl_replace_line("", 0);
-		var_global = 128 + SIGINT;
+		write(2, "exit\n", 5);
+		return (0);
 	}
-}
-
-void	set_sig(void)
-{
-	signal(SIGINT, handle_signals);
-	signal(SIGQUIT, SIG_IGN);
+	return (1);
 }

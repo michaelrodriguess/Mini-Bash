@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   expand_envvar.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcaetano <fcaetano@student.42.rio>         +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:22:42 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/03/11 16:22:52 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/03/29 16:53:19 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
 void	expand(char **env_var, char **env)
 {
@@ -78,6 +78,18 @@ void	expand_str(char **str, char **env)
 		else
 			i++;
 	}
+}
+
+char	*cat_exitstatus(char **arg, char *parsed_arg)
+{
+	char	*expanded_str;
+	char	*temp;
+
+	temp = ft_itoa(var_global);
+	expanded_str = ft_strjoin(parsed_arg, temp);
+	free(temp);
+	*arg += 2;
+	return (expanded_str);
 }
 
 char	*cat_envvar(char **arg, char *parsed_arg, char **env)
