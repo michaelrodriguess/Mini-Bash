@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 17:51:10 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/29 14:21:34 by microdri         ###   ########.fr       */
+/*   Updated: 2023/04/07 16:59:22 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,7 @@ void	ft_export(char **input, char ***env)
 	while (input[i])
 	{
 		if (is_name_valid(input[i]) == 0)
-			printf("microtano: export: %s: not a valida identifier\n",
-				input[i]);
+			message_error("microtano: export: not a valid identifier", 1);
 		else if (has_equal(input[i]) == 0)
 		{
 			if (exec_export(input, env, i) == 0)

@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 07:26:46 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/04/07 14:30:43 by microdri         ###   ########.fr       */
+/*   Updated: 2023/04/07 16:22:42 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,12 @@ int	find_cmd(t_data_shell *data_shell)
 	temp = data_shell->tok_lst->str;
 	data_shell->tok_lst->str = find_path(&(data_shell->tok_lst->str), data_shell->copy_env);
 	free(temp);
+		
 	if (data_shell->tok_lst->str)
+	{
+		var_global = 0;
 		return (1);
+	}
 	else
 		return (0);
 }
