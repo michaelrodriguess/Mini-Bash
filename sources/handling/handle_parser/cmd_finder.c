@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 07:26:46 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/04/08 14:27:55 by microdri         ###   ########.fr       */
+/*   Updated: 2023/04/08 16:37:23 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,8 @@ static void	clear_matrix(char **matrix)
 	free(matrix);
 }
 
-int		try_path(char *str)
+int	try_path(char *str)
 {
-
 	if (str[0] == '/' || str[0] == '.')
 	{
 		if (access(str, F_OK | X_OK) == 0)
@@ -74,7 +73,7 @@ char	*try_matrix_path(char **envp, char **cmd)
 	matrix = matrix_path(envp);
 	if (matrix == NULL)
 		return (NULL);
-	while (matrix[i])
+	while (matrix[i++])
 	{
 		pathname = ft_strjoin(matrix[i], "/");
 		path_temp = ft_strjoin(pathname, cmd[0]);
@@ -86,7 +85,6 @@ char	*try_matrix_path(char **envp, char **cmd)
 		}
 		free(path_temp);
 		path_temp = NULL;
-		i++;
 	}
 	clear_matrix(matrix);
 	return (path_temp);
@@ -110,9 +108,9 @@ int	find_cmd(t_data_shell *data_shell)
 	char	*temp;
 
 	temp = data_shell->tok_lst->str;
-	data_shell->tok_lst->str = find_path(&(data_shell->tok_lst->str), data_shell->copy_env);
+	data_shell->tok_lst->str = find_path(&(data_shell->tok_lst->str),
+			data_shell->copy_env);
 	free(temp);
-		
 	if (data_shell->tok_lst->str)
 	{
 		var_global = 0;

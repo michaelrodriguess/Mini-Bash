@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:56:22 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/21 14:08:54 by microdri         ###   ########.fr       */
+/*   Updated: 2023/04/08 16:39:01 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 int	count_pipes(t_token *lst_tok)
 {
-	int count;
+	int		count;
+	t_token	*temp;
+
 	if (!lst_tok)
 		return (0);
-	t_token *temp;
-
 	temp = lst_tok;
 	count = 0;
-	while(temp != NULL)
+	while (temp != NULL)
 	{
 		if (temp->type == 1)
 			count++;

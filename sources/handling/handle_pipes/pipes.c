@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 13:42:30 by microdri          #+#    #+#             */
-/*   Updated: 2023/04/06 19:39:38 by microdri         ###   ########.fr       */
+/*   Updated: 2023/04/08 16:48:08 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,22 +33,24 @@ void	open_pipes(t_data_shell *shell)
 void	config_pipes(t_data_shell *shell)
 {
 	t_sentence	*head;
-	int			current_sentence;
+	int			cur_sentence;
 
 	head = shell->sentence_list;
 	open_pipes(shell);
-	current_sentence = 0;
-	while (shell->n_pipes > current_sentence)
+	cur_sentence = 0;
+	while (shell->n_pipes > cur_sentence)
 	{
-		if (shell->sentence_list->prev != NULL && shell->sentence_list->fd_in == 0)
-			shell->sentence_list->fd_in = shell->fd_pipes[(current_sentence - 1) * 2];
-		if (shell->sentence_list->fd_out == 1 && shell->sentence_list->next != NULL)
-			shell->sentence_list->fd_out = shell->fd_pipes[(current_sentence * 2) + 1];
+		if (shell->sentence_list->prev != NULL
+			&& shell->sentence_list->fd_in == 0)
+			shell->sentence_list->fd_in = shell->fd_pipes[(cur_sentence - 1) * 2];
+		if (shell->sentence_list->fd_out == 1
+			&& shell->sentence_list->next != NULL)
+			shell->sentence_list->fd_out = shell->fd_pipes[(cur_sentence * 2) + 1];
 		shell->sentence_list = shell->sentence_list->next;
-		current_sentence++;
+		cur_sentence++;
 	}
 	if (shell->sentence_list->prev != NULL && shell->sentence_list->fd_in == 0)
-		shell->sentence_list->fd_in = shell->fd_pipes[(current_sentence - 1) * 2];
+		shell->sentence_list->fd_in = shell->fd_pipes[(cur_sentence - 1) * 2];
 	shell->sentence_list = head;
 }
 
