@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:50:06 by microdri          #+#    #+#             */
-/*   Updated: 2023/04/06 19:45:54 by microdri         ###   ########.fr       */
+/*   Updated: 2023/04/07 17:12:34 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void		ft_tokclear(t_token **lst);
 void		ft_tokprint(t_token *lst);
 void		handle_signals(int signum);
 void		set_sig(void);
-void		ft_pwd(void);
+void		ft_pwd(char **env_copy);
 void		ft_echo(char **args, int fd_out);
 void		ft_cd(char **path, char ***env);
 void		ft_exit(char **args);
@@ -114,6 +114,7 @@ int			execute_builtins(t_data_shell *data_shell);
 int			validation(t_token *token);
 int			verify_input(char *input);
 char		*parse_arg(char *arg, char **env);
+char		*get_envvar(char **env, char *var);
 char		*find_path(char **cmd, char **envp);
 char		*cat_envvar(char **arg, char *parsed_arg, char **env);
 char		*cat_exitstatus(char **arg, char *parsed_arg);

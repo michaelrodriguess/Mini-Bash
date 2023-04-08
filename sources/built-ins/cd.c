@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:50:34 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/03/21 10:55:58 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/04/07 16:43:57 by microdri         ###   ########.fr       */
 
 /*                                                                            */
 /* ************************************************************************** */
@@ -20,11 +20,6 @@ char	*get_envvar(char **env, char *var)
 	if (!*env)
 		return (NULL);
 	return (&((*env)[ft_strchri(*env,'=')]));
-}
-
-void	ft_error(int err_n)
-{
-	ft_printf ("%i: No such directory\n", err_n);
 }
 
 void	updat_env(char ***env)
@@ -50,27 +45,20 @@ void	updat_env(char ***env)
 void	ft_cd(char **args, char ***env)
 {
 	char	*path;
-	int		err_n;
 
-	if (ft_array_len(args) <= 1)
+	if (*args == NULL)
 	{
-		if (*args == NULL)
+		path = get_envvar(*env, "HOME");
+		if (!path)
 		{
-			path = get_envvar(*env, "HOME");
-			if (!path)
-			{
-				printf("cd: HOME not set\n");
-				return ;
-			}
+			message_error("cd: HOME not set", 1);
+			return ;
 		}
-		else
-			path = *args;
-		err_n = chdir(path);
-		if (err_n)
-			ft_error(err_n);
-		else
-			updat_env(env);
 	}
 	else
-		printf("too many arguments\n");
+		path = *args;
+	if (chdir(path))
+		message_error("microtano: cd: No such file, directory or permissions", 1);
+	else
+		updat_env(env);
 }
