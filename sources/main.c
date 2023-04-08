@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
 int	g_var_global = 0;
 
 void	init_values_struct(t_data_shell *data_shell, char *input)
@@ -41,14 +42,11 @@ int	main(int argc, char **argv, char **env)
 		data_shell.tok_lst = lexer(input);
 		if (verify_input(input) == 0)
 			break ;
-//		ft_tokprint(data_shell.tok_lst);
 		if (validation(data_shell.tok_lst) != 0)
 			message_error("microtano: syntax error near unexpected token", 258);
-//		printf("Erro lst_token\n"); //msg_error with exit_status
 		else
 		{
 			parser(&data_shell);
-//		sentence_print(data_shell.sentence_list);
 			verify_and_exec(&data_shell);
 		}
 		clear_memory(data_shell, RESET);

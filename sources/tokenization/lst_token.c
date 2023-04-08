@@ -69,13 +69,3 @@ void	ft_tokclear(t_token **lst)
 	}
 	*lst = NULL;
 }
-
-void	ft_tokprint(t_token *lst)
-{
-	while (lst)
-	{
-		ft_printf("type [%d] ", lst->type);
-		ft_printf("str [%s]\n", lst->str);
-		lst = lst->next;
-	}
-}

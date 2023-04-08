@@ -12,50 +12,50 @@
 
 #include "../../includes/minishell.h"
 
-char	**new_env(t_data_shell	*data_shell, int current_args_i)
+char	**new_env(t_data_shell	*shell, int cur_args_i)
 {
 	int		i;
 	int		j;
-	int		env_size;
+	int		env_sz;
 	char	**new_environ;
 
 	i = 0;
 	j = 0;
-	new_environ = malloc((ft_size_matriz(data_shell->copy_env) - 1)
+	new_environ = malloc((ft_size_matriz(shell->copy_env) - 1)
 			* sizeof(char *));
 	if (!new_environ)
 		return (NULL);
-	while (data_shell->copy_env[i])
+	while (shell->copy_env[i])
 	{
-		env_size = ft_strchri(data_shell->copy_env[i], '=') - 1;
-		if ((int)ft_strlen(data_shell->sentence_list->args[current_args_i]) == env_size
-			&& ft_strncmp(data_shell->sentence_list->args[current_args_i],
-				data_shell->copy_env[i], env_size) == 0)
+		env_sz = ft_strchri(shell->copy_env[i], '=') - 1;
+		if ((int)ft_strlen(shell->sentence_list->args[cur_args_i]) == env_sz
+			&& ft_strncmp(shell->sentence_list->args[cur_args_i],
+				shell->copy_env[i], env_sz) == 0)
 			i++;
 		else
-			new_environ[j++] = ft_strdup(data_shell->copy_env[i++]);
+			new_environ[j++] = ft_strdup(shell->copy_env[i++]);
 	}
 	new_environ[j] = NULL;
 	return (new_environ);
 }
 
-void	exec_unset(t_data_shell *data_shell, int j)
+void	exec_unset(t_data_shell *shell, int j)
 {
 	int		i;
 	int		env_until_equal;
 	char	**temp;
 
 	i = 0;
-	while (data_shell->copy_env[i] && data_shell->sentence_list->args[j])
+	while (shell->copy_env[i] && shell->sentence_list->args[j])
 	{
-		env_until_equal = ft_strchri(data_shell->copy_env[i], '=') - 1;
-		if ((int)ft_strlen(data_shell->sentence_list->args[j]) == env_until_equal
-			&& ft_strncmp(data_shell->sentence_list->args[j],
-				data_shell->copy_env[i], env_until_equal) == 0)
+		env_until_equal = ft_strchri(shell->copy_env[i], '=') - 1;
+		if ((int)ft_strlen(shell->sentence_list->args[j]) == env_until_equal
+			&& ft_strncmp(shell->sentence_list->args[j],
+				shell->copy_env[i], env_until_equal) == 0)
 		{
-			temp = new_env(data_shell, j);
-			free_copy_env(data_shell->copy_env);
-			data_shell->copy_env = temp;
+			temp = new_env(shell, j);
+			free_copy_env(shell->copy_env);
+			shell->copy_env = temp;
 		}
 		else
 			i++;

@@ -73,7 +73,7 @@ void	exec_sentence(t_data_shell *data_shell)
 		if (data_shell->fd_redis)
 			free(data_shell->fd_redis);
 		if (execve(data_shell->sentence_list->args[0],
-			data_shell->sentence_list->args, data_shell->copy_env) == -1)
+				data_shell->sentence_list->args, data_shell->copy_env) == -1)
 			message_error("Error with exec command", -1);
 	}
 }

@@ -38,7 +38,7 @@ void	ft_echo(char **args, int fd_out)
 	while (args[i] && !ft_strncmp(args[i], "-n", 2))
 	{
 		if (!check_flag(args[i]))
-			break;
+			break ;
 		n = 0;
 		i++;
 	}

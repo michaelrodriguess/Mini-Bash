@@ -12,7 +12,7 @@
 
 #include "../../../includes/minishell.h"
 
-static char	**matrix_path(char **envp)
+char	**matrix_path(char **envp)
 {
 	int		index;
 	char	**matrix;
@@ -36,7 +36,7 @@ static char	**matrix_path(char **envp)
 	return (matrix);
 }
 
-static void	clear_matrix(char **matrix)
+void	clear_matrix(char **matrix)
 {
 	int	i;
 
@@ -59,35 +59,6 @@ int	try_path(char *str)
 			return (1);
 	}
 	return (0);
-}
-
-char	*try_matrix_path(char **envp, char **cmd)
-{
-	char	**matrix;
-	char	*path_temp;
-	char	*pathname;
-	int		i;
-
-	i = 0;
-	pathname = NULL;
-	matrix = matrix_path(envp);
-	if (matrix == NULL)
-		return (NULL);
-	while (matrix[i++])
-	{
-		pathname = ft_strjoin(matrix[i], "/");
-		path_temp = ft_strjoin(pathname, cmd[0]);
-		free(pathname);
-		if (try_path(path_temp) == 1)
-		{
-			clear_matrix(matrix);
-			return (path_temp);
-		}
-		free(path_temp);
-		path_temp = NULL;
-	}
-	clear_matrix(matrix);
-	return (path_temp);
 }
 
 char	*find_path(char **cmd, char **envp)

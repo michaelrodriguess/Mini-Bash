@@ -70,18 +70,3 @@ void	sentence_clear(t_sentence **lst)
 	}
 	*lst = NULL;
 }
-
-void	sentence_print(t_sentence	*lst)
-{
-	int	i;
-
-	while (lst)
-	{
-		printf("FD_IN [%d] ", lst->fd_in);
-		printf("FD_OUT [%d] ", lst->fd_out);
-		i = 0;
-		while (lst->args && lst->args[i] != NULL)
-			printf("args [%s]\n", lst->args[i++]);
-		lst = lst->next;
-	}
-}

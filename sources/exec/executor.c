@@ -18,8 +18,9 @@ int	execute_builtins(t_data_shell *data_shell)
 
 	command = data_shell->sentence_list->args[0];
 	if (!ft_strcmp(command, "echo"))
-		ft_echo(&(data_shell->sentence_list->args[1]), data_shell->sentence_list->fd_out);
-	if (!ft_strcmp(command, "pwd")) //atualizar $PWD e $OLDPWD //update branch
+		ft_echo(&(data_shell->sentence_list->args[1]),
+			data_shell->sentence_list->fd_out);
+	if (!ft_strcmp(command, "pwd"))
 		ft_pwd(data_shell->copy_env);
 	if (!ft_strcmp(command, "cd"))
 		ft_cd(&(data_shell->sentence_list->args[1]), &data_shell->copy_env);
@@ -41,9 +42,9 @@ void	execute_cmd(t_data_shell *data_shell)
 	if (data_shell->sentence_list->args == NULL)
 		message_error("microtano: command not found", 127);
 	else if (data_shell->sentence_list->fd_out == -1)
-		return;
+		return ;
 	else if (is_builtin(data_shell->sentence_list->args[0]) == 1)
-	 	execute_builtins(data_shell);
+		execute_builtins(data_shell);
 	else
 	{
 		pid = fork();

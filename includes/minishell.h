@@ -61,12 +61,10 @@ typedef struct s_data_shell
 	int			*fd_redis;
 }	t_data_shell;
 
-
 /*---------------init---------------*/
 /*--------------handling------------*/
 /*--------------verify--------------*/
 /*--------------executions----------*/
-
 
 void		open_heredoc(t_data_shell *data_shell, int i_fd);
 void		execute_pipeline(t_data_shell *data_shell);
@@ -103,6 +101,7 @@ void		exec_pipes(t_data_shell *data_shell);
 void		exec_sentence(t_data_shell *data_shell);
 void		wait_sentences(t_data_shell *data_shell);
 void		close_pipes(t_data_shell *data_shell);
+void		expand_exit_status(char **str);
 int			count_pipes(t_token *tok_lst);
 int			has_equal(char *str);
 int			is_name_valid(char *str);
@@ -117,6 +116,12 @@ char		*get_envvar(char **env, char *var);
 char		*find_path(char **cmd, char **envp);
 char		*cat_envvar(char **arg, char *parsed_arg, char **env);
 char		*cat_exitstatus(char **arg, char *parsed_arg);
+char		*search_matrix(char **matrix, char **cmd);
+char		*try_matrix_path(char **envp, char **cmd);
+char		*quote(char	**arg, char *parsed_arg, char **env);
+int			try_path(char *str);
+void		clear_matrix(char **matrix);
+char		**matrix_path(char **envp);
 void		parser(t_data_shell *data_shell);
 char		**ft_copy_env(char **env);
 t_token		*ft_toknew(int type, char *str);

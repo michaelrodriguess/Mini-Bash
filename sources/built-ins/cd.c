@@ -7,7 +7,6 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:50:34 by fcaetano          #+#    #+#             */
 /*   Updated: 2023/04/07 16:43:57 by microdri         ###   ########.fr       */
-
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +18,13 @@ char	*get_envvar(char **env, char *var)
 		env++;
 	if (!*env)
 		return (NULL);
-	return (&((*env)[ft_strchri(*env,'=')]));
+	return (&((*env)[ft_strchri(*env, '=')]));
 }
 
 void	updat_env(char ***env)
 {
-	char **new_var;
-	char *temp;
+	char	**new_var;
+	char	*temp;
 
 	new_var = malloc(sizeof(char *) * 2);
 	new_var[1] = NULL;
@@ -58,7 +57,8 @@ void	ft_cd(char **args, char ***env)
 	else
 		path = *args;
 	if (chdir(path))
-		message_error("microtano: cd: No such file, directory or permissions", 1);
+		message_error("microtano: cd: No such file, directory or permissions",
+			1);
 	else
 		updat_env(env);
 }
