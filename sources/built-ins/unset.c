@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 19:24:01 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/29 14:24:48 by microdri         ###   ########.fr       */
+/*   Updated: 2023/04/07 17:31:19 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	ft_unset(t_data_shell *data_shell)
 			break ;
 		if (has_equal(data_shell->sentence_list->args[j]) == 0
 			|| is_name_valid(data_shell->sentence_list->args[j]) == 0)
-			message_error("microtano: unset: not a valid identifier\n", var_global);
+			message_error("microtano: unset: not a valid identifier", 1);
 		if (data_shell->sentence_list->args[j] == NULL)
 			break ;
 		else

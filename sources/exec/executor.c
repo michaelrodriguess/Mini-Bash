@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 08:15:21 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/04/07 14:32:48 by microdri         ###   ########.fr       */
+/*   Updated: 2023/04/07 17:10:51 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	execute_builtins(t_data_shell *data_shell)
 	if (!ft_strcmp(command, "echo"))
 		ft_echo(&(data_shell->sentence_list->args[1]), data_shell->sentence_list->fd_out);
 	if (!ft_strcmp(command, "pwd")) //atualizar $PWD e $OLDPWD //update branch
-		ft_pwd();
+		ft_pwd(data_shell->copy_env);
 	if (!ft_strcmp(command, "cd"))
 		ft_cd(&(data_shell->sentence_list->args[1]), &data_shell->copy_env);
 	if (!ft_strcmp(command, "exit"))

@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:51:58 by microdri          #+#    #+#             */
-/*   Updated: 2023/04/06 17:33:12 by microdri         ###   ########.fr       */
+/*   Updated: 2023/04/08 10:57:27 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ int	main(int argc, char **argv, char **env)
 			break ;
 //		ft_tokprint(data_shell.tok_lst);
 		if (validation(data_shell.tok_lst) != 0)
-			printf("Erro lst_token\n"); //msg_error with exit_status
+			message_error("microtano: syntax error near unexpected token", 258);
+//		printf("Erro lst_token\n"); //msg_error with exit_status
 		else
 		{
 			parser(&data_shell);
