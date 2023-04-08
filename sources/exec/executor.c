@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 08:15:21 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/04/07 17:10:51 by microdri         ###   ########.fr       */
+/*   Updated: 2023/04/08 12:36:50 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,12 @@ void	execute_cmd(t_data_shell *data_shell)
 				dup2(data_shell->sentence_list->fd_in, 0);
 			if (data_shell->sentence_list->fd_out != 1)
 				dup2(data_shell->sentence_list->fd_out, 1);
-			if (execve(data_shell->sentence_list->args[0], data_shell->sentence_list->args, data_shell->copy_env) == -1)
-			message_error("Error with exec command", -1);
+			execve(data_shell->sentence_list->args[0], data_shell->sentence_list->args, data_shell->copy_env);
 		}
-		else if (pid !=  0)
-			wait(&pid);
+		if (pid != 0)
+			waitpid(pid, &var_global, 0);
+		if (var_global != 0)
+			var_global = 1;
 	}
 }
 

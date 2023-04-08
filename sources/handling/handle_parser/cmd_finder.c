@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 07:26:46 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/04/07 16:22:42 by microdri         ###   ########.fr       */
+/*   Updated: 2023/04/08 14:27:55 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@ static char	**matrix_path(char **envp)
 		if (ft_strncmp(envp[index], "PATH=", 5) == 0)
 		{	
 			matrix = ft_split(&envp[index][5], ':');
+			if (*matrix == NULL)
+			{
+				free(matrix);
+				matrix = NULL;
+			}
 			break ;
 		}
 		index++;
@@ -67,6 +72,8 @@ char	*try_matrix_path(char **envp, char **cmd)
 	i = 0;
 	pathname = NULL;
 	matrix = matrix_path(envp);
+	if (matrix == NULL)
+		return (NULL);
 	while (matrix[i])
 	{
 		pathname = ft_strjoin(matrix[i], "/");
