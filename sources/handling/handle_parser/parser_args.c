@@ -17,7 +17,7 @@ void	expand_exit_status(char **str)
 	char	*current_exit_status;
 	int		i;
 
-	current_exit_status = ft_itoa(var_global);
+	current_exit_status = ft_itoa(g_var_global);
 	i = 0;
 	while ((*str)[i])
 	{

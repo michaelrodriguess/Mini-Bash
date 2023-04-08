@@ -85,7 +85,7 @@ char	*cat_exitstatus(char **arg, char *parsed_arg)
 	char	*expanded_str;
 	char	*temp;
 
-	temp = ft_itoa(var_global);
+	temp = ft_itoa(g_var_global);
 	expanded_str = ft_strjoin(parsed_arg, temp);
 	free(temp);
 	*arg += 2;

@@ -40,11 +40,11 @@ void	ft_exit(char **args)
 	else if (verify_only_num(*args) == 1)
 	{
 		message_error("microtano: exit: numeric argument required\n", 255);
-		exit(var_global);
+		exit(g_var_global);
 	}
 	else if (ft_isnum(ft_atoi(args[0]) == 1))
 	{
-		var_global = ft_atoi(args[0]);
-		exit(var_global);
+		g_var_global = ft_atoi(args[0]);
+		exit(g_var_global);
 	}
 }

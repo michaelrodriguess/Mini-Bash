@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-int	var_global = 0;
+int	g_var_global = 0;
 
 void	init_values_struct(t_data_shell *data_shell, char *input)
 {

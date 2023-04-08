@@ -58,9 +58,9 @@ void	execute_cmd(t_data_shell *data_shell)
 			execve(data_shell->sentence_list->args[0], data_shell->sentence_list->args, data_shell->copy_env);
 		}
 		if (pid != 0)
-			waitpid(pid, &var_global, 0);
-		if (var_global != 0)
-			var_global = 1;
+			waitpid(pid, &g_var_global, 0);
+		if (g_var_global != 0)
+			g_var_global = 1;
 	}
 }
 

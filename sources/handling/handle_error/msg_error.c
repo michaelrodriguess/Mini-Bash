@@ -15,5 +15,5 @@
 void	message_error(char *msg, int exit_status)
 {
 	perror(msg);
-	var_global = exit_status;
+	g_var_global = exit_status;
 }

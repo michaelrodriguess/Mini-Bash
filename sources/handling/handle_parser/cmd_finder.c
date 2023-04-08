@@ -113,7 +113,7 @@ int	find_cmd(t_data_shell *data_shell)
 	free(temp);
 	if (data_shell->tok_lst->str)
 	{
-		var_global = 0;
+		g_var_global = 0;
 		return (1);
 	}
 	else

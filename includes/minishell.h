@@ -6,10 +6,9 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:50:06 by microdri          #+#    #+#             */
-/*   Updated: 2023/04/07 17:12:34 by microdri         ###   ########.fr       */
+/*   Updated: 2023/04/08 16:54:12 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
@@ -29,7 +28,7 @@
 # define RESET 0
 # define EXIT_EXEC 1
 
-extern	int var_global;
+extern int	g_var_global;
 
 typedef struct s_token
 {
