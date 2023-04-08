@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 08:15:21 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/04/07 17:10:51 by microdri         ###   ########.fr       */
+/*   Updated: 2023/04/08 11:57:28 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	execute_cmd(t_data_shell *data_shell)
 
 	if (data_shell->sentence_list->args == NULL)
 		message_error("microtano: command not found", 127);
+	else if (data_shell->sentence_list->fd_out == -1)
+		return;
 	else if (is_builtin(data_shell->sentence_list->args[0]) == 1)
 	 	execute_builtins(data_shell);
 	else
