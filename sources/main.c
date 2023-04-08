@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:51:58 by microdri          #+#    #+#             */
-/*   Updated: 2023/04/08 10:57:27 by microdri         ###   ########.fr       */
+/*   Updated: 2023/04/08 17:19:32 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,11 @@ int	main(int argc, char **argv, char **env)
 	char			*input;
 	t_data_shell	data_shell;
 
-	(void) argc;
+	if (argc != 1)
+	{
+		ft_putstr_fd("too many args. Use ./minishell\n", 2);
+		return (0);
+	}
 	(void) *argv;
 	set_sig();
 	data_shell.copy_env = ft_copy_env(env);

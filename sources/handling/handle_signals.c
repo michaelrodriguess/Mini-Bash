@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:20:34 by microdri          #+#    #+#             */
-/*   Updated: 2023/04/08 10:41:15 by microdri         ###   ########.fr       */
+/*   Updated: 2023/04/08 17:56:48 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,10 @@ void	set_sig(void)
 {
 	signal(SIGINT, handle_signals);
 	signal(SIGQUIT, SIG_IGN);
+}
+
+void	child_sig_def(void)
+{
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
 }
