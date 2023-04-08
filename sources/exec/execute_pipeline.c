@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 19:34:26 by microdri          #+#    #+#             */
-/*   Updated: 2023/04/06 19:39:34 by microdri         ###   ########.fr       */
+/*   Updated: 2023/04/08 13:48:12 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	exec_pipes(t_data_shell *data_shell)
 		data_shell->sentence_list->pid = -1;
 		if (data_shell->sentence_list->args == NULL)
 			message_error("microtano: command not found", 127);
-		else
+		else if (data_shell->sentence_list->fd_out != -1)
 			do_fork(data_shell);
 		n_sentence++;
 		data_shell->sentence_list = data_shell->sentence_list->next;

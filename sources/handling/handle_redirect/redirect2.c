@@ -6,7 +6,7 @@
 /*   By: fcaetano <fcaetano@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 15:39:50 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/04/04 17:26:45 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/04/08 12:00:58 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	r_output(t_data_shell shell, int i_fd)
 {
-	int	err;
-
 	if (shell.tok_lst->type == 2)
 	{
 		shell.fd_redis[i_fd] = open(shell.tok_lst->next->str,
@@ -30,8 +28,7 @@ void	r_output(t_data_shell shell, int i_fd)
 	}
 	if (shell.fd_redis[i_fd] == -1)
 	{
-		err = errno;
-		message_error("Failed to open redirect output", err);//check returned value 
+		message_error("Failed to open redirect output", 1);//check returned value 
 	}
 }
 
@@ -50,15 +47,11 @@ void	open_heredoc(t_data_shell *data_shell, int i_fd)
 {
 	char	*str;
 	char	*file_name;
-	int		err;
 
 	file_name = temp_file(i_fd);
 	data_shell->fd_redis[i_fd] = open(file_name, O_CREAT | O_RDWR | O_TRUNC, 0666);
 	if (data_shell->fd_redis[i_fd] == -1)
-	{
-		err = errno;
-		message_error("Failed to open heredoc document", err);//check returned value 
-	}
+		message_error("Failed to open heredoc document", 1);
 	while (42)
 	{
 		str = readline("heredoc> ");
@@ -75,13 +68,8 @@ void	open_heredoc(t_data_shell *data_shell, int i_fd)
 
 void	r_input(t_data_shell shell, int i_fd)
 {
-	int	err;
-
 	shell.fd_redis[i_fd] = open(shell.tok_lst->next->str, O_RDONLY);
 	shell.sentence_list->fd_in = shell.fd_redis[i_fd];
 	if (shell.fd_redis[i_fd] == -1)
-	{
-		err = errno;
-		message_error("Failed to open redirect output", err);//check returned value 
-	}
+		message_error("Failed to open redirect output", 1);
 }
