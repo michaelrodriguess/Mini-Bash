@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 08:15:21 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/04/08 12:36:50 by microdri         ###   ########.fr       */
+/*   Updated: 2023/04/08 17:56:32 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	execute_cmd(t_data_shell *data_shell)
 			message_error("Error with Fork", -1);
 		if (pid == 0)
 		{
+			child_sig_def();
 			if (data_shell->sentence_list->fd_in != 0)
 				dup2(data_shell->sentence_list->fd_in, 0);
 			if (data_shell->sentence_list->fd_out != 1)

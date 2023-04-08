@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:50:06 by microdri          #+#    #+#             */
-/*   Updated: 2023/04/07 17:12:34 by microdri         ###   ########.fr       */
+/*   Updated: 2023/04/08 17:58:12 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ typedef struct s_data_shell
 
 void		open_heredoc(t_data_shell *data_shell, int i_fd);
 void		execute_pipeline(t_data_shell *data_shell);
+void		child_sig_def(void);
 void		redirect(t_data_shell *data_shell);
 void		r_input(t_data_shell shell, int i_fd);
 void		tok_list_to_args(t_data_shell *data_shell);
