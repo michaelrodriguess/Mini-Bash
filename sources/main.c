@@ -32,10 +32,7 @@ int	main(int argc, char **argv, char **env)
 	t_data_shell	data_shell;
 
 	if (argc != 1)
-	{
-		ft_putstr_fd("too many args. Use ./minishell\n", 2);
-		return (0);
-	}
+		return (printf("too many args. Use ./minishell\n"));
 	(void) *argv;
 	set_sig();
 	data_shell.copy_env = ft_copy_env(env);
