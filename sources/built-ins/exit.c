@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:15:28 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/29 14:33:40 by microdri         ###   ########.fr       */
+/*   Updated: 2023/04/08 17:14:27 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,9 @@ void	ft_exit(char **args)
 {
 	if (args == NULL)
 		exit(EXIT_SUCCESS);
-	else if (args[1] != NULL)
-	{
-		message_error("microtano: exit: too many arguments\n", 1);
-	}
 	else if (verify_only_num(*args) == 1)
 	{
-		message_error("microtano: exit: numeric argument required\n", 255);
+		message_error("microtano: exit: numeric argument required", 255);
 		exit(var_global);
 	}
 	else if (ft_isnum(ft_atoi(args[0]) == 1))
