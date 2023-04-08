@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:20:34 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/30 17:24:33 by microdri         ###   ########.fr       */
+/*   Updated: 2023/04/08 10:41:15 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	handle_signals(int signum)
 		}
 		rl_on_new_line();
 		rl_replace_line("", 0);
-		var_global = 128 + SIGINT;
+		var_global = 1;
 	}
 }
 
