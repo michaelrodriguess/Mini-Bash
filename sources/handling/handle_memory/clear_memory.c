@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 18:13:23 by microdri          #+#    #+#             */
-/*   Updated: 2023/04/08 08:11:47 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/04/08 13:50:19 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ void	free_copy_env(char **env_copy)
 void	close_red_files(t_data_shell data_shell)
 {
 	while(data_shell.n_redis--)
-		close(data_shell.fd_redis[data_shell.n_redis]);
+	{
+		if(data_shell.fd_redis[data_shell.n_redis] > 2)
+			close(data_shell.fd_redis[data_shell.n_redis]);
+	}
 }
 
 void	clear_memory(t_data_shell data_shell, int end_exec)
