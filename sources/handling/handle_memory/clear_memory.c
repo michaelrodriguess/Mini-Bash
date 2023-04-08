@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 18:13:23 by microdri          #+#    #+#             */
-/*   Updated: 2023/04/06 18:39:29 by microdri         ###   ########.fr       */
+/*   Updated: 2023/04/08 08:11:47 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,8 @@ void	free_copy_env(char **env_copy)
 
 void	close_red_files(t_data_shell data_shell)
 {
-	while(data_shell.n_redis)
-	{
+	while(data_shell.n_redis--)
 		close(data_shell.fd_redis[data_shell.n_redis]);
-		data_shell.n_redis--;
-	}
-	close(data_shell.fd_redis[data_shell.n_redis]);
 }
 
 void	clear_memory(t_data_shell data_shell, int end_exec)
@@ -48,10 +44,10 @@ void	clear_memory(t_data_shell data_shell, int end_exec)
 	}
 	if (data_shell.fd_redis)
 	{
+		close_red_files(data_shell);
 		free(data_shell.fd_redis);
 		data_shell.fd_redis = NULL;
 	}
-	close_red_files(data_shell);
 	if (end_exec == 1)
 	{
 		clear_history();
