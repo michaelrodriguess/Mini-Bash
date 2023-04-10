@@ -6,7 +6,7 @@
 /*   By: fcaetano <fcaetano@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 15:39:50 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/04/10 14:07:29 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/04/10 17:12:05 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,8 @@ void	open_heredoc(t_data_shell *shell, int i_fd)
 	while (42)
 	{
 		str = readline("heredoc> ");
-		if ((ft_strncmp(str, "", ft_strlen(str))
-				&& !ft_strncmp(str, shell->tok_lst->next->str, ft_strlen(str)))
-			|| str == NULL || g_var_global == 1)
+		if ((!ft_strcmp(str, shell->tok_lst->next->str)
+				|| str == NULL || g_var_global == 1))
 			break ;
 		ft_putstr_fd(str, shell->fd_redis[i_fd]);
 		ft_putstr_fd("\n", shell->fd_redis[i_fd]);
