@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 08:15:21 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/04/10 16:45:10 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/04/10 17:43:43 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	execute_builtins(t_data_shell *data_shell)
 	if (!ft_strcmp(command, "exit"))
 		ft_exit(&(data_shell->sentence_list->args[1]));
 	if (!ft_strcmp(command, "env")
-			&& data_shell->sentence_list->args[1] == NULL)
+		&& data_shell->sentence_list->args[1] == NULL)
 		ft_env(data_shell->copy_env, data_shell->sentence_list->fd_out);
 	if (!ft_strcmp(command, "unset"))
 		ft_unset(data_shell);
@@ -50,12 +50,12 @@ void	exec_fork(t_data_shell *data_shell)
 void	execute_cmd(t_data_shell *data_shell)
 {
 	int	pid;
-	int status;
+	int	status;
 
+	if (data_shell->sentence_list->fd_out == -1 || data_shell->sentence_list->fd_in == -1)
+		return ;
 	if (data_shell->sentence_list->args == NULL)
 		message_error("microtano: command not found", 127);
-	else if (data_shell->sentence_list->fd_out == -1)
-		return ;
 	else if (is_builtin(data_shell->sentence_list->args[0]) == 1)
 		execute_builtins(data_shell);
 	else

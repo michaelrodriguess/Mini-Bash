@@ -6,7 +6,7 @@
 /*   By: fcaetano <fcaetano@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 14:11:29 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/04/10 13:59:30 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/04/10 17:33:48 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,6 @@ void	redirect(t_data_shell *data_shell)
 {
 	config_redirect(data_shell);
 	clean_input(data_shell);
+	if (data_shell->tok_lst == NULL)
+		data_shell->sentence_list->fd_out = -1;
 }
