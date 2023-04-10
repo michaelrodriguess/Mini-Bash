@@ -47,31 +47,30 @@ void	exec_fork(t_data_shell *data_shell)
 		data_shell->copy_env);
 }
 
-void	execute_cmd(t_data_shell *data_shell)
+void	execute_cmd(t_data_shell *shell)
 {
 	int	pid;
-	int	status;
 
-	if (data_shell->sentence_list->fd_out == -1 || data_shell->sentence_list->fd_in == -1)
+	if (shell->sentence_list->fd_out == -1 || shell->sentence_list->fd_in == -1)
 		return ;
-	if (data_shell->sentence_list->args == NULL)
+	if (shell->sentence_list->args == NULL)
 		message_error("microtano: command not found", 127);
-	else if (is_builtin(data_shell->sentence_list->args[0]) == 1)
-		execute_builtins(data_shell);
+	else if (is_builtin(shell->sentence_list->args[0]) == 1)
+		execute_builtins(shell);
 	else
 	{
 		pid = fork();
 		if (pid == -1)
 			message_error("Error with Fork", -1);
 		if (pid == 0)
-			exec_fork(data_shell);
+			exec_fork(shell);
 		if (pid != 0)
 		{
-			waitpid(pid, &status, 0);
-			if (WIFEXITED(status))
-				g_var_global = WEXITSTATUS(status);
-			if (WIFSIGNALED(status))
-				g_var_global = 128 + WTERMSIG(status);
+			waitpid(pid, &g_var_global, 0);
+			if (WIFEXITED(g_var_global))
+				g_var_global = WEXITSTATUS(g_var_global);
+			if (WIFSIGNALED(g_var_global))
+				g_var_global = 128 + WTERMSIG(g_var_global);
 		}
 	}
 }

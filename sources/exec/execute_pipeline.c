@@ -43,7 +43,7 @@ void	exec_pipes(t_data_shell *data_shell)
 		if (data_shell->sentence_list->args == NULL)
 			message_error("microtano: command not found", 127);
 		else if (data_shell->sentence_list->fd_out != -1
-				&& data_shell->sentence_list->fd_in != -1)
+			&& data_shell->sentence_list->fd_in != -1)
 			do_fork(data_shell);
 		n_sentence++;
 		data_shell->sentence_list = data_shell->sentence_list->next;
