@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 08:15:21 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/04/10 16:09:41 by microdri         ###   ########.fr       */
+/*   Updated: 2023/04/10 16:45:10 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	execute_builtins(t_data_shell *data_shell)
 		ft_exit(&(data_shell->sentence_list->args[1]));
 	if (!ft_strcmp(command, "env")
 			&& data_shell->sentence_list->args[1] == NULL)
-		ft_env(data_shell->copy_env);
+		ft_env(data_shell->copy_env, data_shell->sentence_list->fd_out);
 	if (!ft_strcmp(command, "unset"))
 		ft_unset(data_shell);
 	if (!ft_strcmp(command, "export"))

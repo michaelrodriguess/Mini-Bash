@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:50:06 by microdri          #+#    #+#             */
-/*   Updated: 2023/04/07 17:12:34 by microdri         ###   ########.fr       */
+/*   Updated: 2023/04/10 16:45:48 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void		ft_pwd(char **env_copy);
 void		ft_echo(char **args, int fd_out);
 void		ft_cd(char **path, char ***env);
 void		ft_exit(char **args);
-void		ft_env(char **copy_env);
+void		ft_env(char **copy_env, int fd_out);
 void		ft_unset(t_data_shell *data_shell);
 void		ft_export(char **input, char ***env);
 void		free_copy_env(char **env_copy);
