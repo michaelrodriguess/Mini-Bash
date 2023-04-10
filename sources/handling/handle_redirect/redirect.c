@@ -6,7 +6,7 @@
 /*   By: fcaetano <fcaetano@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 14:11:29 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/04/07 17:36:36 by microdri         ###   ########.fr       */
+/*   Updated: 2023/04/10 13:59:30 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	count_redis(t_token *tok_lst)
 
 t_token	*reset_head(t_token *tok_lst)
 {
-	while (tok_lst->prev && tok_lst->prev->type != 1)
+	while (tok_lst && tok_lst->prev && tok_lst->prev->type != 1)
 		tok_lst = tok_lst->prev;
 	return (tok_lst);
 }
