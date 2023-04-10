@@ -12,9 +12,9 @@
 
 #include "../../../includes/minishell.h"
 
-int	count_redirects(t_token *tok_lst)
+int	count_redis(t_token *tok_lst)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	while (tok_lst)
@@ -35,7 +35,8 @@ t_token	*reset_head(t_token *tok_lst)
 
 void	clean_input(t_data_shell *data_shell)
 {
-	while (data_shell->tok_lst && data_shell->tok_lst->next && data_shell->tok_lst->type != 1)
+	while (data_shell->tok_lst && data_shell->tok_lst->next
+		&& data_shell->tok_lst->type != 1)
 	{
 		if (data_shell->tok_lst->type > 1)
 			remove_tok_nodes(&(data_shell->tok_lst), 2);
@@ -45,34 +46,30 @@ void	clean_input(t_data_shell *data_shell)
 	data_shell->tok_lst = reset_head(data_shell->tok_lst);
 }
 
-void	config_redirect(t_data_shell *data_shell)
+void	config_redirect(t_data_shell *shell)
 {
 	t_token			*head;
-	static int		i_fd;
 
-	head = data_shell->tok_lst;
-	if (i_fd == 0)
-		data_shell->fd_redis = malloc(count_redirects(data_shell->tok_lst) * sizeof(int));
-	if (!data_shell->fd_redis)
-		message_error("Error with malloc fd_redis", -1); // copy errno value to another variable 
-	while (data_shell->tok_lst && data_shell->tok_lst->type != 1)
+	head = shell->tok_lst;
+	if (shell->n_redis == 0)
+		shell->fd_redis = malloc(count_redis(shell->tok_lst) * sizeof(int));
+	if (!shell->fd_redis)
+		message_error("Error with malloc fd_redis", -1);
+	while (shell->tok_lst && shell->tok_lst->type != 1)
 	{
-		if (data_shell->tok_lst->type == 2 || data_shell->tok_lst->type == 4)
-			r_output(*data_shell, i_fd);
-		else if (data_shell->tok_lst->type == 5)
-			open_heredoc(data_shell, i_fd);
-		else if (data_shell->tok_lst->type == 3)
-			r_input(*data_shell, i_fd);
-		if (data_shell->tok_lst->type > 1)
-		{
-			i_fd++;
-			data_shell->n_redis = i_fd; // exclude i_fd and use struct value and reset it to 0 in clear memory
-		}
-		data_shell->tok_lst = data_shell->tok_lst->next;
+		if (shell->tok_lst->type == 2 || shell->tok_lst->type == 4)
+			r_output(*shell, shell->n_redis);
+		else if (shell->tok_lst->type == 5)
+			open_heredoc(shell, shell->n_redis);
+		else if (shell->tok_lst->type == 3)
+			r_input(*shell, shell->n_redis);
+		if (shell->tok_lst->type > 1)
+			shell->n_redis++;
+		shell->tok_lst = shell->tok_lst->next;
 	}
-	if(data_shell->tok_lst == NULL)
-		i_fd = 0;
-	data_shell->tok_lst = head;
+	if (shell->tok_lst == NULL)
+		shell->n_redis = 0;
+	shell->tok_lst = head;
 }
 
 void	redirect(t_data_shell *data_shell)

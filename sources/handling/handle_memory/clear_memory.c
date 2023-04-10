@@ -51,6 +51,7 @@ void	clear_memory(t_data_shell data_shell, int end_exec)
 		free(data_shell.fd_redis);
 		data_shell.fd_redis = NULL;
 	}
+	data_shell.n_redis = 0;
 	if (end_exec == 1)
 	{
 		clear_history();

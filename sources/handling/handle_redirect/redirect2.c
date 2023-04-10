@@ -41,26 +41,28 @@ char	*temp_file(int i_fd)
 	return (path_file);
 }
 
-void	open_heredoc(t_data_shell *data_shell, int i_fd)
+void	open_heredoc(t_data_shell *shell, int i_fd)
 {
 	char	*str;
 	char	*file_name;
 
 	file_name = temp_file(i_fd);
-	data_shell->fd_redis[i_fd] = open(file_name, O_CREAT | O_RDWR | O_TRUNC, 0666);
-	if (data_shell->fd_redis[i_fd] == -1)
+	shell->fd_redis[i_fd] = open(file_name,
+			O_CREAT | O_RDWR | O_TRUNC, 0666);
+	if (shell->fd_redis[i_fd] == -1)
 		message_error("Failed to open heredoc document", 1);
 	while (42)
 	{
 		str = readline("heredoc> ");
-		if (ft_strncmp(str, "", ft_strlen(str)) && !ft_strncmp(str, data_shell->tok_lst->next->str, ft_strlen(str)))
-			break ;	
-		ft_putstr_fd(str, data_shell->fd_redis[i_fd]);
-		ft_putstr_fd("\n", data_shell->fd_redis[i_fd]);
+		if (ft_strncmp(str, "", ft_strlen(str))
+			&& !ft_strncmp(str, shell->tok_lst->next->str, ft_strlen(str)))
+			break ;
+		ft_putstr_fd(str, shell->fd_redis[i_fd]);
+		ft_putstr_fd("\n", shell->fd_redis[i_fd]);
 	}
-	close(data_shell->fd_redis[i_fd]);
-	data_shell->fd_redis[i_fd] = open(file_name, O_RDONLY);
-	data_shell->sentence_list->fd_in = data_shell->fd_redis[i_fd];
+	close(shell->fd_redis[i_fd]);
+	shell->fd_redis[i_fd] = open(file_name, O_RDONLY);
+	shell->sentence_list->fd_in = shell->fd_redis[i_fd];
 	free(file_name);
 }
 

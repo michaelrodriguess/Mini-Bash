@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 08:15:21 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/04/08 18:14:06 by microdri         ###   ########.fr       */
+/*   Updated: 2023/04/10 09:20:02 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,17 @@ int	execute_builtins(t_data_shell *data_shell)
 	return (0);
 }
 
+void	exec_fork(t_data_shell *data_shell)
+{
+	child_sig_def();
+	if (data_shell->sentence_list->fd_in != 0)
+		dup2(data_shell->sentence_list->fd_in, 0);
+	if (data_shell->sentence_list->fd_out != 1)
+		dup2(data_shell->sentence_list->fd_out, 1);
+	execve(data_shell->sentence_list->args[0], data_shell->sentence_list->args,
+		data_shell->copy_env);
+}
+
 void	execute_cmd(t_data_shell *data_shell)
 {
 	int	pid;
@@ -51,14 +62,7 @@ void	execute_cmd(t_data_shell *data_shell)
 		if (pid == -1)
 			message_error("Error with Fork", -1);
 		if (pid == 0)
-		{
-			child_sig_def();
-			if (data_shell->sentence_list->fd_in != 0)
-				dup2(data_shell->sentence_list->fd_in, 0);
-			if (data_shell->sentence_list->fd_out != 1)
-				dup2(data_shell->sentence_list->fd_out, 1);
-			execve(data_shell->sentence_list->args[0], data_shell->sentence_list->args, data_shell->copy_env);
-		}
+			exec_fork(data_shell);
 		if (pid != 0)
 			waitpid(pid, &g_var_global, 0);
 		if (g_var_global != 0)

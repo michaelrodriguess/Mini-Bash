@@ -20,6 +20,7 @@ void	init_values_struct(t_data_shell *data_shell, char *input)
 	data_shell->tok_lst = NULL;
 	data_shell->fd_pipes = NULL;
 	data_shell->fd_redis = NULL;
+	data_shell->n_redis = 0;
 	if (input)
 		data_shell->input = input;
 	else
