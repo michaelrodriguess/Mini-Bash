@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 19:34:26 by microdri          #+#    #+#             */
-/*   Updated: 2023/04/10 15:15:55 by microdri         ###   ########.fr       */
+/*   Updated: 2023/04/10 16:37:16 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	exec_sentence(t_data_shell *data_shell)
 	close_pipes(data_shell);
 	if (is_builtin(data_shell->sentence_list->args[0]))
 	{
+		data_shell->sentence_list->fd_out = 1;
 		execute_builtins(data_shell);
 		clear_memory(*data_shell, EXIT_EXEC);
 		exit(1);
