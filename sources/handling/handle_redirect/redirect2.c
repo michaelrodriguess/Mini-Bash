@@ -6,7 +6,7 @@
 /*   By: fcaetano <fcaetano@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 15:39:50 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/04/08 14:40:55 by microdri         ###   ########.fr       */
+/*   Updated: 2023/04/10 11:18:15 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,15 +51,19 @@ void	open_heredoc(t_data_shell *shell, int i_fd)
 			O_CREAT | O_RDWR | O_TRUNC, 0666);
 	if (shell->fd_redis[i_fd] == -1)
 		message_error("Failed to open heredoc document", 1);
+	set_sig_heredoc();
+	g_var_global = 0;
 	while (42)
 	{
 		str = readline("heredoc> ");
-		if (ft_strncmp(str, "", ft_strlen(str))
-			&& !ft_strncmp(str, shell->tok_lst->next->str, ft_strlen(str)))
+		if ((ft_strncmp(str, "", ft_strlen(str))
+				&& !ft_strncmp(str, shell->tok_lst->next->str, ft_strlen(str)))
+			|| str == NULL || g_var_global == 1)
 			break ;
 		ft_putstr_fd(str, shell->fd_redis[i_fd]);
 		ft_putstr_fd("\n", shell->fd_redis[i_fd]);
 	}
+	set_sig();
 	close(shell->fd_redis[i_fd]);
 	shell->fd_redis[i_fd] = open(file_name, O_RDONLY);
 	shell->sentence_list->fd_in = shell->fd_redis[i_fd];
