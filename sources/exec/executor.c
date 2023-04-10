@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 08:15:21 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/04/10 14:11:59 by microdri         ###   ########.fr       */
+/*   Updated: 2023/04/10 16:09:41 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ int	execute_builtins(t_data_shell *data_shell)
 		ft_cd(&(data_shell->sentence_list->args[1]), &data_shell->copy_env);
 	if (!ft_strcmp(command, "exit"))
 		ft_exit(&(data_shell->sentence_list->args[1]));
-	if (!ft_strcmp(command, "env") && data_shell->sentence_list->args[1] == NULL)
+	if (!ft_strcmp(command, "env")
+			&& data_shell->sentence_list->args[1] == NULL)
 		ft_env(data_shell->copy_env);
 	if (!ft_strcmp(command, "unset"))
 		ft_unset(data_shell);
@@ -49,6 +50,7 @@ void	exec_fork(t_data_shell *data_shell)
 void	execute_cmd(t_data_shell *data_shell)
 {
 	int	pid;
+	int status;
 
 	if (data_shell->sentence_list->args == NULL)
 		message_error("microtano: command not found", 127);
@@ -64,11 +66,13 @@ void	execute_cmd(t_data_shell *data_shell)
 		if (pid == 0)
 			exec_fork(data_shell);
 		if (pid != 0)
-			waitpid(pid, &g_var_global, 0);
-		if (g_var_global == 2)
-			g_var_global = 130;
-		else if (g_var_global != 0)
-			g_var_global = 1;
+		{
+			waitpid(pid, &status, 0);
+			if (WIFEXITED(status))
+				g_var_global = WEXITSTATUS(status);
+			if (WIFSIGNALED(status))
+				g_var_global = 128 + WTERMSIG(status);
+		}
 	}
 }
 
