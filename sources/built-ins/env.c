@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 10:33:05 by microdri          #+#    #+#             */
-/*   Updated: 2023/03/12 17:41:56 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/04/10 14:12:34 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,5 @@ void	ft_env(char **copy_env)
 		printf("%s\n", copy_env[index]);
 		index++;
 	}
+	g_var_global = 0;
 }

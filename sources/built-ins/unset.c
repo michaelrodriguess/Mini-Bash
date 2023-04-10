@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 19:24:01 by microdri          #+#    #+#             */
-/*   Updated: 2023/04/07 17:31:19 by microdri         ###   ########.fr       */
+/*   Updated: 2023/04/10 13:57:15 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	ft_unset(t_data_shell *data_shell)
 	j = 0;
 	if (data_shell->sentence_list->args == NULL)
 		return ;
+	g_var_global = 0;
 	while (data_shell->sentence_list->args[j])
 	{
 		if (data_shell->sentence_list->args[j] == NULL)

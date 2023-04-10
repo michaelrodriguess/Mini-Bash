@@ -6,7 +6,7 @@
 /*   By: fcaetano <fernandacunha@id.uff.br>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:52:54 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/04/04 10:58:59 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/04/10 11:58:12 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,5 @@ void	ft_echo(char **args, int fd_out)
 	}
 	if (n)
 		ft_putstr_fd("\n", fd_out);
+	g_var_global = 0;
 }

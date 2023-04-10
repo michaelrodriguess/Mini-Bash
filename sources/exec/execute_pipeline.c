@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 19:34:26 by microdri          #+#    #+#             */
-/*   Updated: 2023/04/08 13:48:12 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/04/10 14:49:25 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void	exec_sentence(t_data_shell *data_shell)
 		clear_history();
 		free_copy_env(data_shell->copy_env);
 		clear_memory(*data_shell, EXIT_EXEC);
-		g_var_global = 1;
 		exit(1);
 	}
 	else
