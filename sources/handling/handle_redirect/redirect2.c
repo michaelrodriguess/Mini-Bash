@@ -6,7 +6,7 @@
 /*   By: fcaetano <fcaetano@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 15:39:50 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/04/10 14:00:38 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/04/10 14:07:29 by fcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	open_heredoc(t_data_shell *shell, int i_fd)
 	if (shell->fd_redis[i_fd] == -1)
 		message_error("Failed to open heredoc document", 1);
 	set_sig_heredoc();
+	g_var_global = 0;
 	while (42)
 	{
 		str = readline("heredoc> ");
