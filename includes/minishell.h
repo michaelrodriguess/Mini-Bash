@@ -69,6 +69,7 @@ typedef struct s_data_shell
 void		open_heredoc(t_data_shell *data_shell, int i_fd);
 void		execute_pipeline(t_data_shell *data_shell);
 void		child_sig_def(void);
+void		set_sig_heredoc(void);
 void		redirect(t_data_shell *data_shell);
 void		r_input(t_data_shell shell, int i_fd);
 void		tok_list_to_args(t_data_shell *data_shell);

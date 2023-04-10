@@ -30,6 +30,16 @@ void	handle_signals(int signum)
 	}
 }
 
+void	handle_signals_heredoc(int signum)
+{
+	if (signum == SIGINT)
+		g_var_global = 1;
+	if (RL_ISSTATE(RL_STATE_READCMD))
+	{
+		ioctl(1, TIOCSTI, "\n");
+	}
+}
+
 void	set_sig(void)
 {
 	signal(SIGINT, handle_signals);
@@ -40,4 +50,9 @@ void	child_sig_def(void)
 {
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);
+}
+
+void	set_sig_heredoc(void)
+{
+	signal(SIGINT, handle_signals_heredoc);
 }
