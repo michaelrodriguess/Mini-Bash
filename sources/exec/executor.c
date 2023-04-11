@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 08:15:21 by fcaetano          #+#    #+#             */
-/*   Updated: 2023/04/10 17:43:43 by fcaetano         ###   ########.fr       */
+/*   Updated: 2023/04/11 12:15:39 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	exec_fork(t_data_shell *data_shell)
 void	execute_cmd(t_data_shell *shell)
 {
 	int	pid;
+	int	status;
 
 	if (shell->sentence_list->fd_out == -1 || shell->sentence_list->fd_in == -1)
 		return ;
@@ -66,11 +67,11 @@ void	execute_cmd(t_data_shell *shell)
 			exec_fork(shell);
 		if (pid != 0)
 		{
-			waitpid(pid, &g_var_global, 0);
-			if (WIFEXITED(g_var_global))
-				g_var_global = WEXITSTATUS(g_var_global);
-			if (WIFSIGNALED(g_var_global))
-				g_var_global = 128 + WTERMSIG(g_var_global);
+			waitpid(pid, &status, 0);
+			if (WIFEXITED(status))
+				g_var_global = WEXITSTATUS(status);
+			if (WIFSIGNALED(status))
+				g_var_global = 128 + WTERMSIG(status);
 		}
 	}
 }

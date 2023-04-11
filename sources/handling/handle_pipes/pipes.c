@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 13:42:30 by microdri          #+#    #+#             */
-/*   Updated: 2023/04/10 16:05:41 by microdri         ###   ########.fr       */
+/*   Updated: 2023/04/11 17:16:09 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ void	wait_sentences(t_data_shell *data_shell)
 			g_var_global = WEXITSTATUS(status);
 		if (WIFSIGNALED(status))
 			g_var_global = 128 + WTERMSIG(status);
+		if (data_shell->sentence_list->args == NULL)
+			g_var_global = 127;
 		data_shell->sentence_list = data_shell->sentence_list->next;
 	}
 	data_shell->sentence_list = head;
